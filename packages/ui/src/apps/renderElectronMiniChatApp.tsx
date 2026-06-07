@@ -56,3 +56,4 @@ export function renderElectronMiniChatApp(apis: RuntimeAPIs) {
     </StrictMode>,
   );
 }
+

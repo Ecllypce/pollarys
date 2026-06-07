@@ -24,3 +24,4 @@ export const FileTypeIcon: React.FC<FileTypeIconProps> = ({ filePath, extension,
     </svg>
   );
 };
+

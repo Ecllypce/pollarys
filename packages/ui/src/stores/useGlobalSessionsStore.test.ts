@@ -28,3 +28,4 @@ describe('useGlobalSessionsStore', () => {
     expect(useGlobalSessionsStore.getState().activeSessions[0]?.share?.url).toBe('https://share.example/b');
   });
 });
+

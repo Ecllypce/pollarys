@@ -755,3 +755,4 @@ export function formatToolInput(input: Record<string, unknown>, toolName: string
 
   return String(input);
 }
+

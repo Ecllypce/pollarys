@@ -17,7 +17,7 @@ import { useUIStore } from '@/stores/useUIStore';
 import { useProjectsStore } from '@/stores/useProjectsStore';
 import { useDirectoryStore } from '@/stores/useDirectoryStore';
 import { refreshGlobalSessions } from '@/stores/useGlobalSessionsStore';
-import { subscribeOpenchamberEvents } from '@/lib/openchamberEvents';
+import { subscribePollarysEvents } from '@/lib/pollarysEvents';
 import { PROJECT_COLOR_MAP, PROJECT_ICON_MAP, getProjectIconImageUrl } from '@/lib/projectMeta';
 import { useThemeSystem } from '@/contexts/useThemeSystem';
 import { cn, formatDirectoryName } from '@/lib/utils';
@@ -276,7 +276,7 @@ export function ScheduledTasksDialog() {
       return;
     }
     let timeoutID: ReturnType<typeof setTimeout> | null = null;
-    const unsubscribe = subscribeOpenchamberEvents((event) => {
+    const unsubscribe = subscribePollarysEvents((event) => {
       if (event.type !== 'scheduled-task-ran') {
         return;
       }
@@ -629,3 +629,6 @@ export function ScheduledTasksDialog() {
     </>
   );
 }
+
+
+

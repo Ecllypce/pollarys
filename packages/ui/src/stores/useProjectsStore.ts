@@ -291,8 +291,8 @@ const getVSCodeWorkspaceProject = (): { projects: ProjectEntry[]; activeProjectI
     return null;
   }
 
-  const runtimeApis = (window as unknown as { __OPENCHAMBER_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } })
-    .__OPENCHAMBER_RUNTIME_APIS__;
+  const runtimeApis = (window as unknown as { __POLLARYS_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } })
+    .__POLLARYS_RUNTIME_APIS__;
   if (!runtimeApis?.runtime?.isVSCode) {
     return null;
   }
@@ -317,7 +317,7 @@ const getVSCodeWorkspaceProject = (): { projects: ProjectEntry[]; activeProjectI
   };
 
   if (streamDebugEnabled()) {
-    console.log('[OpenChamber][VSCode][projects] Using workspace fallback project', entry);
+    console.log('[Pollarys][VSCode][projects] Using workspace fallback project', entry);
   }
 
   return { projects: [entry], activeProjectId: id };
@@ -717,10 +717,12 @@ export const useProjectsStore = create<ProjectsStore>()(
 );
 
 if (typeof window !== 'undefined') {
-  window.addEventListener('openchamber:settings-synced', (event: Event) => {
+  window.addEventListener('Pollarys:settings-synced', (event: Event) => {
     const detail = (event as CustomEvent<DesktopSettings>).detail;
     if (detail && typeof detail === 'object') {
       useProjectsStore.getState().synchronizeFromSettings(detail);
     }
   });
 }
+
+

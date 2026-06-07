@@ -74,3 +74,4 @@ export const CommitInput: React.FC<CommitInputProps> = ({
     />
   );
 };
+

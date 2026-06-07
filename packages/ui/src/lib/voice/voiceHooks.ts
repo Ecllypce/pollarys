@@ -131,3 +131,4 @@ export const voiceHooks = {
         reportContextualUpdate(formatReadyEvent(sessionId));
     },
 };
+

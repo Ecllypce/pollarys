@@ -51,3 +51,4 @@ export function canDisposeDirectory(input: DisposeCheck) {
   if (input.hasPendingBlockingRequests) return false
   return true
 }
+

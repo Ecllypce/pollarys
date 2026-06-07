@@ -50,3 +50,4 @@ export const useChatSearchDirectory = (): string | undefined => {
 
   return fallbackDirectory ?? undefined;
 };
+

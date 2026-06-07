@@ -157,3 +157,4 @@ export const BottomTerminalDock: React.FC<BottomTerminalDockProps> = ({ isOpen, 
     </section>
   );
 };
+

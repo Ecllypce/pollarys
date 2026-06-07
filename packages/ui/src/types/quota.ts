@@ -43,3 +43,4 @@ export interface ProviderResult {
   usage: ProviderUsage | null;
   fetchedAt: number;
 }
+

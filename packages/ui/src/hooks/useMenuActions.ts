@@ -50,8 +50,8 @@ const copyCurrentSelectionFallback = async (): Promise<boolean> => {
   return document.execCommand('copy');
 };
 
-const MENU_ACTION_EVENT = 'openchamber:menu-action';
-const CHECK_FOR_UPDATES_EVENT = 'openchamber:check-for-updates';
+const MENU_ACTION_EVENT = 'Pollarys:menu-action';
+const CHECK_FOR_UPDATES_EVENT = 'Pollarys:check-for-updates';
 
 type TauriEventApi = {
   listen?: (
@@ -194,7 +194,7 @@ export const useMenuActions = (
           break;
 
         case 'copy': {
-          const copyEvent = new Event('openchamber:copy', { cancelable: true });
+          const copyEvent = new Event('Pollarys:copy', { cancelable: true });
           const wasHandled = !window.dispatchEvent(copyEvent);
           if (!wasHandled) {
             void copyCurrentSelectionFallback();
@@ -283,7 +283,7 @@ export const useMenuActions = (
     let unlistenMenu: null | (() => void | Promise<void>) = null;
     let unlistenUpdate: null | (() => void | Promise<void>) = null;
 
-    listen('openchamber:menu-action', (evt) => {
+    listen('Pollarys:menu-action', (evt) => {
       const action = evt?.payload;
       if (typeof action !== 'string') return;
       handleAction(action as MenuAction);
@@ -295,7 +295,7 @@ export const useMenuActions = (
         // ignore
       });
 
-    listen('openchamber:check-for-updates', () => {
+    listen('Pollarys:check-for-updates', () => {
       window.dispatchEvent(new Event(CHECK_FOR_UPDATES_EVENT));
     })
       .then((fn) => {
@@ -324,3 +324,5 @@ export const useMenuActions = (
     };
   }, [handleAction]);
 };
+
+

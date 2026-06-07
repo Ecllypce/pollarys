@@ -153,13 +153,15 @@ export const OpenCodeUpdateToast: React.FC = () => {
       timeoutIds.push(setTimeout(() => { void checkForUpdate(0); }, INITIAL_CHECK_DELAY_MS));
     }
 
-    window.addEventListener('openchamber:opencode-update-available', onUpdateAvailable);
+    window.addEventListener('Pollarys:opencode-update-available', onUpdateAvailable);
     return () => {
       cancelled = true;
       for (const timeoutId of timeoutIds) clearTimeout(timeoutId);
-      window.removeEventListener('openchamber:opencode-update-available', onUpdateAvailable);
+      window.removeEventListener('Pollarys:opencode-update-available', onUpdateAvailable);
     };
   }, [runUpgrade, showOpenCodeUpdateNotifications, t]);
 
   return null;
 };
+
+

@@ -37,3 +37,4 @@ export async function copyTextToClipboard(text: string): Promise<ClipboardCopyRe
     error: clipboardError ?? 'Clipboard access denied in current context',
   };
 }
+

@@ -60,3 +60,4 @@ export const SettingsSection: React.FC<SettingsSectionProps> = ({
     </div>
   );
 };
+

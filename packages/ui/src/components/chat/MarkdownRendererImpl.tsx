@@ -72,7 +72,7 @@ const useExternalLinkInteractions = ({
         return;
       }
 
-      if (anchor.getAttribute('data-openchamber-file-link') === 'true') {
+      if (anchor.getAttribute('data-Pollarys-file-link') === 'true') {
         return;
       }
 
@@ -1042,7 +1042,7 @@ interface MarkdownRendererProps {
 }
 
 const MERMAID_BLOCK_SELECTOR = '[data-markdown="mermaid-block"]';
-const FILE_LINK_SELECTOR = '[data-openchamber-file-link="true"]';
+const FILE_LINK_SELECTOR = '[data-Pollarys-file-link="true"]';
 const FILE_REFERENCE_STAT_CONCURRENCY = 4;
 const FILE_REFERENCE_STAT_CACHE_MAX = 1000;
 const VSCODE_FILE_REFERENCE_STAT_CACHE_MAX = 200;
@@ -1408,9 +1408,9 @@ const useFileReferenceInteractions = ({
     const fileReferenceLinkLimit = getFileReferenceLinkLimit();
 
     const clearFileLinkAttributes = (candidate: HTMLElement) => {
-      candidate.removeAttribute('data-openchamber-file-link');
-      candidate.removeAttribute('data-openchamber-file-ref');
-      candidate.removeAttribute('data-openchamber-file-path');
+      candidate.removeAttribute('data-Pollarys-file-link');
+      candidate.removeAttribute('data-Pollarys-file-ref');
+      candidate.removeAttribute('data-Pollarys-file-path');
       if (candidate.getAttribute('title') === 'Open file') {
         candidate.removeAttribute('title');
       }
@@ -1462,9 +1462,9 @@ const useFileReferenceInteractions = ({
             return;
           }
 
-          candidate.setAttribute('data-openchamber-file-link', 'true');
-          candidate.setAttribute('data-openchamber-file-ref', latestRawCandidate);
-          candidate.setAttribute('data-openchamber-file-path', latestResolved.resolvedPath);
+          candidate.setAttribute('data-Pollarys-file-link', 'true');
+          candidate.setAttribute('data-Pollarys-file-ref', latestRawCandidate);
+          candidate.setAttribute('data-Pollarys-file-path', latestResolved.resolvedPath);
           candidate.setAttribute('title', 'Open file');
           if (candidate.tagName.toLowerCase() !== 'a') {
             candidate.setAttribute('role', 'button');
@@ -1475,7 +1475,7 @@ const useFileReferenceInteractions = ({
     };
 
     const openFileReference = (sourceElement: HTMLElement) => {
-      const raw = sourceElement.getAttribute('data-openchamber-file-ref') || extractPathCandidateFromElement(sourceElement);
+      const raw = sourceElement.getAttribute('data-Pollarys-file-ref') || extractPathCandidateFromElement(sourceElement);
       const resolved = getResolvedReference(raw, effectiveDirectory);
       if (!resolved) {
         return;
@@ -1533,7 +1533,7 @@ const useFileReferenceInteractions = ({
       }
 
       const target = event.target;
-      if (!(target instanceof HTMLElement) || target.getAttribute('data-openchamber-file-link') !== 'true') {
+      if (!(target instanceof HTMLElement) || target.getAttribute('data-Pollarys-file-link') !== 'true') {
         return;
       }
 
@@ -1834,3 +1834,5 @@ export const SimpleMarkdownRenderer = React.memo(SimpleMarkdownRendererImpl, (pr
     && prev.allowMermaidWheelZoom === next.allowMermaidWheelZoom
     && prev.enableFileReferences === next.enableFileReferences;
 });
+
+

@@ -187,3 +187,4 @@ export const UsageSidebar: React.FC<UsageSidebarProps> = ({ onItemSelect }) => {
     </div>
   );
 };
+

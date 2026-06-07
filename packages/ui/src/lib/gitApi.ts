@@ -41,20 +41,20 @@ export type {
 
 declare global {
   interface Window {
-    __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs;
+    __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs;
   }
 }
 
 const getRuntimeGit = () => {
-  if (typeof window !== 'undefined' && window.__OPENCHAMBER_RUNTIME_APIS__?.git) {
-    return window.__OPENCHAMBER_RUNTIME_APIS__.git;
+  if (typeof window !== 'undefined' && window.__POLLARYS_RUNTIME_APIS__?.git) {
+    return window.__POLLARYS_RUNTIME_APIS__.git;
   }
   return null;
 };
 
 const requestChatForceScrollBottom = (sessionId: string) => {
   if (typeof window === 'undefined') return;
-  window.dispatchEvent(new CustomEvent('openchamber:chat-force-scroll-bottom', {
+  window.dispatchEvent(new CustomEvent('Pollarys:chat-force-scroll-bottom', {
     detail: { sessionId },
   }));
 };
@@ -829,3 +829,5 @@ export async function canonicalizeWorktreeState(
   }
   return gitHttp.canonicalizeWorktreeState(directory);
 }
+
+

@@ -4,10 +4,10 @@ export const registerSessionFoldersRoutes = (app, dependencies) => {
   const {
     fsPromises,
     path,
-    openchamberDataDir,
+    pollarysDataDir,
   } = dependencies;
 
-  const filePath = path.join(openchamberDataDir, 'sessions-directories.json');
+  const filePath = path.join(pollarysDataDir, 'sessions-directories.json');
 
   const ensureDir = async () => {
     await fsPromises.mkdir(path.dirname(filePath), { recursive: true });
@@ -61,3 +61,4 @@ export const registerSessionFoldersRoutes = (app, dependencies) => {
     }
   });
 };
+

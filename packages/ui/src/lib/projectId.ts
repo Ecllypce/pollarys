@@ -16,3 +16,4 @@ export const createProjectIdFromPath = (projectPath: string): string => {
 
   return `path_${encoded}`;
 };
+

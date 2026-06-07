@@ -34,7 +34,7 @@ const isSameActiveEditorFilePayload = (a: ActiveEditorFilePayload | null, b: Act
 };
 
 export class SessionEditorPanelProvider {
-  public static readonly viewType = 'openchamber.sessionEditor';
+  public static readonly viewType = 'pollarys.sessionEditor';
 
   private _cachedStatus: ConnectionStatus = 'connecting';
   private _cachedError?: string;
@@ -133,7 +133,7 @@ export class SessionEditorPanelProvider {
 
       if (message.type === 'vscode:command') {
         const { command, args } = (message.payload || {}) as { command?: unknown; args?: unknown[] };
-        if (command === 'openchamber.updateSessionEditorTitle') {
+        if (command === 'pollarys.updateSessionEditorTitle') {
           const title = typeof args?.[1] === 'string' && args[1].trim().length > 0 ? args[1].trim() : 'Session';
           state.panel.title = title;
           state.panel.webview.postMessage({ id: message.id, type: message.type, success: true, data: { result: true } });
@@ -160,7 +160,7 @@ export class SessionEditorPanelProvider {
       state.panel.webview.postMessage(response);
 
       if (message.type === 'api:config/settings:save' && response.success) {
-        void vscode.commands.executeCommand('openchamber.internal.settingsSynced', response.data);
+        void vscode.commands.executeCommand('pollarys.internal.settingsSynced', response.data);
       }
     }, null, this._context.subscriptions);
   }

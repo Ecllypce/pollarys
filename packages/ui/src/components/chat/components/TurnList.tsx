@@ -25,3 +25,4 @@ const TurnList = <TEntry extends TurnListEntry>({ entries, renderEntry }: TurnLi
 };
 
 export default React.memo(TurnList) as typeof TurnList;
+

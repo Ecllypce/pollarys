@@ -122,3 +122,4 @@ export const useSwitcherItems = (enabled: boolean, options: SwitcherItemsOptions
 
   return items;
 };
+

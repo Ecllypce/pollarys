@@ -187,3 +187,4 @@ export const SkillAutocomplete = React.forwardRef<SkillAutocompleteHandle, Skill
 });
 
 SkillAutocomplete.displayName = 'SkillAutocomplete';
+

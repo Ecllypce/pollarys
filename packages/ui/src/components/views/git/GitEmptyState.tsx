@@ -34,3 +34,4 @@ export const GitEmptyState: React.FC<GitEmptyStateProps> = ({ onOpenStashes }) =
     </div>
   );
 };
+

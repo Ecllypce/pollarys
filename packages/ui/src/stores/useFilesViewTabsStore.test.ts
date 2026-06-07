@@ -29,3 +29,4 @@ describe('useFilesViewTabsStore', () => {
     expect(useFilesViewTabsStore.getState().byRoot[root]?.expandedPaths).toEqual(['/repo/src']);
   });
 });
+

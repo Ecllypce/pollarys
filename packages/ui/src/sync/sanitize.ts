@@ -84,3 +84,4 @@ export function stripMessageDiffSnapshots(message: Message): Message {
   if (!changed) return message
   return { ...message, summary: { ...summary, diffs: stripped } } as Message
 }
+

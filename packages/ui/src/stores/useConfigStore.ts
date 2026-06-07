@@ -16,7 +16,7 @@ import { streamDebugEnabled } from "@/stores/utils/streamDebug";
 import { parseModelIdentifier } from "@/lib/modelIdentifier";
 
 const MODELS_DEV_API_URL = "https://models.dev/api.json";
-const MODELS_DEV_PROXY_URL = "/api/openchamber/models-metadata";
+const MODELS_DEV_PROXY_URL = "/api/Pollarys/models-metadata";
 const STT_SILENCE_THRESHOLD_DB_MIN = -100;
 const STT_SILENCE_THRESHOLD_DB_MAX = 0;
 const STT_SILENCE_HOLD_MS_MIN = 250;
@@ -41,7 +41,7 @@ const normalizeSttSilenceHoldMs = (value: unknown): number | undefined => {
     return Math.max(STT_SILENCE_HOLD_MS_MIN, Math.min(STT_SILENCE_HOLD_MS_MAX, Math.round(value)));
 };
 
-interface OpenChamberDefaults {
+interface PollarysDefaults {
     defaultModel?: string;
     defaultVariant?: string;
     defaultAgent?: string;
@@ -59,7 +59,7 @@ interface OpenChamberDefaults {
     sttSilenceHoldMs?: number;
 }
 
-const fetchOpenChamberDefaults = async (): Promise<OpenChamberDefaults> => {
+const fetchPollarysDefaults = async (): Promise<PollarysDefaults> => {
     try {
         // 1. Runtime settings API (VSCode)
         const runtimeSettings = getRegisteredRuntimeAPIs()?.settings;
@@ -529,7 +529,7 @@ interface ConfigStore {
     lastDisconnectReason: string | null;
     isInitialized: boolean;
     modelsMetadata: Map<string, ModelMetadata>;
-    // OpenChamber settings-based defaults (take precedence over agent preferences)
+    // Pollarys settings-based defaults (take precedence over agent preferences)
     settingsDefaultModel: string | undefined; // format: "provider/model"
     settingsDefaultVariant: string | undefined;
     settingsDefaultAgent: string | undefined;
@@ -771,7 +771,7 @@ export const useConfigStore = create<ConfigStore>()(
                         if (saved === 'browser' || saved === 'server' || saved === 'wasm') return saved;
                         // Electron/Chromium's Web Speech API requires Google API keys
                         // not available in Electron, so default to WASM local Whisper.
-                        const electron = (window as unknown as { __OPENCHAMBER_ELECTRON__?: { runtime?: string } }).__OPENCHAMBER_ELECTRON__;
+                        const electron = (window as unknown as { __POLLARYS_ELECTRON__?: { runtime?: string } }).__POLLARYS_ELECTRON__;
                         if (electron?.runtime === 'electron') return 'wasm' as const;
                     }
                     return 'browser' as const;
@@ -1305,10 +1305,10 @@ export const useConfigStore = create<ConfigStore>()(
 
                     for (let attempt = 0; attempt < 3; attempt++) {
                         try {
-                            // Fetch agents and OpenChamber settings in parallel
-                            const [agents, openChamberDefaults] = await Promise.all([
+                            // Fetch agents and Pollarys settings in parallel
+                            const [agents, PollarysDefaults] = await Promise.all([
                                 opencodeClient.withDirectory(fromDirectoryKey(directoryKey), () => opencodeClient.listAgents()),
-                                fetchOpenChamberDefaults(),
+                                fetchPollarysDefaults(),
                             ]);
 
                             const safeAgents = Array.isArray(agents) ? agents : [];
@@ -1319,7 +1319,7 @@ export const useConfigStore = create<ConfigStore>()(
 
                             const existingZenModel = normalizeOptionalString(get().settingsZenModel);
 
-                            const defaultZenModel = normalizeOptionalString(openChamberDefaults.zenModel);
+                            const defaultZenModel = normalizeOptionalString(PollarysDefaults.zenModel);
 
                             const resolvedExistingGitSelection = resolveGitGenerationModelSelection({
                                 providers,
@@ -1354,20 +1354,20 @@ export const useConfigStore = create<ConfigStore>()(
                                 };
 
                                 const nextState: Partial<ConfigStore> = {
-                                    settingsDefaultModel: openChamberDefaults.defaultModel,
-                                    settingsDefaultVariant: openChamberDefaults.defaultVariant,
-                                    settingsDefaultAgent: openChamberDefaults.defaultAgent,
-                                    settingsAutoCreateWorktree: openChamberDefaults.autoCreateWorktree ?? false,
-                                    settingsGitmojiEnabled: openChamberDefaults.gitmojiEnabled ?? false,
-                                    settingsDefaultFileViewerPreview: openChamberDefaults.defaultFileViewerPreview ?? false,
+                                    settingsDefaultModel: PollarysDefaults.defaultModel,
+                                    settingsDefaultVariant: PollarysDefaults.defaultVariant,
+                                    settingsDefaultAgent: PollarysDefaults.defaultAgent,
+                                    settingsAutoCreateWorktree: PollarysDefaults.autoCreateWorktree ?? false,
+                                    settingsGitmojiEnabled: PollarysDefaults.gitmojiEnabled ?? false,
+                                    settingsDefaultFileViewerPreview: PollarysDefaults.defaultFileViewerPreview ?? false,
                                     settingsZenModel: resolvedZenModel,
-                                    settingsMessageStreamTransport: openChamberDefaults.messageStreamTransport ?? state.settingsMessageStreamTransport ?? 'auto',
-                                    sttProvider: openChamberDefaults.sttProvider ?? state.sttProvider,
-                                    sttServerUrl: openChamberDefaults.sttServerUrl ?? state.sttServerUrl,
-                                    sttModel: openChamberDefaults.sttModel ?? state.sttModel,
-                                    sttLanguage: openChamberDefaults.sttLanguage ?? state.sttLanguage,
-                                    sttSilenceThresholdDb: openChamberDefaults.sttSilenceThresholdDb ?? state.sttSilenceThresholdDb,
-                                    sttSilenceHoldMs: openChamberDefaults.sttSilenceHoldMs ?? state.sttSilenceHoldMs,
+                                    settingsMessageStreamTransport: PollarysDefaults.messageStreamTransport ?? state.settingsMessageStreamTransport ?? 'auto',
+                                    sttProvider: PollarysDefaults.sttProvider ?? state.sttProvider,
+                                    sttServerUrl: PollarysDefaults.sttServerUrl ?? state.sttServerUrl,
+                                    sttModel: PollarysDefaults.sttModel ?? state.sttModel,
+                                    sttLanguage: PollarysDefaults.sttLanguage ?? state.sttLanguage,
+                                    sttSilenceThresholdDb: PollarysDefaults.sttSilenceThresholdDb ?? state.sttSilenceThresholdDb,
+                                    sttSilenceHoldMs: PollarysDefaults.sttSilenceHoldMs ?? state.sttSilenceHoldMs,
                                     directoryScoped: {
                                         ...state.directoryScoped,
                                         [directoryKey]: nextSnapshot,
@@ -1451,9 +1451,9 @@ export const useConfigStore = create<ConfigStore>()(
                             // Track invalid settings to clear
                              const invalidSettings: { defaultModel?: string; defaultVariant?: string; defaultAgent?: string } = {};
 
-                            // 1. Check OpenChamber settings for default agent
-                            if (openChamberDefaults.defaultAgent) {
-                                const settingsAgent = safeAgents.find((agent) => agent.name === openChamberDefaults.defaultAgent);
+                            // 1. Check Pollarys settings for default agent
+                            if (PollarysDefaults.defaultAgent) {
+                                const settingsAgent = safeAgents.find((agent) => agent.name === PollarysDefaults.defaultAgent);
                                 if (settingsAgent) {
                                     resolvedAgent = settingsAgent;
                                 } else {
@@ -1468,19 +1468,19 @@ export const useConfigStore = create<ConfigStore>()(
                              let resolvedModelId: string | undefined;
                              let resolvedVariant: string | undefined;
 
-                             // 1. Check OpenChamber settings for default model
-                             if (openChamberDefaults.defaultModel) {
-                                 const parsed = parseModelString(openChamberDefaults.defaultModel);
+                             // 1. Check Pollarys settings for default model
+                             if (PollarysDefaults.defaultModel) {
+                                 const parsed = parseModelString(PollarysDefaults.defaultModel);
                                  if (parsed && validateModel(parsed.providerId, parsed.modelId)) {
                                      resolvedProviderId = parsed.providerId;
                                      resolvedModelId = parsed.modelId;
 
-                                     if (openChamberDefaults.defaultVariant) {
+                                     if (PollarysDefaults.defaultVariant) {
                                          const provider = providers.find((p) => p.id === parsed.providerId);
                                          const model = provider?.models.find((m) => m.id === parsed.modelId) as { variants?: Record<string, unknown> } | undefined;
                                          const variants = model?.variants;
-                                         if (variants && Object.prototype.hasOwnProperty.call(variants, openChamberDefaults.defaultVariant)) {
-                                             resolvedVariant = openChamberDefaults.defaultVariant;
+                                         if (variants && Object.prototype.hasOwnProperty.call(variants, PollarysDefaults.defaultVariant)) {
+                                             resolvedVariant = PollarysDefaults.defaultVariant;
                                          } else {
                                              invalidSettings.defaultVariant = '';
                                          }
@@ -1673,10 +1673,10 @@ export const useConfigStore = create<ConfigStore>()(
                             selState.saveSessionAgentSelection(currentSessionId, agentName);
                         }
 
-                        if (currentSessionId && useSessionUIStore.getState().isOpenChamberCreatedSession(currentSessionId)) {
+                        if (currentSessionId && useSessionUIStore.getState().isPollarysCreatedSession(currentSessionId)) {
                             const existingAgentModel = selState.getAgentModelForSession(currentSessionId, agentName);
                             if (!existingAgentModel) {
-                                useSessionUIStore.getState().initializeNewOpenChamberSession(currentSessionId, agents);
+                                useSessionUIStore.getState().initializeNewPollarysSession(currentSessionId, agents);
                             }
                         }
                     }
@@ -2231,3 +2231,5 @@ if (typeof window !== "undefined" && !unsubscribeConfigStoreDirectoryChanges) {
         void useConfigStore.getState().activateDirectory(state.currentDirectory);
     });
 }
+
+

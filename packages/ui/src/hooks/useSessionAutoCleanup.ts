@@ -228,3 +228,4 @@ export const useSessionAutoCleanup = (enabledOrOptions?: boolean | CleanupOption
     action: sessionRetentionAction,
   };
 };
+

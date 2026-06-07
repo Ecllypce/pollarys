@@ -223,3 +223,4 @@ export const RemoteInstancesSidebar: React.FC<RemoteInstancesSidebarProps> = ({ 
     </SettingsSidebarLayout>
   );
 };
+

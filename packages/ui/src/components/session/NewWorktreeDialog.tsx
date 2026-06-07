@@ -34,7 +34,7 @@ import { useConfigStore } from '@/stores/useConfigStore';
 import { useContextStore } from '@/stores/contextStore';
 import { validateWorktreeCreate, createWorktree } from '@/lib/worktrees/worktreeManager';
 import { withWorktreeUpstreamDefaults } from '@/lib/worktrees/worktreeCreate';
-import { getWorktreeSetupCommands } from '@/lib/openchamberConfig';
+import { getWorktreeSetupCommands } from '@/lib/pollarysConfig';
 import { getRootBranch } from '@/lib/worktrees/worktreeStatus';
 import { generateBranchSlug } from '@/lib/git/branchNameGenerator';
 import { opencodeClient } from '@/lib/opencode/client';
@@ -912,7 +912,7 @@ export function NewWorktreeDialog({
         void sessionActions.updateSessionTitle(session.id, sessionTitle).catch(() => undefined);
 
         try {
-          useSessionUIStore.getState().initializeNewOpenChamberSession(session.id, useConfigStore.getState().agents);
+          useSessionUIStore.getState().initializeNewPollarysSession(session.id, useConfigStore.getState().agents);
         } catch {
           // ignore
         }
@@ -2037,3 +2037,6 @@ export function NewWorktreeDialog({
     </>
   );
 }
+
+
+

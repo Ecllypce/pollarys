@@ -2837,3 +2837,4 @@ export default React.memo(ToolPart, (prev, next) => {
         && prev.onShowPopup === next.onShowPopup
         && prev.animateTailText === next.animateTailText;
 });
+

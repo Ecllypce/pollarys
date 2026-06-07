@@ -414,3 +414,4 @@ export const GitHubSettings: React.FC = () => {
     </div>
   );
 };
+

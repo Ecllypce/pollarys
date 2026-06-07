@@ -33,3 +33,4 @@ const ScrollToBottomButton: React.FC<ScrollToBottomButtonProps> = ({ visible, on
 };
 
 export default React.memo(ScrollToBottomButton);
+

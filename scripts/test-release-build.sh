@@ -219,7 +219,7 @@ run_native_build() {
 
     for target in "${TARGETS[@]}"; do
         if [[ "$NO_BUNDLE" == true ]]; then
-            local BINARY_PATH="packages/desktop/src-tauri/target/$target/release/openchamber-desktop"
+            local BINARY_PATH="packages/desktop/src-tauri/target/$target/release/pollarys-desktop"
         else
             local BINARY_PATH="packages/desktop/src-tauri/target/$target/release/bundle/dmg"
         fi
@@ -326,3 +326,4 @@ log_info "Next steps:"
 echo "  1. If builds succeeded, your changes should work in CI"
 echo "  2. For full workflow testing, push and use GitHub workflow_dispatch"
 echo "  3. Create your PR with confidence"
+

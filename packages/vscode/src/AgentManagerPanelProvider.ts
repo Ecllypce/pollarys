@@ -9,7 +9,7 @@ import { resolveWebviewDevServerUrl } from './webviewDevServer';
 import { normalizeWindowsDriveLetter } from './pathUtils';
 
 export class AgentManagerPanelProvider {
-  public static readonly viewType = 'openchamber.agentManager';
+  public static readonly viewType = 'pollarys.agentManager';
 
   private _panel?: vscode.WebviewPanel;
 
@@ -99,7 +99,7 @@ export class AgentManagerPanelProvider {
       this._panel?.webview.postMessage(response);
 
       if (message.type === 'api:config/settings:save' && response.success) {
-        void vscode.commands.executeCommand('openchamber.internal.settingsSynced', response.data);
+        void vscode.commands.executeCommand('pollarys.internal.settingsSynced', response.data);
       }
     }, null, this._context.subscriptions);
   }

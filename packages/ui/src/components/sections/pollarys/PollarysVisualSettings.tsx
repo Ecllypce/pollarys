@@ -41,98 +41,98 @@ interface Option<T extends string> {
 const THEME_MODE_OPTIONS: Array<{ value: ThemeMode; labelKey: string }> = [
     {
         value: 'system',
-        labelKey: 'settings.openchamber.visual.option.themeMode.system',
+        labelKey: 'settings.pollarys.visual.option.themeMode.system',
     },
     {
         value: 'light',
-        labelKey: 'settings.openchamber.visual.option.themeMode.light',
+        labelKey: 'settings.pollarys.visual.option.themeMode.light',
     },
     {
         value: 'dark',
-        labelKey: 'settings.openchamber.visual.option.themeMode.dark',
+        labelKey: 'settings.pollarys.visual.option.themeMode.dark',
     },
 ];
 
 const DIFF_LAYOUT_OPTIONS: Option<'dynamic' | 'inline' | 'side-by-side'>[] = [
     {
         id: 'dynamic',
-        labelKey: 'settings.openchamber.visual.option.diffLayout.dynamic.label',
-        descriptionKey: 'settings.openchamber.visual.option.diffLayout.dynamic.description',
+        labelKey: 'settings.pollarys.visual.option.diffLayout.dynamic.label',
+        descriptionKey: 'settings.pollarys.visual.option.diffLayout.dynamic.description',
     },
     {
         id: 'inline',
-        labelKey: 'settings.openchamber.visual.option.diffLayout.inline.label',
-        descriptionKey: 'settings.openchamber.visual.option.diffLayout.inline.description',
+        labelKey: 'settings.pollarys.visual.option.diffLayout.inline.label',
+        descriptionKey: 'settings.pollarys.visual.option.diffLayout.inline.description',
     },
     {
         id: 'side-by-side',
-        labelKey: 'settings.openchamber.visual.option.diffLayout.sideBySide.label',
-        descriptionKey: 'settings.openchamber.visual.option.diffLayout.sideBySide.description',
+        labelKey: 'settings.pollarys.visual.option.diffLayout.sideBySide.label',
+        descriptionKey: 'settings.pollarys.visual.option.diffLayout.sideBySide.description',
     },
 ];
 
 const DIFF_VIEW_MODE_OPTIONS: Option<'single' | 'stacked'>[] = [
     {
         id: 'single',
-        labelKey: 'settings.openchamber.visual.option.diffViewMode.single.label',
-        descriptionKey: 'settings.openchamber.visual.option.diffViewMode.single.description',
+        labelKey: 'settings.pollarys.visual.option.diffViewMode.single.label',
+        descriptionKey: 'settings.pollarys.visual.option.diffViewMode.single.description',
     },
     {
         id: 'stacked',
-        labelKey: 'settings.openchamber.visual.option.diffViewMode.stacked.label',
-        descriptionKey: 'settings.openchamber.visual.option.diffViewMode.stacked.description',
+        labelKey: 'settings.pollarys.visual.option.diffViewMode.stacked.label',
+        descriptionKey: 'settings.pollarys.visual.option.diffViewMode.stacked.description',
     },
 ];
 
 const MERMAID_RENDERING_OPTIONS: Option<'svg' | 'ascii'>[] = [
     {
         id: 'svg',
-        labelKey: 'settings.openchamber.visual.option.mermaidRendering.svg.label',
-        descriptionKey: 'settings.openchamber.visual.option.mermaidRendering.svg.description',
+        labelKey: 'settings.pollarys.visual.option.mermaidRendering.svg.label',
+        descriptionKey: 'settings.pollarys.visual.option.mermaidRendering.svg.description',
     },
     {
         id: 'ascii',
-        labelKey: 'settings.openchamber.visual.option.mermaidRendering.ascii.label',
-        descriptionKey: 'settings.openchamber.visual.option.mermaidRendering.ascii.description',
+        labelKey: 'settings.pollarys.visual.option.mermaidRendering.ascii.label',
+        descriptionKey: 'settings.pollarys.visual.option.mermaidRendering.ascii.description',
     },
 ];
 
-const DEFAULT_PWA_INSTALL_NAME = 'OpenChamber - AI Coding Assistant';
+const DEFAULT_PWA_INSTALL_NAME = 'Pollarys - AI Coding Assistant';
 const PWA_ORIENTATION_OPTIONS: Option<'system' | 'portrait' | 'landscape'>[] = [
     {
         id: 'system',
-        labelKey: 'settings.openchamber.visual.option.pwaOrientation.system.label',
-        descriptionKey: 'settings.openchamber.visual.option.pwaOrientation.system.description',
+        labelKey: 'settings.pollarys.visual.option.pwaOrientation.system.label',
+        descriptionKey: 'settings.pollarys.visual.option.pwaOrientation.system.description',
     },
     {
         id: 'portrait',
-        labelKey: 'settings.openchamber.visual.option.pwaOrientation.portrait.label',
-        descriptionKey: 'settings.openchamber.visual.option.pwaOrientation.portrait.description',
+        labelKey: 'settings.pollarys.visual.option.pwaOrientation.portrait.label',
+        descriptionKey: 'settings.pollarys.visual.option.pwaOrientation.portrait.description',
     },
     {
         id: 'landscape',
-        labelKey: 'settings.openchamber.visual.option.pwaOrientation.landscape.label',
-        descriptionKey: 'settings.openchamber.visual.option.pwaOrientation.landscape.description',
+        labelKey: 'settings.pollarys.visual.option.pwaOrientation.landscape.label',
+        descriptionKey: 'settings.pollarys.visual.option.pwaOrientation.landscape.description',
     },
 ];
 
 const MOBILE_KEYBOARD_MODE_OPTIONS: Option<MobileKeyboardMode>[] = [
     {
         id: 'native',
-        labelKey: 'settings.openchamber.visual.option.mobileKeyboardMode.native.label',
-        descriptionKey: 'settings.openchamber.visual.option.mobileKeyboardMode.native.description',
+        labelKey: 'settings.pollarys.visual.option.mobileKeyboardMode.native.label',
+        descriptionKey: 'settings.pollarys.visual.option.mobileKeyboardMode.native.description',
     },
     {
         id: 'resize-content',
-        labelKey: 'settings.openchamber.visual.option.mobileKeyboardMode.resizeContent.label',
-        descriptionKey: 'settings.openchamber.visual.option.mobileKeyboardMode.resizeContent.description',
+        labelKey: 'settings.pollarys.visual.option.mobileKeyboardMode.resizeContent.label',
+        descriptionKey: 'settings.pollarys.visual.option.mobileKeyboardMode.resizeContent.description',
     },
 ];
 
 type PwaInstallNameWindow = Window & {
-    __OPENCHAMBER_SET_PWA_INSTALL_NAME__?: (value: string) => string;
-    __OPENCHAMBER_SET_PWA_ORIENTATION__?: (value: 'system' | 'portrait' | 'landscape') => 'system' | 'portrait' | 'landscape';
-    __OPENCHAMBER_UPDATE_PWA_MANIFEST__?: () => void;
+    __POLLARYS_SET_PWA_INSTALL_NAME__?: (value: string) => string;
+    __POLLARYS_SET_PWA_ORIENTATION__?: (value: 'system' | 'portrait' | 'landscape') => 'system' | 'portrait' | 'landscape';
+    __POLLARYS_UPDATE_PWA_MANIFEST__?: () => void;
 };
 
 const normalizePwaOrientation = (value: unknown): 'system' | 'portrait' | 'landscape' => {
@@ -142,91 +142,91 @@ const normalizePwaOrientation = (value: unknown): 'system' | 'portrait' | 'lands
 const USER_MESSAGE_RENDERING_OPTIONS: Option<'markdown' | 'plain'>[] = [
     {
         id: 'markdown',
-        labelKey: 'settings.openchamber.visual.option.userMessageRendering.markdown.label',
-        descriptionKey: 'settings.openchamber.visual.option.userMessageRendering.markdown.description',
+        labelKey: 'settings.pollarys.visual.option.userMessageRendering.markdown.label',
+        descriptionKey: 'settings.pollarys.visual.option.userMessageRendering.markdown.description',
     },
     {
         id: 'plain',
-        labelKey: 'settings.openchamber.visual.option.userMessageRendering.plain.label',
-        descriptionKey: 'settings.openchamber.visual.option.userMessageRendering.plain.description',
+        labelKey: 'settings.pollarys.visual.option.userMessageRendering.plain.label',
+        descriptionKey: 'settings.pollarys.visual.option.userMessageRendering.plain.description',
     },
 ];
 
 const CHAT_RENDER_MODE_OPTIONS: Option<'sorted' | 'live'>[] = [
     {
         id: 'sorted',
-        labelKey: 'settings.openchamber.visual.option.chatRenderMode.sorted.label',
-        descriptionKey: 'settings.openchamber.visual.option.chatRenderMode.sorted.description',
+        labelKey: 'settings.pollarys.visual.option.chatRenderMode.sorted.label',
+        descriptionKey: 'settings.pollarys.visual.option.chatRenderMode.sorted.description',
     },
     {
         id: 'live',
-        labelKey: 'settings.openchamber.visual.option.chatRenderMode.live.label',
-        descriptionKey: 'settings.openchamber.visual.option.chatRenderMode.live.description',
+        labelKey: 'settings.pollarys.visual.option.chatRenderMode.live.label',
+        descriptionKey: 'settings.pollarys.visual.option.chatRenderMode.live.description',
     },
 ];
 
 const MESSAGE_STREAM_TRANSPORT_OPTIONS: Option<'auto' | 'ws' | 'sse'>[] = [
     {
         id: 'auto',
-        labelKey: 'settings.openchamber.visual.option.messageTransport.auto.label',
-        descriptionKey: 'settings.openchamber.visual.option.messageTransport.auto.description',
+        labelKey: 'settings.pollarys.visual.option.messageTransport.auto.label',
+        descriptionKey: 'settings.pollarys.visual.option.messageTransport.auto.description',
     },
     {
         id: 'ws',
-        labelKey: 'settings.openchamber.visual.option.messageTransport.ws.label',
-        descriptionKey: 'settings.openchamber.visual.option.messageTransport.ws.description',
+        labelKey: 'settings.pollarys.visual.option.messageTransport.ws.label',
+        descriptionKey: 'settings.pollarys.visual.option.messageTransport.ws.description',
     },
     {
         id: 'sse',
-        labelKey: 'settings.openchamber.visual.option.messageTransport.sse.label',
-        descriptionKey: 'settings.openchamber.visual.option.messageTransport.sse.description',
+        labelKey: 'settings.pollarys.visual.option.messageTransport.sse.label',
+        descriptionKey: 'settings.pollarys.visual.option.messageTransport.sse.description',
     },
 ];
 
 const ACTIVITY_RENDER_MODE_OPTIONS: Option<'collapsed' | 'summary'>[] = [
     {
         id: 'collapsed',
-        labelKey: 'settings.openchamber.visual.option.activityRenderMode.collapsed.label',
-        descriptionKey: 'settings.openchamber.visual.option.activityRenderMode.collapsed.description',
+        labelKey: 'settings.pollarys.visual.option.activityRenderMode.collapsed.label',
+        descriptionKey: 'settings.pollarys.visual.option.activityRenderMode.collapsed.description',
     },
     {
         id: 'summary',
-        labelKey: 'settings.openchamber.visual.option.activityRenderMode.summary.label',
-        descriptionKey: 'settings.openchamber.visual.option.activityRenderMode.summary.description',
+        labelKey: 'settings.pollarys.visual.option.activityRenderMode.summary.label',
+        descriptionKey: 'settings.pollarys.visual.option.activityRenderMode.summary.description',
     },
 ];
 
 const TIME_FORMAT_OPTIONS: Option<'auto' | '12h' | '24h'>[] = [
     {
         id: 'auto',
-        labelKey: 'settings.openchamber.visual.option.timeFormat.auto.label',
-        descriptionKey: 'settings.openchamber.visual.option.timeFormat.auto.description',
+        labelKey: 'settings.pollarys.visual.option.timeFormat.auto.label',
+        descriptionKey: 'settings.pollarys.visual.option.timeFormat.auto.description',
     },
     {
         id: '24h',
-        labelKey: 'settings.openchamber.visual.option.timeFormat.24h.label',
-        descriptionKey: 'settings.openchamber.visual.option.timeFormat.24h.description',
+        labelKey: 'settings.pollarys.visual.option.timeFormat.24h.label',
+        descriptionKey: 'settings.pollarys.visual.option.timeFormat.24h.description',
     },
     {
         id: '12h',
-        labelKey: 'settings.openchamber.visual.option.timeFormat.12h.label',
-        descriptionKey: 'settings.openchamber.visual.option.timeFormat.12h.description',
+        labelKey: 'settings.pollarys.visual.option.timeFormat.12h.label',
+        descriptionKey: 'settings.pollarys.visual.option.timeFormat.12h.description',
     },
 ];
 
 const WEEK_START_OPTIONS: Option<'auto' | 'monday' | 'sunday'>[] = [
     {
         id: 'auto',
-        labelKey: 'settings.openchamber.visual.option.weekStart.auto.label',
-        descriptionKey: 'settings.openchamber.visual.option.weekStart.auto.description',
+        labelKey: 'settings.pollarys.visual.option.weekStart.auto.label',
+        descriptionKey: 'settings.pollarys.visual.option.weekStart.auto.description',
     },
     {
         id: 'monday',
-        labelKey: 'settings.openchamber.visual.option.weekStart.monday.label',
+        labelKey: 'settings.pollarys.visual.option.weekStart.monday.label',
     },
     {
         id: 'sunday',
-        labelKey: 'settings.openchamber.visual.option.weekStart.sunday.label',
+        labelKey: 'settings.pollarys.visual.option.weekStart.sunday.label',
     },
 ];
 
@@ -236,12 +236,12 @@ const normalizeUserMessageRenderingMode = (mode: unknown): 'markdown' | 'plain' 
 
 export type VisibleSetting = 'theme' | 'pwaInstallName' | 'pwaOrientation' | 'mobileKeyboardMode' | 'timeFormat' | 'weekStart' | 'fontSize' | 'terminalFontSize' | 'spacing' | 'inputBarOffset' | 'mermaidRendering' | 'userMessageRendering' | 'chatRenderMode' | 'messageTransport' | 'activityRenderMode' | 'stickyUserHeader' | 'wideChatLayout' | 'splitAssistantMessageActions' | 'diffLayout' | 'mobileStatusBar' | 'dotfiles' | 'reasoning' | 'showToolFileIcons' | 'expandedTools' | 'queueMode' | 'terminalQuickKeys' | 'persistDraft' | 'inputSpellcheck' | 'reportUsage';
 
-interface OpenChamberVisualSettingsProps {
+interface PollarysVisualSettingsProps {
     /** Which settings to show. If undefined, shows all. */
     visibleSettings?: VisibleSetting[];
 }
 
-export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps> = ({ visibleSettings }) => {
+export const PollarysVisualSettings: React.FC<PollarysVisualSettingsProps> = ({ visibleSettings }) => {
     const { locale, locales, setLocale, label, t } = useI18n();
     const tUnsafe = React.useCallback((key: string) => t(key as Parameters<typeof t>[0]), [t]);
     const { isMobile } = useDeviceInfo();
@@ -513,11 +513,11 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
     const [pwaOrientation, setPwaOrientation] = React.useState<'system' | 'portrait' | 'landscape'>('system');
     const selectedTimeFormatLabel = React.useMemo(() => {
         const option = TIME_FORMAT_OPTIONS.find((item) => item.id === timeFormatPreference);
-        return tUnsafe(option?.labelKey ?? 'settings.openchamber.visual.option.timeFormat.auto.label');
+        return tUnsafe(option?.labelKey ?? 'settings.pollarys.visual.option.timeFormat.auto.label');
     }, [timeFormatPreference, tUnsafe]);
     const selectedWeekStartLabel = React.useMemo(() => {
         const option = WEEK_START_OPTIONS.find((item) => item.id === weekStartPreference);
-        return tUnsafe(option?.labelKey ?? 'settings.openchamber.visual.option.weekStart.auto.label');
+        return tUnsafe(option?.labelKey ?? 'settings.pollarys.visual.option.weekStart.auto.label');
     }, [weekStartPreference, tUnsafe]);
     const selectedPwaOrientationLabel = React.useMemo(() => {
         const option = PWA_ORIENTATION_OPTIONS.find((item) => item.id === pwaOrientation);
@@ -539,14 +539,14 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
         await updateDesktopSettings({ pwaAppName: persistedValue });
 
-        if (typeof win.__OPENCHAMBER_SET_PWA_INSTALL_NAME__ === 'function') {
-            const resolved = win.__OPENCHAMBER_SET_PWA_INSTALL_NAME__(persistedValue);
+        if (typeof win.__POLLARYS_SET_PWA_INSTALL_NAME__ === 'function') {
+            const resolved = win.__POLLARYS_SET_PWA_INSTALL_NAME__(persistedValue);
             setPwaInstallName(resolved);
             return;
         }
 
         setPwaInstallName(persistedValue || DEFAULT_PWA_INSTALL_NAME);
-        win.__OPENCHAMBER_UPDATE_PWA_MANIFEST__?.();
+        win.__POLLARYS_UPDATE_PWA_MANIFEST__?.();
     }, []);
 
     const applyPwaOrientation = React.useCallback(async (value: 'system' | 'portrait' | 'landscape') => {
@@ -559,14 +559,14 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
         await updateDesktopSettings({ pwaOrientation: normalized });
 
-        if (typeof win.__OPENCHAMBER_SET_PWA_ORIENTATION__ === 'function') {
-            const resolved = win.__OPENCHAMBER_SET_PWA_ORIENTATION__(normalized);
+        if (typeof win.__POLLARYS_SET_PWA_ORIENTATION__ === 'function') {
+            const resolved = win.__POLLARYS_SET_PWA_ORIENTATION__(normalized);
             setPwaOrientation(resolved);
             return;
         }
 
         setPwaOrientation(normalized);
-        win.__OPENCHAMBER_UPDATE_PWA_MANIFEST__?.();
+        win.__POLLARYS_UPDATE_PWA_MANIFEST__?.();
     }, []);
 
     React.useEffect(() => {
@@ -639,7 +639,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                         {hasThemeSettings && (
                             <section className="px-2 pb-2 pt-0 space-y-2">
                                 <div className="flex min-w-0 flex-col gap-1.5">
-                                    <span className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.colorMode')}</span>
+                                    <span className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.colorMode')}</span>
                                     <div className="flex flex-wrap items-center gap-1">
                                         {THEME_MODE_OPTIONS.map((option) => (
                                             <Button
@@ -658,10 +658,10 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                 <div className="grid grid-cols-1 gap-2 py-1.5 md:grid-cols-[14rem_auto] md:gap-x-8 md:gap-y-2">
                                     <div className="flex min-w-0 items-center gap-2">
-                                        <span className="typography-ui-label text-foreground shrink-0">{t('settings.openchamber.visual.field.lightTheme')}</span>
+                                        <span className="typography-ui-label text-foreground shrink-0">{t('settings.pollarys.visual.field.lightTheme')}</span>
                                         <Select value={selectedLightTheme?.metadata.id ?? ''} onValueChange={setLightThemePreference}>
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectLightThemeAria')} className="w-fit">
-                                                <SelectValue placeholder={t('settings.openchamber.visual.field.selectThemePlaceholder')}>
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectLightThemeAria')} className="w-fit">
+                                                <SelectValue placeholder={t('settings.pollarys.visual.field.selectThemePlaceholder')}>
                                                     {selectedLightTheme
                                                         ? formatThemeLabel(selectedLightTheme.metadata.name, 'light')
                                                         : undefined}
@@ -677,10 +677,10 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                         </Select>
                                     </div>
                                     <div className="flex min-w-0 items-center gap-2">
-                                        <span className="typography-ui-label text-foreground shrink-0">{t('settings.openchamber.visual.field.darkTheme')}</span>
+                                        <span className="typography-ui-label text-foreground shrink-0">{t('settings.pollarys.visual.field.darkTheme')}</span>
                                         <Select value={selectedDarkTheme?.metadata.id ?? ''} onValueChange={setDarkThemePreference}>
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectDarkThemeAria')} className="w-fit">
-                                                <SelectValue placeholder={t('settings.openchamber.visual.field.selectThemePlaceholder')}>
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectDarkThemeAria')} className="w-fit">
+                                                <SelectValue placeholder={t('settings.pollarys.visual.field.selectThemePlaceholder')}>
                                                     {selectedDarkTheme
                                                         ? formatThemeLabel(selectedDarkTheme.metadata.name, 'dark')
                                                         : undefined}
@@ -717,20 +717,20 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                         }}
                                         className="inline-flex items-center typography-ui-label font-normal text-foreground underline decoration-[1px] underline-offset-2 hover:text-foreground/80 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
                                     >
-                                        {themesReloading ? t('settings.openchamber.visual.actions.reloadingThemes') : t('settings.openchamber.visual.actions.reloadThemes')}
+                                        {themesReloading ? t('settings.pollarys.visual.actions.reloadingThemes') : t('settings.pollarys.visual.actions.reloadThemes')}
                                     </button>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
                                             <button
                                                 type="button"
                                                 className="flex items-center justify-center rounded-md p-1 text-muted-foreground/70 hover:text-foreground"
-                                                aria-label={t('settings.openchamber.visual.field.themeImportInfoAria')}
+                                                aria-label={t('settings.pollarys.visual.field.themeImportInfoAria')}
                                             >
                                                 <Icon name="information" className="h-3.5 w-3.5" />
                                             </button>
                                         </TooltipTrigger>
                                         <TooltipContent sideOffset={8}>
-                                            {t('settings.openchamber.visual.field.themeImportInfoTooltip')}
+                                            {t('settings.pollarys.visual.field.themeImportInfoTooltip')}
                                         </TooltipContent>
                                     </Tooltip>
                                 </div>
@@ -739,7 +739,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                         {hasLocalizationSettings && (
                             <section className="px-2 pb-2 pt-0 space-y-2">
-                                <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.localization')}</h4>
+                                <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.localization')}</h4>
 
                                 <div className="grid grid-cols-1 gap-2 py-1.5 md:grid-cols-[14rem_auto] md:gap-x-8 md:gap-y-2">
                                     <div className="flex min-w-0 flex-col">
@@ -764,9 +764,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                     <div className="grid grid-cols-1 gap-2 py-1.5 md:grid-cols-[14rem_auto] md:gap-x-8 md:gap-y-2">
                                         {shouldShow('timeFormat') && (
                                             <div className="flex min-w-0 items-center gap-2">
-                                                <span className="typography-ui-label text-foreground shrink-0">{t('settings.openchamber.visual.field.timeFormat')}</span>
+                                                <span className="typography-ui-label text-foreground shrink-0">{t('settings.pollarys.visual.field.timeFormat')}</span>
                                                 <Select value={timeFormatPreference} onValueChange={(value: 'auto' | '12h' | '24h') => handleTimeFormatPreferenceChange(value)}>
-                                                    <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectTimeFormatAria')} className="w-fit">
+                                                    <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectTimeFormatAria')} className="w-fit">
                                                         <SelectValue>{selectedTimeFormatLabel}</SelectValue>
                                                     </SelectTrigger>
                                                     <SelectContent>
@@ -780,9 +780,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                         {shouldShow('weekStart') && (
                                             <div className="flex min-w-0 items-center gap-2">
-                                                <span className="typography-ui-label text-foreground shrink-0">{t('settings.openchamber.visual.field.weekStartsOn')}</span>
+                                                <span className="typography-ui-label text-foreground shrink-0">{t('settings.pollarys.visual.field.weekStartsOn')}</span>
                                                 <Select value={weekStartPreference} onValueChange={(value: 'auto' | 'monday' | 'sunday') => handleWeekStartPreferenceChange(value)}>
-                                                    <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectWeekStartAria')} className="w-fit">
+                                                    <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectWeekStartAria')} className="w-fit">
                                                         <SelectValue>{selectedWeekStartLabel}</SelectValue>
                                                     </SelectTrigger>
                                                     <SelectContent>
@@ -804,8 +804,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {showPwaInstallNameSetting && (
                                 <div className="py-1.5 space-y-1.5">
                                     <div className="flex min-w-0 flex-col">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.installAppName')}</span>
-                                        <span className="typography-meta text-muted-foreground">{t('settings.openchamber.visual.field.installAppNameHint')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.installAppName')}</span>
+                                        <span className="typography-meta text-muted-foreground">{t('settings.pollarys.visual.field.installAppNameHint')}</span>
                                     </div>
                                     <div className="flex w-full max-w-[28rem] items-center gap-2">
                                         <Input
@@ -824,7 +824,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             }}
                                             className="h-7"
                                             maxLength={64}
-                                            aria-label={t('settings.openchamber.visual.field.pwaInstallAppNameAria')}
+                                            aria-label={t('settings.pollarys.visual.field.pwaInstallAppNameAria')}
                                         />
                                         <Button size="sm"
                                             type="button"
@@ -834,7 +834,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                 void applyPwaInstallName('');
                                             }}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetInstallAppNameAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetInstallAppNameAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -846,8 +846,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {showPwaOrientationSetting && (
                                 <div className="py-1.5 space-y-1.5">
                                     <div className="flex min-w-0 flex-col">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.installOrientation')}</span>
-                                        <span className="typography-meta text-muted-foreground">{t('settings.openchamber.visual.field.installOrientationHint')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.installOrientation')}</span>
+                                        <span className="typography-meta text-muted-foreground">{t('settings.pollarys.visual.field.installOrientationHint')}</span>
                                     </div>
                                     <div className="flex w-full max-w-[18rem] items-center gap-2">
                                         <Select
@@ -858,8 +858,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                 void applyPwaOrientation(orientation);
                                             }}
                                         >
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.pwaInstallOrientationAria')} className="w-full">
-                                                <SelectValue placeholder={t('settings.openchamber.visual.field.selectOrientationPlaceholder')}>
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.pwaInstallOrientationAria')} className="w-full">
+                                                <SelectValue placeholder={t('settings.pollarys.visual.field.selectOrientationPlaceholder')}>
                                                     {selectedPwaOrientationLabel}
                                                 </SelectValue>
                                             </SelectTrigger>
@@ -880,7 +880,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             }}
                                             disabled={pwaOrientation === 'system'}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetInstallOrientationAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetInstallOrientationAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -892,8 +892,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {showMobileKeyboardModeSetting && (
                                 <div className="py-1.5 space-y-1.5">
                                     <div className="flex min-w-0 flex-col">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.mobileKeyboardMode')}</span>
-                                        <span className="typography-meta text-muted-foreground">{t('settings.openchamber.visual.field.mobileKeyboardModeHint')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.mobileKeyboardMode')}</span>
+                                        <span className="typography-meta text-muted-foreground">{t('settings.pollarys.visual.field.mobileKeyboardModeHint')}</span>
                                     </div>
                                     <div className="flex w-full max-w-[18rem] items-center gap-2">
                                         <Select
@@ -904,8 +904,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                 void updateDesktopSettings({ mobileKeyboardMode: mode });
                                             }}
                                         >
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.mobileKeyboardModeAria')} className="w-full">
-                                                <SelectValue placeholder={t('settings.openchamber.visual.field.selectMobileKeyboardModePlaceholder')}>
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.mobileKeyboardModeAria')} className="w-full">
+                                                <SelectValue placeholder={t('settings.pollarys.visual.field.selectMobileKeyboardModePlaceholder')}>
                                                     {selectedMobileKeyboardModeLabel}
                                                 </SelectValue>
                                             </SelectTrigger>
@@ -926,7 +926,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             }}
                                             disabled={mobileKeyboardMode === 'native'}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetMobileKeyboardModeAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetMobileKeyboardModeAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -943,17 +943,17 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                 {hasLayoutSettings && (
                     <div className="mb-8 space-y-3">
                         <section className="p-2 space-y-0.5">
-                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.spacingAndLayout')}</h4>
+                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.spacingAndLayout')}</h4>
                             <div className="pl-2">
 
                             {shouldShow('fontSize') && !isMobile && (
                                 <div className="flex items-center gap-8 py-1">
                                     <div className="flex min-w-0 flex-col w-56 shrink-0">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.interfaceFont')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.interfaceFont')}</span>
                                     </div>
                                     <div className="flex items-center gap-2 w-fit">
                                         <Select value={uiFont} onValueChange={(value) => setUiFont(value as UiFontOption)}>
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectInterfaceFontAria')} className="w-[13rem]">
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectInterfaceFontAria')} className="w-[13rem]">
                                                 <SelectValue>{UI_FONT_OPTIONS.find((option) => option.id === uiFont)?.label}</SelectValue>
                                             </SelectTrigger>
                                             <SelectContent>
@@ -970,7 +970,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setUiFont(DEFAULT_UI_FONT)}
                                             disabled={uiFont === DEFAULT_UI_FONT}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetInterfaceFontAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetInterfaceFontAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -982,11 +982,11 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {shouldShow('terminalFontSize') && (
                                 <div className={cn("py-1", isMobile ? "flex flex-col gap-3" : "flex items-center gap-8")}>
                                     <div className={cn("flex min-w-0 flex-col", isMobile ? "w-full" : "w-56 shrink-0")}>
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.codeFont')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.codeFont')}</span>
                                     </div>
                                     <div className={cn("flex items-center gap-2", isMobile ? "w-full" : "w-fit")}>
                                         <Select value={monoFont} onValueChange={(value) => setMonoFont(value as MonoFontOption)}>
-                                            <SelectTrigger aria-label={t('settings.openchamber.visual.field.selectCodeFontAria')} className="w-[13rem]">
+                                            <SelectTrigger aria-label={t('settings.pollarys.visual.field.selectCodeFontAria')} className="w-[13rem]">
                                                 <SelectValue>{CODE_FONT_OPTIONS.find((option) => option.id === monoFont)?.label}</SelectValue>
                                             </SelectTrigger>
                                             <SelectContent>
@@ -1003,7 +1003,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setMonoFont(DEFAULT_MONO_FONT)}
                                             disabled={monoFont === DEFAULT_MONO_FONT}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetCodeFontAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetCodeFontAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -1015,7 +1015,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {shouldShow('fontSize') && !isMobile && (
                                 <div className="flex items-center gap-8 py-1">
                                     <div className="flex min-w-0 flex-col w-56 shrink-0">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.interfaceFontSize')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.interfaceFontSize')}</span>
                                     </div>
                                     <div className="flex items-center gap-2 w-fit">
                                         <NumberInput
@@ -1024,7 +1024,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             min={50}
                                             max={200}
                                             step={5}
-                                            aria-label={t('settings.openchamber.visual.field.fontSizePercentageAria')}
+                                            aria-label={t('settings.pollarys.visual.field.fontSizePercentageAria')}
                                             className="w-16"
                                         />
                                         <Button size="sm"
@@ -1033,7 +1033,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setFontSize(100)}
                                             disabled={fontSize === 100}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetFontSizeAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetFontSizeAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -1045,7 +1045,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {shouldShow('terminalFontSize') && (
                                 <div className={cn("py-1", isMobile ? "flex flex-col gap-3" : "flex items-center gap-8")}>
                                     <div className={cn("flex min-w-0 flex-col", isMobile ? "w-full" : "w-56 shrink-0")}>
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.terminalFontSize')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.terminalFontSize')}</span>
                                     </div>
                                     <div className={cn("flex items-center gap-2", isMobile ? "w-full" : "w-fit")}>
                                         <NumberInput
@@ -1062,7 +1062,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setTerminalFontSize(13)}
                                             disabled={terminalFontSize === 13}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetTerminalFontSizeAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetTerminalFontSizeAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -1074,7 +1074,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                             {shouldShow('spacing') && (
                                 <div className={cn("py-1", isMobile ? "flex flex-col gap-3" : "flex items-center gap-8")}>
                                     <div className={cn("flex min-w-0 flex-col", isMobile ? "w-full" : "w-56 shrink-0")}>
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.spacingDensity')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.spacingDensity')}</span>
                                     </div>
                                     <div className={cn("flex items-center gap-2", isMobile ? "w-full" : "w-fit")}>
                                         <NumberInput
@@ -1091,7 +1091,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setPadding(100)}
                                             disabled={padding === 100}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetSpacingAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetSpacingAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -1104,13 +1104,13 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                 <div className={cn("py-1", isMobile ? "flex flex-col gap-3" : "flex items-center gap-8")}>
                                     <div className={cn("flex min-w-0 flex-col", isMobile ? "w-full" : "w-56 shrink-0")}>
                                         <div className="flex items-center gap-1.5">
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.inputBarOffset')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.inputBarOffset')}</span>
                                             <Tooltip>
                                                 <TooltipTrigger asChild>
                                                     <Icon name="information" className="h-3.5 w-3.5 text-muted-foreground/60 cursor-help" />
                                                 </TooltipTrigger>
                                                 <TooltipContent sideOffset={8} className="max-w-xs">
-                                                    {t('settings.openchamber.visual.field.inputBarOffsetTooltip')}
+                                                    {t('settings.pollarys.visual.field.inputBarOffsetTooltip')}
                                                 </TooltipContent>
                                             </Tooltip>
                                         </div>
@@ -1130,7 +1130,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             onClick={() => setInputBarOffset(0)}
                                             disabled={inputBarOffset === 0}
                                             className="h-7 w-7 px-0 text-muted-foreground hover:text-foreground"
-                                            aria-label={t('settings.openchamber.visual.actions.resetInputBarOffsetAria')}
+                                            aria-label={t('settings.pollarys.visual.actions.resetInputBarOffsetAria')}
                                             title={t('settings.common.actions.reset')}
                                         >
                                             <Icon name="restart" className="h-3.5 w-3.5" />
@@ -1149,7 +1149,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                 {hasNavigationSettings && (
                     <div className="space-y-3">
                         <section className="px-2 pb-2 pt-0">
-                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.navigation')}</h4>
+                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.navigation')}</h4>
                             {shouldShow('terminalQuickKeys') && !isMobile && (
                                 <div
                                     className="group flex cursor-pointer items-center gap-2 py-1.5"
@@ -1167,16 +1167,16 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                     <Checkbox
                                         checked={showTerminalQuickKeysOnDesktop}
                                         onChange={setShowTerminalQuickKeysOnDesktop}
-                                        ariaLabel={t('settings.openchamber.visual.field.terminalQuickKeysAria')}
+                                        ariaLabel={t('settings.pollarys.visual.field.terminalQuickKeysAria')}
                                     />
                                     <div className="flex min-w-0 items-center gap-1.5">
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.terminalQuickKeys')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.terminalQuickKeys')}</span>
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <Icon name="information" className="h-3.5 w-3.5 text-muted-foreground/60 cursor-help" />
                                             </TooltipTrigger>
                                             <TooltipContent sideOffset={8} className="max-w-xs">
-                                                {t('settings.openchamber.visual.field.terminalQuickKeysTooltip')}
+                                                {t('settings.pollarys.visual.field.terminalQuickKeysTooltip')}
                                             </TooltipContent>
                                         </Tooltip>
                                     </div>
@@ -1193,8 +1193,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                 <div className="grid grid-cols-1 gap-y-2 md:grid-cols-[minmax(0,16rem)_minmax(0,16rem)] md:justify-start md:gap-x-2">
                                     {shouldShow('chatRenderMode') && (
                                         <section className="p-2 md:col-span-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.chatRenderMode')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.chatRenderModeAria')} className="mt-1 grid w-full max-w-[26rem] grid-cols-1 gap-3 sm:grid-cols-2">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.chatRenderMode')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.chatRenderModeAria')} className="mt-1 grid w-full max-w-[26rem] grid-cols-1 gap-3 sm:grid-cols-2">
                                                 {CHAT_RENDER_MODE_OPTIONS.map((option) => {
                                                     const selected = chatRenderMode === option.id;
                                                     const previewPhase = chatRenderPreviewTick % 12;
@@ -1277,7 +1277,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('messageTransport') && (
                                         <section className="p-2 md:col-span-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.messageStreamTransport')}</h4>
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.messageStreamTransport')}</h4>
                                             <div className="mt-1 flex max-w-[24rem] flex-col gap-2">
                                                 <div className="flex flex-wrap items-center gap-1">
                                                     {MESSAGE_STREAM_TRANSPORT_OPTIONS.map((option) => (
@@ -1305,8 +1305,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('activityRenderMode') && chatRenderMode === 'sorted' && (
                                         <section className="p-2 md:col-span-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.activityDefault')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.activityDefaultAria')} className="mt-0.5 space-y-0">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.activityDefault')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.activityDefaultAria')} className="mt-0.5 space-y-0">
                                                 {ACTIVITY_RENDER_MODE_OPTIONS.map((option) => {
                                                     const selected = activityRenderMode === option.id;
                                                     return (
@@ -1327,7 +1327,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                             <Radio
                                                                 checked={selected}
                                                                 onChange={() => handleActivityRenderModeChange(option.id)}
-                                                                ariaLabel={t('settings.openchamber.visual.field.activityDefaultModeAria', { option: tUnsafe(option.labelKey) })}
+                                                                ariaLabel={t('settings.pollarys.visual.field.activityDefaultModeAria', { option: tUnsafe(option.labelKey) })}
                                                             />
                                                             <span className={cn('typography-ui-label font-normal', selected ? 'text-foreground' : 'text-foreground/50')}>
                                                                 {tUnsafe(option.labelKey)}
@@ -1341,7 +1341,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('expandedTools') && (
                                         <section className="p-2 md:col-span-2 space-y-0.5">
-                                            <div className="typography-ui-header font-medium text-foreground py-1.5">{t('settings.openchamber.visual.section.showToolsOpenedByDefault')}</div>
+                                            <div className="typography-ui-header font-medium text-foreground py-1.5">{t('settings.pollarys.visual.section.showToolsOpenedByDefault')}</div>
 
                                             <div
                                                 className="group flex cursor-pointer items-center gap-2 py-0.5"
@@ -1359,9 +1359,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                 <Checkbox
                                                     checked={showExpandedBashTools}
                                                     onChange={handleShowExpandedBashToolsChange}
-                                                    ariaLabel={t('settings.openchamber.visual.field.showExpandedBashToolsAria')}
+                                                    ariaLabel={t('settings.pollarys.visual.field.showExpandedBashToolsAria')}
                                                 />
-                                                <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.bash')}</span>
+                                                <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.bash')}</span>
                                             </div>
 
                                             <div
@@ -1380,17 +1380,17 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                 <Checkbox
                                                     checked={showExpandedEditTools}
                                                     onChange={handleShowExpandedEditToolsChange}
-                                                    ariaLabel={t('settings.openchamber.visual.field.showExpandedEditToolsAria')}
+                                                    ariaLabel={t('settings.pollarys.visual.field.showExpandedEditToolsAria')}
                                                 />
-                                                <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.editTools')}</span>
+                                                <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.editTools')}</span>
                                             </div>
                                         </section>
                                     )}
 
                                     {shouldShow('userMessageRendering') && (
                                         <section className="p-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.userMessageRendering')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.userMessageRenderingAria')} className="mt-0.5 space-y-0">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.userMessageRendering')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.userMessageRenderingAria')} className="mt-0.5 space-y-0">
                                                 {USER_MESSAGE_RENDERING_OPTIONS.map((option) => {
                                                     const selected = normalizeUserMessageRenderingMode(userMessageRenderingMode) === option.id;
                                                     return (
@@ -1411,7 +1411,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                             <Radio
                                                                 checked={selected}
                                                                 onChange={() => handleUserMessageRenderingModeChange(option.id)}
-                                                                ariaLabel={t('settings.openchamber.visual.field.userMessageRenderingAria', { option: tUnsafe(option.labelKey) })}
+                                                                ariaLabel={t('settings.pollarys.visual.field.userMessageRenderingAria', { option: tUnsafe(option.labelKey) })}
                                                             />
                                                             <span className={cn('typography-ui-label font-normal', selected ? 'text-foreground' : 'text-foreground/50')}>
                                                                 {tUnsafe(option.labelKey)}
@@ -1425,8 +1425,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('mermaidRendering') && (
                                         <section className="p-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.mermaidRendering')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.mermaidRenderingAria')} className="mt-0.5 space-y-0">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.mermaidRendering')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.mermaidRenderingAria')} className="mt-0.5 space-y-0">
                                                 {MERMAID_RENDERING_OPTIONS.map((option) => {
                                                     const selected = mermaidRenderingMode === option.id;
                                                     return (
@@ -1447,7 +1447,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                             <Radio
                                                                 checked={selected}
                                                                 onChange={() => handleMermaidRenderingModeChange(option.id)}
-                                                                ariaLabel={t('settings.openchamber.visual.field.mermaidRenderingAria', { option: tUnsafe(option.labelKey) })}
+                                                                ariaLabel={t('settings.pollarys.visual.field.mermaidRenderingAria', { option: tUnsafe(option.labelKey) })}
                                                             />
                                                             <span className={cn('typography-ui-label font-normal', selected ? 'text-foreground' : 'text-foreground/50')}>
                                                                 {tUnsafe(option.labelKey)}
@@ -1461,8 +1461,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('diffLayout') && !isVSCode && (
                                         <section className="p-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.diffLayout')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.diffLayoutAria')} className="mt-0.5 space-y-0">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.diffLayout')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.diffLayoutAria')} className="mt-0.5 space-y-0">
                                                 {DIFF_LAYOUT_OPTIONS.map((option) => {
                                                     const selected = diffLayoutPreference === option.id;
                                                     return (
@@ -1483,7 +1483,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                             <Radio
                                                                 checked={selected}
                                                                 onChange={() => setDiffLayoutPreference(option.id)}
-                                                                ariaLabel={t('settings.openchamber.visual.field.diffLayoutAria', { option: tUnsafe(option.labelKey) })}
+                                                                ariaLabel={t('settings.pollarys.visual.field.diffLayoutAria', { option: tUnsafe(option.labelKey) })}
                                                             />
                                                             <span className={cn('typography-ui-label font-normal', selected ? 'text-foreground' : 'text-foreground/50')}>
                                                                 {tUnsafe(option.labelKey)}
@@ -1497,8 +1497,8 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
 
                                     {shouldShow('diffLayout') && !isVSCode && (
                                         <section className="p-2">
-                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.openchamber.visual.section.diffViewMode')}</h4>
-                                            <div role="radiogroup" aria-label={t('settings.openchamber.visual.section.diffViewModeAria')} className="mt-0.5 space-y-0">
+                                            <h4 className="typography-ui-header font-medium text-foreground">{t('settings.pollarys.visual.section.diffViewMode')}</h4>
+                                            <div role="radiogroup" aria-label={t('settings.pollarys.visual.section.diffViewModeAria')} className="mt-0.5 space-y-0">
                                                 {DIFF_VIEW_MODE_OPTIONS.map((option) => {
                                                     const selected = diffViewMode === option.id;
                                                     return (
@@ -1519,7 +1519,7 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                                             <Radio
                                                                 checked={selected}
                                                                 onChange={() => setDiffViewMode(option.id)}
-                                                                ariaLabel={t('settings.openchamber.visual.field.diffViewModeAria', { option: tUnsafe(option.labelKey) })}
+                                                                ariaLabel={t('settings.pollarys.visual.field.diffViewModeAria', { option: tUnsafe(option.labelKey) })}
                                                             />
                                                             <span className={cn('typography-ui-label font-normal', selected ? 'text-foreground' : 'text-foreground/50')}>
                                                                 {tUnsafe(option.labelKey)}
@@ -1552,9 +1552,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={showReasoningTraces}
                                                 onChange={setShowReasoningTraces}
-                                                ariaLabel={t('settings.openchamber.visual.field.showReasoningTracesAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.showReasoningTracesAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.showReasoningTraces')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.showReasoningTraces')}</span>
                                         </div>
                                     )}
 
@@ -1575,9 +1575,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={collapsibleThinkingBlocks}
                                                 onChange={setCollapsibleThinkingBlocks}
-                                                ariaLabel={t('settings.openchamber.visual.field.collapsibleThinkingBlocksAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.collapsibleThinkingBlocksAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.collapsibleThinkingBlocks')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.collapsibleThinkingBlocks')}</span>
                                         </div>
                                     )}
 
@@ -1598,9 +1598,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={stickyUserHeader}
                                                 onChange={handleStickyUserHeaderChange}
-                                                ariaLabel={t('settings.openchamber.visual.field.stickyUserHeaderAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.stickyUserHeaderAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.stickyUserHeader')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.stickyUserHeader')}</span>
                                         </div>
                                     )}
 
@@ -1621,9 +1621,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={wideChatLayoutEnabled}
                                                 onChange={handleWideChatLayoutChange}
-                                                ariaLabel={t('settings.openchamber.visual.field.wideChatLayoutAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.wideChatLayoutAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.wideChatLayout')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.wideChatLayout')}</span>
                                         </div>
                                     )}
 
@@ -1644,16 +1644,16 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={showSplitAssistantMessageActions}
                                                 onChange={handleShowSplitAssistantMessageActionsChange}
-                                                ariaLabel={t('settings.openchamber.visual.field.showSplitAssistantMessageActionsAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.showSplitAssistantMessageActionsAria')}
                                             />
                                             <div className="flex min-w-0 items-center gap-1.5">
-                                                <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.showSplitAssistantMessageActions')}</span>
+                                                <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.showSplitAssistantMessageActions')}</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Icon name="information" className="h-3.5 w-3.5 cursor-help text-muted-foreground/60" />
                                                     </TooltipTrigger>
                                                     <TooltipContent sideOffset={8} className="max-w-xs">
-                                                        {t('settings.openchamber.visual.field.showSplitAssistantMessageActionsTooltip')}
+                                                        {t('settings.pollarys.visual.field.showSplitAssistantMessageActionsTooltip')}
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
@@ -1677,9 +1677,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={showToolFileIcons}
                                                 onChange={handleShowToolFileIconsChange}
-                                                ariaLabel={t('settings.openchamber.visual.field.showToolFileIconsAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.showToolFileIconsAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.showToolFileIcons')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.showToolFileIcons')}</span>
                                         </div>
                                     )}
 
@@ -1700,9 +1700,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={showMobileSessionStatusBar}
                                                 onChange={setShowMobileSessionStatusBar}
-                                                ariaLabel={t('settings.openchamber.visual.field.showMobileStatusBarAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.showMobileStatusBarAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.showMobileStatusBar')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.showMobileStatusBar')}</span>
                                         </div>
                                     )}
 
@@ -1723,9 +1723,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={directoryShowHidden}
                                                 onChange={setDirectoryShowHidden}
-                                                ariaLabel={t('settings.openchamber.visual.field.showDotfilesAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.showDotfilesAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.showDotfiles')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.showDotfiles')}</span>
                                         </div>
                                     )}
 
@@ -1746,16 +1746,16 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={queueModeEnabled}
                                                 onChange={setQueueMode}
-                                                ariaLabel={t('settings.openchamber.visual.field.queueMessagesByDefaultAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.queueMessagesByDefaultAria')}
                                             />
                                             <div className="flex min-w-0 items-center gap-1.5">
-                                                <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.queueMessagesByDefault')}</span>
+                                                <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.queueMessagesByDefault')}</span>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Icon name="information" className="h-3.5 w-3.5 text-muted-foreground/60 cursor-help" />
                                                     </TooltipTrigger>
                                                     <TooltipContent sideOffset={8} className="max-w-xs">
-                                                        {t('settings.openchamber.visual.field.queueMessagesByDefaultTooltip', { modifier: getModifierLabel() })}
+                                                        {t('settings.pollarys.visual.field.queueMessagesByDefaultTooltip', { modifier: getModifierLabel() })}
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </div>
@@ -1779,9 +1779,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={persistChatDraft}
                                                 onChange={setPersistChatDraft}
-                                                ariaLabel={t('settings.openchamber.visual.field.persistDraftMessagesAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.persistDraftMessagesAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.persistDraftMessages')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.persistDraftMessages')}</span>
                                         </div>
                                     )}
 
@@ -1802,9 +1802,9 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             <Checkbox
                                                 checked={inputSpellcheckEnabled}
                                                 onChange={handleInputSpellcheckChange}
-                                                ariaLabel={t('settings.openchamber.visual.field.enableSpellcheckInTextInputsAria')}
+                                                ariaLabel={t('settings.pollarys.visual.field.enableSpellcheckInTextInputsAria')}
                                             />
-                                            <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.enableSpellcheckInTextInputs')}</span>
+                                            <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.enableSpellcheckInTextInputs')}</span>
                                         </div>
                                     )}
 
@@ -1818,12 +1818,12 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                 {shouldShow('reportUsage') && (
                     <div className="space-y-3">
                         <section className="px-2 pb-2 pt-0">
-                            <h4 className="typography-ui-header font-medium text-foreground mb-2">{t('settings.openchamber.visual.section.privacy')}</h4>
+                            <h4 className="typography-ui-header font-medium text-foreground mb-2">{t('settings.pollarys.visual.section.privacy')}</h4>
                             <div className="flex items-start gap-2 py-1.5">
                                 <Checkbox
                                     checked={reportUsage}
                                     onChange={handleReportUsageChange}
-                                    ariaLabel={t('settings.openchamber.visual.field.sendAnonymousUsageReportsAria')}
+                                    ariaLabel={t('settings.pollarys.visual.field.sendAnonymousUsageReportsAria')}
                                 />
                                 <div className="flex min-w-0 flex-col gap-0.5">
                                     <div
@@ -1839,10 +1839,10 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
                                             }
                                         }}
                                     >
-                                        <span className="typography-ui-label text-foreground">{t('settings.openchamber.visual.field.sendAnonymousUsageReports')}</span>
+                                        <span className="typography-ui-label text-foreground">{t('settings.pollarys.visual.field.sendAnonymousUsageReports')}</span>
                                     </div>
                                     <span className="typography-meta text-muted-foreground pointer-events-none">
-                                        {t('settings.openchamber.visual.field.sendAnonymousUsageReportsHint')}
+                                        {t('settings.pollarys.visual.field.sendAnonymousUsageReportsHint')}
                                     </span>
                                 </div>
                             </div>
@@ -1853,3 +1853,5 @@ export const OpenChamberVisualSettings: React.FC<OpenChamberVisualSettingsProps>
             </div>
     );
 };
+
+

@@ -4,7 +4,7 @@ import type { GitWorktreeBootstrapStatus } from '@/lib/api/types';
 
 declare global {
   interface Window {
-    __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs;
+    __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs;
   }
 }
 
@@ -21,7 +21,7 @@ const waiters = new Map<string, Promise<void>>();
 const getKey = (directory: string): string => normalizePath(directory);
 
 const getGitWorktreeBootstrapStatus = async (directory: string): Promise<GitWorktreeBootstrapStatus> => {
-  const runtimeGit = typeof window !== 'undefined' ? window.__OPENCHAMBER_RUNTIME_APIS__?.git : undefined;
+  const runtimeGit = typeof window !== 'undefined' ? window.__POLLARYS_RUNTIME_APIS__?.git : undefined;
   if (runtimeGit?.worktree?.bootstrapStatus) {
     return runtimeGit.worktree.bootstrapStatus(directory);
   }
@@ -117,3 +117,5 @@ export const waitForWorktreeBootstrap = async (directory: string, timeoutMs = DE
   waiters.set(key, pending);
   return pending;
 };
+
+

@@ -110,3 +110,4 @@ export function getSyncPermissions(sessionId: string, directory?: string) {
 export function getSyncQuestions(sessionId: string, directory?: string) {
   return getDirectoryState(directory)?.question[sessionId] ?? []
 }
+

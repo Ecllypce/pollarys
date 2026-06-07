@@ -157,3 +157,4 @@ export const SnippetAutocomplete = React.forwardRef<SnippetAutocompleteHandle, S
 });
 
 SnippetAutocomplete.displayName = 'SnippetAutocomplete';
+

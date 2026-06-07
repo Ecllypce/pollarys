@@ -65,3 +65,4 @@ export const StatusChip: React.FC<StatusChipProps> = ({ onClick, className }) =>
 };
 
 export default StatusChip;
+

@@ -154,3 +154,4 @@ export function useInlineCommentController<TRange extends LineRangeBase>(
     fromDraftRange,
   };
 }
+

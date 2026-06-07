@@ -44,3 +44,4 @@ export const useIsTextTruncated = <T extends HTMLElement>(
 
   return isTruncated;
 };
+

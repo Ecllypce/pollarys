@@ -13,9 +13,9 @@ import { CommandAutocomplete, type CommandAutocompleteHandle, type CommandInfo }
 import { FileMentionAutocomplete, type FileMentionHandle } from '@/components/chat/FileMentionAutocomplete';
 import { Icon } from "@/components/icon/Icon";
 import { isIMECompositionEvent } from '@/lib/ime';
-import { getWorktreeSetupCommands } from '@/lib/openchamberConfig';
+import { getWorktreeSetupCommands } from '@/lib/pollarysConfig';
 import { useThemeSystem } from '@/contexts/useThemeSystem';
-import type { ProjectRef } from '@/lib/openchamberConfig';
+import type { ProjectRef } from '@/lib/pollarysConfig';
 import type { CreateMultiRunParams, MultiRunFileAttachment } from '@/types/multirun';
 import { useI18n } from '@/lib/i18n';
 
@@ -83,7 +83,7 @@ export const AgentManagerEmptyState: React.FC<AgentManagerEmptyStateProps> = ({
     if (typeof window === 'undefined') {
       return false;
     }
-    const apis = (window as unknown as { __OPENCHAMBER_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } }).__OPENCHAMBER_RUNTIME_APIS__;
+    const apis = (window as unknown as { __POLLARYS_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } }).__POLLARYS_RUNTIME_APIS__;
     return Boolean(apis?.runtime?.isVSCode);
   }, []);
 
@@ -680,3 +680,6 @@ export const AgentManagerEmptyState: React.FC<AgentManagerEmptyStateProps> = ({
     </div>
   );
 };
+
+
+

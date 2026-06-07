@@ -53,3 +53,4 @@ export const AIHighlightsBox: React.FC<AIHighlightsBoxProps> = ({
     </div>
   );
 };
+

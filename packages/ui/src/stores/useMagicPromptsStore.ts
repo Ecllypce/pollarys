@@ -18,3 +18,4 @@ export const useMagicPromptsStore = create<MagicPromptsState>((set) => ({
     });
   },
 }));
+

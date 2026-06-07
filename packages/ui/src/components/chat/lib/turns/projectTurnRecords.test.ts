@@ -87,3 +87,4 @@ describe('projectTurnRecords', () => {
         expect(projection.ungroupedMessageIds.has('s1')).toBe(true);
     });
 });
+

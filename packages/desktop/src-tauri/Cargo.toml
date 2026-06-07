@@ -1,11 +1,11 @@
 [package]
-name = "openchamber-desktop"
+name = "pollarys-desktop"
 version = "1.11.3"
 edition = "2021"
 publish = false
 
 [[bin]]
-name = "openchamber-desktop"
+name = "pollarys-desktop"
 path = "src/main.rs"
 
 [features]

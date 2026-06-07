@@ -105,3 +105,4 @@ const AssistantTextPart: React.FC<AssistantTextPartProps> = ({
 };
 
 export default React.memo(AssistantTextPart);
+

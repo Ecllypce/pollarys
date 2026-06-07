@@ -47,3 +47,4 @@ export const useAvailableTools = () => {
 
     return { tools, isLoading, error };
 };
+

@@ -158,3 +158,4 @@ export const PendingChangesBar: React.FC = React.memo(() => {
 });
 
 PendingChangesBar.displayName = 'PendingChangesBar';
+

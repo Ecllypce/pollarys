@@ -44,3 +44,4 @@ export function getVoiceSession(): VoiceSession | null {
 export function isVoiceSessionStarted(): boolean {
     return activeVoiceSession !== null;
 }
+

@@ -595,3 +595,4 @@ export const InstallFromRepoDialog: React.FC<InstallFromRepoDialogProps> = ({ op
     </>
   );
 };
+

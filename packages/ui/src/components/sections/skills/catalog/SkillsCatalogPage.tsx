@@ -419,3 +419,4 @@ export const SkillsCatalogPage: React.FC<SkillsCatalogPageProps> = ({ mode, onMo
     </ScrollableOverlay>
   );
 };
+

@@ -62,3 +62,4 @@ export const projectTurnIndexes = (turns: TurnRecord[]): TurnProjectionResult =>
         ungroupedMessageIds: new Set<string>(),
     };
 };
+

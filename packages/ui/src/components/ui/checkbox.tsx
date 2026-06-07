@@ -69,3 +69,4 @@ export const Checkbox = React.memo<CheckboxProps>(function Checkbox({
     </BaseCheckbox.Root>
   );
 });
+

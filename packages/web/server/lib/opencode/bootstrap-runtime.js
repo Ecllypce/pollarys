@@ -6,14 +6,14 @@ export const createBootstrapRuntime = (dependencies) => {
     registerAuthAndAccessRoutes,
     registerTtsRoutes,
     registerNotificationRoutes,
-    registerOpenChamberRoutes,
+    registerPollarysRoutes,
     express,
   } = dependencies;
 
   const setupBaseRoutes = (app, options) => {
     const {
       process,
-      openchamberVersion,
+      pollarysVersion,
       runtimeName,
       serverStartedAt,
       gracefulShutdown,
@@ -42,7 +42,7 @@ export const createBootstrapRuntime = (dependencies) => {
       path,
       server,
       __dirname,
-      openchamberDataDir,
+      pollarysDataDir,
       modelsDevApiUrl,
       modelsMetadataCacheTtl,
       fetchFreeZenModels,
@@ -53,7 +53,7 @@ export const createBootstrapRuntime = (dependencies) => {
     registerServerStatusRoutes(app, {
       express,
       process,
-      openchamberVersion,
+      pollarysVersion,
       runtimeName,
       serverStartedAt,
       gracefulShutdown,
@@ -105,14 +105,14 @@ export const createBootstrapRuntime = (dependencies) => {
       setAutoAcceptSession,
     });
 
-    registerOpenChamberRoutes(app, {
+    registerPollarysRoutes(app, {
       fs,
       os,
       path,
       process,
       server,
       __dirname,
-      openchamberDataDir,
+      pollarysDataDir,
       modelsDevApiUrl,
       modelsMetadataCacheTtl,
       readSettingsFromDiskMigrated,
@@ -129,3 +129,4 @@ export const createBootstrapRuntime = (dependencies) => {
     setupBaseRoutes,
   };
 };
+

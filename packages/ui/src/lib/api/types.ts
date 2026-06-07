@@ -1160,3 +1160,4 @@ export interface SkillsInstallResponse {
   message?: string;
   reloadDelayMs?: number;
 }
+

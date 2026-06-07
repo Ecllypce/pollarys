@@ -253,3 +253,4 @@ export const AgentMentionAutocomplete = React.forwardRef<AgentMentionAutocomplet
 });
 
 AgentMentionAutocomplete.displayName = 'AgentMentionAutocomplete';
+

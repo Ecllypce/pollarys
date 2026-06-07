@@ -14,10 +14,10 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"],
-      "@openchamber/ui/*": ["./*"]
-    }
+     "paths": {
+       "@/*": ["./*"],
+       "@pollarys/ui/*": ["./*"]
+     }
   },
   "include": ["src"]
 }

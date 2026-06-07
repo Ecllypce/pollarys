@@ -35,3 +35,4 @@ export const ProviderLogo: React.FC<ProviderLogoProps> = ({
         />
     );
 };
+

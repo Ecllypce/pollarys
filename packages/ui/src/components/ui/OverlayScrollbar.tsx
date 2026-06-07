@@ -360,3 +360,4 @@ const OverlayScrollbarComponent: React.FC<OverlayScrollbarProps> = ({
 OverlayScrollbarComponent.displayName = "OverlayScrollbar";
 
 export const OverlayScrollbar = OverlayScrollbarComponent;
+

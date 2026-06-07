@@ -29,3 +29,4 @@ const MigratingPart: React.FC<MigratingPartProps> = ({
 };
 
 export default React.memo(MigratingPart);
+

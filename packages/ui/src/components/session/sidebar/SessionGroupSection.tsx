@@ -899,3 +899,4 @@ export function SessionGroupSection(props: Props): React.ReactNode {
     </div>
   );
 }
+

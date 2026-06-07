@@ -62,7 +62,7 @@ export const shouldShowOpenCodeUpdateToast = (
 };
 
 /**
- * Coerces the `detail.version` carried by an `openchamber:opencode-update-available`
+ * Coerces the `detail.version` carried by an `Pollarys:opencode-update-available`
  * CustomEvent into a trimmed string, or returns `''` when the payload is
  * missing or shaped unexpectedly.
  *
@@ -94,3 +94,5 @@ export const resolveOpenCodeUpgradeStatusVersion = (
   if (typeof status.latestVersion !== 'string') return '';
   return status.latestVersion.trim();
 };
+
+

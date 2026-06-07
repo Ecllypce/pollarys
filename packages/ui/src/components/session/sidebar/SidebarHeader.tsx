@@ -250,3 +250,4 @@ export function SidebarHeader(props: Props): React.ReactNode {
     </div>
   );
 }
+

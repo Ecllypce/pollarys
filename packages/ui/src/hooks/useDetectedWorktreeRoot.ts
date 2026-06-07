@@ -114,3 +114,4 @@ export function useDetectedWorktreeMetadata(
 
   return storeMetadata ?? detected;
 }
+

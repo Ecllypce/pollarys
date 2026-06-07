@@ -68,3 +68,4 @@ export const getContextFileOpenFailureMessage = (reason: ContextFileOpenFailureR
 
   return 'Failed to open file';
 };
+

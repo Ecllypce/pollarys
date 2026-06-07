@@ -113,3 +113,4 @@ export const SnippetsSidebar: React.FC<SnippetsSidebarProps> = ({ onItemSelect }
     </div>
   );
 };
+

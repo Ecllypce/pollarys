@@ -68,3 +68,4 @@ export const usePwaDetection = (): PwaDetectionState => {
 
   return state;
 };
+

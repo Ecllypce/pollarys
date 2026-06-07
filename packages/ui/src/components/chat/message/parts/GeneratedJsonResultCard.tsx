@@ -95,3 +95,4 @@ export const GeneratedJsonResultCard: React.FC<{ result: GeneratedResult }> = ({
     </div>
   );
 };
+

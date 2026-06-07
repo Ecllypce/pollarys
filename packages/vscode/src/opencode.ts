@@ -68,8 +68,8 @@ function isValidOpenCodePassword(password: string): boolean {
   return typeof password === 'string' && password.trim().length > 0;
 }
 
-function readOpenChamberSettings(): Record<string, unknown> {
-  const settingsPath = path.join(os.homedir(), '.config', 'openchamber', 'settings.json');
+function readPollarysSettings(): Record<string, unknown> {
+  const settingsPath = path.join(os.homedir(), '.config', 'pollarys', 'settings.json');
   try {
     const raw = fs.readFileSync(settingsPath, 'utf8');
     const parsed = JSON.parse(raw) as unknown;
@@ -180,7 +180,7 @@ function isMacOpenCodeAppBundlePath(candidate: string): boolean {
 }
 
 function createConfiguredOpencodeBinaryError(raw: string, normalized: string): Error {
-  const messageSuffix = 'OpenChamber needs the standalone opencode CLI. Install it and set openchamber.opencodeBinary to the CLI path, for example ~/.opencode/bin/opencode, or leave the setting empty to use PATH lookup.';
+  const messageSuffix = 'Pollarys needs the standalone opencode CLI. Install it and set pollarys.opencodeBinary to the CLI path, for example ~/.opencode/bin/opencode, or leave the setting empty to use PATH lookup.';
   if (isMacOpenCodeAppBundlePath(raw) || isMacOpenCodeAppBundlePath(normalized)) {
     return new Error(`Configured OpenCode binary points at the macOS desktop app bundle, not the CLI: ${normalized}. ${messageSuffix}`);
   }
@@ -208,7 +208,7 @@ function createConfiguredOpencodeBinaryError(raw: string, normalized: string): E
 function validateConfiguredOpencodeBinaryForManagedStart(): string | null {
   const candidates: string[] = [];
   try {
-    const config = vscode.workspace.getConfiguration('openchamber');
+    const config = vscode.workspace.getConfiguration('pollarys');
     const raw = config.get<string>('opencodeBinary') || '';
     if (raw.trim()) {
       candidates.push(raw.trim());
@@ -218,7 +218,7 @@ function validateConfiguredOpencodeBinaryForManagedStart(): string | null {
   }
 
   try {
-    const settings = readOpenChamberSettings();
+    const settings = readPollarysSettings();
     const raw = typeof settings.opencodeBinary === 'string' ? settings.opencodeBinary.trim() : '';
     if (raw) {
       candidates.push(raw);
@@ -247,7 +247,7 @@ function validateConfiguredOpencodeBinaryForManagedStart(): string | null {
 function resolveOpencodeCliPath(): string | null {
   const configured = (() => {
     try {
-      const config = vscode.workspace.getConfiguration('openchamber');
+      const config = vscode.workspace.getConfiguration('pollarys');
       return normalizeConfiguredOpencodeBinary(config.get<string>('opencodeBinary') || '');
     } catch {
       return null;
@@ -258,9 +258,9 @@ function resolveOpencodeCliPath(): string | null {
     return configured;
   }
 
-  const sharedFromOpenChamber = (() => {
+  const sharedFromPollarys = (() => {
     try {
-      const settings = readOpenChamberSettings();
+      const settings = readPollarysSettings();
       const candidate = settings.opencodeBinary;
       if (typeof candidate !== 'string') {
         return null;
@@ -271,15 +271,15 @@ function resolveOpencodeCliPath(): string | null {
     }
   })();
 
-  if (sharedFromOpenChamber && isExecutable(sharedFromOpenChamber) && !isMacOpenCodeAppBundlePath(sharedFromOpenChamber)) {
-    return sharedFromOpenChamber;
+  if (sharedFromPollarys && isExecutable(sharedFromPollarys) && !isMacOpenCodeAppBundlePath(sharedFromPollarys)) {
+    return sharedFromPollarys;
   }
 
   const explicit = [
     process.env.OPENCODE_BINARY,
     process.env.OPENCODE_PATH,
-    process.env.OPENCHAMBER_OPENCODE_PATH,
-    process.env.OPENCHAMBER_OPENCODE_BIN,
+    process.env.POLLARYS_OPENCODE_PATH,
+    process.env.POLLARYS_OPENCODE_BIN,
   ]
     .map((v) => (typeof v === 'string' ? v.trim() : ''))
     .filter(Boolean);
@@ -537,7 +537,7 @@ async function waitForReady(
   timeoutMs = 15000,
   authHeaders: Record<string, string> = {}
 ): Promise<ReadyResult> {
-  const outputChannel = vscode.window.createOutputChannel('OpenChamberManager');
+  const outputChannel = vscode.window.createOutputChannel('PollarysManager');
   const start = Date.now();
   const candidates = getCandidateBaseUrls(serverUrl);
   let attempts = 0;
@@ -636,7 +636,7 @@ async function spawnManagedOpenCodeServer(
     const onExit = (code: number | null) => {
       cleanup();
       const appBundleHint = isMacOpenCodeAppBundlePath(binary)
-        ? ' The configured binary appears to point at the macOS desktop app bundle; OpenChamber needs the standalone opencode CLI.'
+        ? ' The configured binary appears to point at the macOS desktop app bundle; Pollarys needs the standalone opencode CLI.'
         : '';
       reject(new Error(`OpenCode process exited before serving with code ${code}. Binary used: ${binary}.${appBundleHint} Output: ${output}`));
     };
@@ -725,7 +725,7 @@ export function createOpenCodeManager(_context: vscode.ExtensionContext): OpenCo
 
   let pendingOperation: Promise<void> | null = null;
 
-  const config = vscode.workspace.getConfiguration('openchamber');
+  const config = vscode.workspace.getConfiguration('pollarys');
   const configuredApiUrl = config.get<string>('apiUrl') || '';
   const useConfiguredUrl = configuredApiUrl && configuredApiUrl.trim().length > 0;
 

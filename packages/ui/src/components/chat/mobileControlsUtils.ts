@@ -121,3 +121,4 @@ export const getQuickEffortOptions = (variants: string[]) => {
     }
     return [...top, lowest];
 };
+

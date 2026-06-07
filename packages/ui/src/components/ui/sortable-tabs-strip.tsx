@@ -571,3 +571,4 @@ export const SortableTabsStrip: React.FC<SortableTabsStripProps> = ({
     </DndContext>
   );
 };
+

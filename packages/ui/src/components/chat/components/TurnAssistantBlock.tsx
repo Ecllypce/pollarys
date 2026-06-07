@@ -16,3 +16,4 @@ const TurnAssistantBlock: React.FC<TurnAssistantBlockProps> = ({ assistantMessag
 };
 
 export default React.memo(TurnAssistantBlock);
+

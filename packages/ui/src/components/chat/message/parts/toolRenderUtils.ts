@@ -42,3 +42,4 @@ export const getStaticGroupToolName = (toolName: string): string => {
     }
     return normalized;
 };
+

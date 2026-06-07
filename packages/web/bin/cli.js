@@ -135,8 +135,8 @@ function isUnsafeBrowserPort(port) {
 }
 
 function resolveApiHost() {
-  const configured = typeof process.env.OPENCHAMBER_HOST === 'string'
-    ? process.env.OPENCHAMBER_HOST.trim()
+  const configured = typeof process.env.pollarys_HOST === 'string'
+    ? process.env.pollarys_HOST.trim()
     : '';
 
   if (!configured) {
@@ -172,7 +172,7 @@ function buildLocalUrl(port, endpoint = '') {
 }
 
 function formatUnsafePortWarning(port) {
-  return `Port ${port} is browser-unsafe (ERR_UNSAFE_PORT) and is not supported for OpenChamber UI at ${buildLocalUrl(port, '/')}.`;
+  return `Port ${port} is browser-unsafe (ERR_UNSAFE_PORT) and is not supported for Pollarys UI at ${buildLocalUrl(port, '/')}.`;
 }
 
 function assertSafeBrowserPort(port, { context = 'This action' } = {}) {
@@ -289,7 +289,7 @@ function buildTunnelStartReplayCommand({
   tokenViaStdin,
   tokenFileProvided,
 }) {
-  const parts = ['openchamber', 'tunnel', 'start'];
+  const parts = ['pollarys', 'tunnel', 'start'];
   if (Number.isFinite(port) && port > 0) {
     parts.push('--port', String(port));
   }
@@ -334,7 +334,7 @@ function buildTunnelStartReplayCommand({
 
 function buildTunnelProfileAddCommand({ provider, hostname }) {
   const parts = [
-    'openchamber',
+    'pollarys',
     'tunnel',
     'profile',
     'add',
@@ -576,7 +576,7 @@ function parseArgs(argv = process.argv.slice(2)) {
   const options = {
     port: DEFAULT_PORT,
     host: undefined,
-    uiPassword: process.env.OPENCHAMBER_UI_PASSWORD || undefined,
+    uiPassword: process.env.pollarys_UI_PASSWORD || undefined,
     json: false,
     all: false,
     follow: true,
@@ -804,10 +804,10 @@ function parseArgs(argv = process.argv.slice(2)) {
         // may still pass this when starting a remote server.
         break;
       case 'try-cf-tunnel':
-        removedFlagErrors.push('`--try-cf-tunnel` was removed. Use: openchamber tunnel start --provider cloudflare --mode quick');
+        removedFlagErrors.push('`--try-cf-tunnel` was removed. Use: pollarys tunnel start --provider cloudflare --mode quick');
         break;
       case 'tunnel-qr':
-        removedFlagErrors.push('`--tunnel-qr` was removed. Use: openchamber tunnel start ... --qr');
+        removedFlagErrors.push('`--tunnel-qr` was removed. Use: pollarys tunnel start ... --qr');
         break;
       case 'tunnel-password-url':
         removedFlagErrors.push('`--tunnel-password-url` was removed. Use UI password auth directly after tunnel start.');
@@ -818,7 +818,7 @@ function parseArgs(argv = process.argv.slice(2)) {
       case 'tunnel-token':
       case 'tunnel-hostname':
       case 'tunnel':
-        removedFlagErrors.push(`\`--${name}\` was removed from top-level serve flow. Use: openchamber tunnel start ...`);
+        removedFlagErrors.push(`\`--${name}\` was removed from top-level serve flow. Use: pollarys tunnel start ...`);
         break;
       default:
         if (!long && name.length === 1) {
@@ -847,10 +847,10 @@ function parseArgs(argv = process.argv.slice(2)) {
 
 function showHelp() {
   console.log(`
- OpenChamber - Web interface for the OpenCode AI coding agent
+ Pollarys - Web interface for the OpenCode AI coding agent
 
 USAGE:
-  openchamber [COMMAND] [OPTIONS]
+  pollarys [COMMAND] [OPTIONS]
 
 COMMANDS:
   serve          Start the web server (daemon default)
@@ -858,7 +858,7 @@ COMMANDS:
   restart        Stop and start the server
   status         Show server status
   tunnel         Tunnel lifecycle commands
-  logs           Tail OpenChamber logs
+  logs           Tail Pollarys logs
   update         Check for and install updates
 
 OPTIONS:
@@ -871,20 +871,20 @@ OPTIONS:
   -v, --version           Show version
 
 ENVIRONMENT:
-  OPENCHAMBER_HOST             Bind address (e.g. 0.0.0.0 for all interfaces)
-  OPENCHAMBER_UI_PASSWORD      Alternative to --ui-password flag
-  OPENCHAMBER_DATA_DIR         Override OpenChamber data directory
+  pollarys_HOST             Bind address (e.g. 0.0.0.0 for all interfaces)
+  pollarys_UI_PASSWORD      Alternative to --ui-password flag
+  pollarys_DATA_DIR         Override Pollarys data directory
   OPENCODE_HOST               External OpenCode server base URL, e.g. http://hostname:4096
   OPENCODE_PORT               Port of external OpenCode server to connect to
   OPENCODE_SKIP_START          Skip starting OpenCode, use external server
-  OPENCHAMBER_OPENCODE_HOSTNAME  Bind hostname for managed OpenCode server (default: 127.0.0.1)
+  pollarys_OPENCODE_HOSTNAME  Bind hostname for managed OpenCode server (default: 127.0.0.1)
 
 EXAMPLES:
-  openchamber                    # Start in daemon mode on default port 3000 (or free port)
-  openchamber --port 8080        # Start on port 8080 (daemon)
-  openchamber serve --foreground # Start in foreground (for systemd Type=simple)
-  openchamber tunnel help        # Show tunnel lifecycle help
-  openchamber logs               # Follow logs for latest running instance
+  pollarys                    # Start in daemon mode on default port 3000 (or free port)
+  pollarys --port 8080        # Start on port 8080 (daemon)
+  pollarys serve --foreground # Start in foreground (for systemd Type=simple)
+  pollarys tunnel help        # Show tunnel lifecycle help
+  pollarys logs               # Follow logs for latest running instance
 `);
 }
 
@@ -893,7 +893,7 @@ function showTunnelHelp() {
  Tunnel Lifecycle Commands
 
 USAGE:
-  openchamber tunnel <SUBCOMMAND> [OPTIONS]
+  pollarys tunnel <SUBCOMMAND> [OPTIONS]
 
 SUBCOMMANDS:
   help        Show this tunnel help
@@ -906,7 +906,7 @@ SUBCOMMANDS:
   profile     Manage saved managed-remote profiles
 
 COMMON OPTIONS:
-  -p, --port              Target OpenChamber instance port
+  -p, --port              Target Pollarys instance port
   --json                  Output machine-readable JSON
   --all                   Apply to all running instances (doctor default, stop)
 
@@ -932,36 +932,36 @@ OUTPUT OPTIONS:
   --json                  Output machine-readable JSON
 
 BEHAVIOR NOTES:
-  - One active tunnel per OpenChamber instance.
+  - One active tunnel per Pollarys instance.
   - Starting a different mode/provider replaces the current tunnel and revokes old connect links/sessions.
   - Connect links are one-time; generating a new link revokes the previous unused link.
 
 PROFILE USAGE:
-  openchamber tunnel profile list [--provider <id>] [--json]
-  openchamber tunnel profile show --name <name> [--provider <id>] [--json]
-  openchamber tunnel profile add --provider <id> --mode managed-remote --name <name> --hostname <host> --token <token> [--force] [--json]
-  openchamber tunnel profile add --provider <id> --mode managed-remote --name <name> --hostname <host> --token-file <path> [--force] [--json]
-  openchamber tunnel profile remove --name <name> [--provider <id>] [--json]
+  pollarys tunnel profile list [--provider <id>] [--json]
+  pollarys tunnel profile show --name <name> [--provider <id>] [--json]
+  pollarys tunnel profile add --provider <id> --mode managed-remote --name <name> --hostname <host> --token <token> [--force] [--json]
+  pollarys tunnel profile add --provider <id> --mode managed-remote --name <name> --hostname <host> --token-file <path> [--force] [--json]
+  pollarys tunnel profile remove --name <name> [--provider <id>] [--json]
 
 SHELL COMPLETION:
-  openchamber tunnel completion bash   Generate Bash completion script
-  openchamber tunnel completion zsh    Generate Zsh completion script
-  openchamber tunnel completion fish   Generate Fish completion script
+  pollarys tunnel completion bash   Generate Bash completion script
+  pollarys tunnel completion zsh    Generate Zsh completion script
+  pollarys tunnel completion fish   Generate Fish completion script
 
 EXAMPLES:
-  openchamber tunnel providers
-  openchamber tunnel ready --provider cloudflare
-  openchamber tunnel doctor --provider cloudflare
-  openchamber tunnel status
-  openchamber tunnel start --qr
-  openchamber tunnel start --profile prod-main
-  openchamber tunnel start --provider cloudflare --mode managed-remote --token-file ~/.secrets/cf-token --hostname app.example.com
-  openchamber tunnel start --provider cloudflare --mode managed-local --config ~/.cloudflared/config.yml
-  openchamber tunnel start --dry-run --provider cloudflare --mode managed-remote --token-file ~/.secrets/cf-token --hostname app.example.com
-  echo "$TOKEN" | openchamber tunnel profile add --provider cloudflare --mode managed-remote --name prod-main --hostname app.example.com --token-stdin
-  openchamber tunnel profile list --provider cloudflare
-  openchamber tunnel profile list --json --show-secrets
-  openchamber tunnel stop --port 3000
+  pollarys tunnel providers
+  pollarys tunnel ready --provider cloudflare
+  pollarys tunnel doctor --provider cloudflare
+  pollarys tunnel status
+  pollarys tunnel start --qr
+  pollarys tunnel start --profile prod-main
+  pollarys tunnel start --provider cloudflare --mode managed-remote --token-file ~/.secrets/cf-token --hostname app.example.com
+  pollarys tunnel start --provider cloudflare --mode managed-local --config ~/.cloudflared/config.yml
+  pollarys tunnel start --dry-run --provider cloudflare --mode managed-remote --token-file ~/.secrets/cf-token --hostname app.example.com
+  echo "$TOKEN" | pollarys tunnel profile add --provider cloudflare --mode managed-remote --name prod-main --hostname app.example.com --token-stdin
+  pollarys tunnel profile list --provider cloudflare
+  pollarys tunnel profile list --json --show-secrets
+  pollarys tunnel stop --port 3000
 `);
 }
 
@@ -969,9 +969,9 @@ function generateCompletionScript(shell) {
   const normalized = typeof shell === 'string' ? shell.trim().toLowerCase() : '';
 
   if (normalized === 'bash') {
-    return `# Bash completion for openchamber tunnel
-# Add to ~/.bashrc: eval "$(openchamber tunnel completion bash)"
-_openchamber_tunnel() {
+    return `# Bash completion for pollarys tunnel
+# Add to ~/.bashrc: eval "$(pollarys tunnel completion bash)"
+_pollarys_tunnel() {
   local cur prev commands tunnel_commands profile_commands common_flags start_flags
   COMPREPLY=()
   cur="\${COMP_WORDS[COMP_CWORD]}"
@@ -1012,16 +1012,16 @@ _openchamber_tunnel() {
   COMPREPLY=( $(compgen -W "\${common_flags}" -- "\${cur}") )
   return 0
 }
-complete -F _openchamber_tunnel openchamber
+complete -F _pollarys_tunnel pollarys
 `;
   }
 
   if (normalized === 'zsh') {
-    return `#compdef openchamber
-# Zsh completion for openchamber tunnel
-# Add to ~/.zshrc: eval "$(openchamber tunnel completion zsh)"
+    return `#compdef pollarys
+# Zsh completion for pollarys tunnel
+# Add to ~/.zshrc: eval "$(pollarys tunnel completion zsh)"
 
-_openchamber() {
+_pollarys() {
   local -a commands tunnel_commands profile_commands
 
   commands=(
@@ -1030,7 +1030,7 @@ _openchamber() {
     'restart:Stop and start the server'
     'status:Show server status'
     'tunnel:Tunnel lifecycle commands'
-    'logs:Tail OpenChamber logs'
+    'logs:Tail Pollarys logs'
     'update:Check for and install updates'
   )
 
@@ -1077,44 +1077,44 @@ _openchamber() {
   esac
 }
 
-compdef _openchamber openchamber
+compdef _pollarys pollarys
 `;
   }
 
   if (normalized === 'fish') {
-    return `# Fish completion for openchamber tunnel
-# Save to ~/.config/fish/completions/openchamber.fish
+    return `# Fish completion for pollarys tunnel
+# Save to ~/.config/fish/completions/pollarys.fish
 
-complete -c openchamber -n '__fish_use_subcommand' -a 'serve' -d 'Start the web server'
-complete -c openchamber -n '__fish_seen_subcommand_from serve' -l foreground -d 'Run in foreground (for systemd/process managers)'
-complete -c openchamber -n '__fish_seen_subcommand_from serve' -l no-daemon -d 'Run in foreground (alias for --foreground)'
-complete -c openchamber -n '__fish_use_subcommand' -a 'stop' -d 'Stop running instance(s)'
-complete -c openchamber -n '__fish_use_subcommand' -a 'restart' -d 'Stop and start the server'
-complete -c openchamber -n '__fish_use_subcommand' -a 'status' -d 'Show server status'
-complete -c openchamber -n '__fish_use_subcommand' -a 'tunnel' -d 'Tunnel lifecycle commands'
-complete -c openchamber -n '__fish_use_subcommand' -a 'logs' -d 'Tail logs'
-complete -c openchamber -n '__fish_use_subcommand' -a 'update' -d 'Check for updates'
+complete -c pollarys -n '__fish_use_subcommand' -a 'serve' -d 'Start the web server'
+complete -c pollarys -n '__fish_seen_subcommand_from serve' -l foreground -d 'Run in foreground (for systemd/process managers)'
+complete -c pollarys -n '__fish_seen_subcommand_from serve' -l no-daemon -d 'Run in foreground (alias for --foreground)'
+complete -c pollarys -n '__fish_use_subcommand' -a 'stop' -d 'Stop running instance(s)'
+complete -c pollarys -n '__fish_use_subcommand' -a 'restart' -d 'Stop and start the server'
+complete -c pollarys -n '__fish_use_subcommand' -a 'status' -d 'Show server status'
+complete -c pollarys -n '__fish_use_subcommand' -a 'tunnel' -d 'Tunnel lifecycle commands'
+complete -c pollarys -n '__fish_use_subcommand' -a 'logs' -d 'Tail logs'
+complete -c pollarys -n '__fish_use_subcommand' -a 'update' -d 'Check for updates'
 
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'help' -d 'Show tunnel help'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'providers' -d 'Show providers'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'ready' -d 'Check readiness'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'doctor' -d 'Run diagnostics'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'status' -d 'Show tunnel status'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'start' -d 'Start a tunnel'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'stop' -d 'Stop tunnel'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'profile' -d 'Manage profiles'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'completion' -d 'Generate completions'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'help' -d 'Show tunnel help'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'providers' -d 'Show providers'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'ready' -d 'Check readiness'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'doctor' -d 'Run diagnostics'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'status' -d 'Show tunnel status'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'start' -d 'Start a tunnel'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'stop' -d 'Stop tunnel'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'profile' -d 'Manage profiles'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and not __fish_seen_subcommand_from help providers ready doctor status start stop profile completion' -a 'completion' -d 'Generate completions'
 
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l provider -d 'Provider id'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l mode -d 'Tunnel mode'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l profile -d 'Profile name'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l config -d 'Config path'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token -d 'Token'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token-file -d 'Token file path'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token-stdin -d 'Read token from stdin'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l hostname -d 'Hostname'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l dry-run -d 'Validate without applying'
-complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l qr -d 'Show QR code'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l provider -d 'Provider id'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l mode -d 'Tunnel mode'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l profile -d 'Profile name'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l config -d 'Config path'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token -d 'Token'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token-file -d 'Token file path'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l token-stdin -d 'Read token from stdin'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l hostname -d 'Hostname'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l dry-run -d 'Validate without applying'
+complete -c pollarys -n '__fish_seen_subcommand_from tunnel; and __fish_seen_subcommand_from start' -l qr -d 'Show QR code'
 `;
   }
 
@@ -1122,10 +1122,10 @@ complete -c openchamber -n '__fish_seen_subcommand_from tunnel; and __fish_seen_
 }
 
 function getDataDir() {
-  if (typeof process.env.OPENCHAMBER_DATA_DIR === 'string' && process.env.OPENCHAMBER_DATA_DIR.trim().length > 0) {
-    return path.resolve(process.env.OPENCHAMBER_DATA_DIR.trim());
+  if (typeof process.env.pollarys_DATA_DIR === 'string' && process.env.pollarys_DATA_DIR.trim().length > 0) {
+    return path.resolve(process.env.pollarys_DATA_DIR.trim());
   }
-  return path.join(os.homedir(), '.config', 'openchamber');
+  return path.join(os.homedir(), '.config', 'pollarys');
 }
 
 function getLogsDir() {
@@ -1155,7 +1155,7 @@ function ensureLogsDir() {
 }
 
 function getLogFilePath(port) {
-  return path.join(getLogsDir(), `openchamber-${port}.log`);
+  return path.join(getLogsDir(), `pollarys-${port}.log`);
 }
 
 function getTunnelProfilesFilePath() {
@@ -1537,7 +1537,7 @@ function resolveProfileByName(profiles, profileName, provider) {
   });
 
   if (matches.length === 0) {
-    return { profile: null, error: `No tunnel profile found for name '${profileName}'. Run 'openchamber tunnel profile list'.` };
+    return { profile: null, error: `No tunnel profile found for name '${profileName}'. Run 'pollarys tunnel profile list'.` };
   }
   if (matches.length > 1) {
     return { profile: null, error: `Profile name '${profileName}' exists for multiple providers. Use --provider <id>.` };
@@ -1678,9 +1678,9 @@ async function resolveAvailablePort(desiredPort, explicitPort = false, onNotice)
   const occupant = await fetchSystemInfoFromPort(startPort);
   let message;
   if (occupant?.runtime === 'desktop') {
-    message = `Port ${startPort} is used by OpenChamber Desktop; using a free port`;
+    message = `Port ${startPort} is used by Pollarys Desktop; using a free port`;
   } else if (occupant?.runtime) {
-    message = `Port ${startPort} is used by an existing OpenChamber instance; using a free port`;
+    message = `Port ${startPort} is used by an existing Pollarys instance; using a free port`;
   } else {
     message = `Port ${startPort} in use; using a free port`;
   }
@@ -1703,11 +1703,11 @@ function getRunDir() {
 }
 
 async function getPidFilePath(port) {
-  return path.join(getRunDir(), `openchamber-${port}.pid`);
+  return path.join(getRunDir(), `pollarys-${port}.pid`);
 }
 
 async function getInstanceFilePath(port) {
-  return path.join(getRunDir(), `openchamber-${port}.json`);
+  return path.join(getRunDir(), `pollarys-${port}.json`);
 }
 
 function readPidFile(pidFilePath) {
@@ -2033,7 +2033,7 @@ async function resolveDoctorPortStatuses(options = {}) {
         available: false,
         status: 'warning',
         line: `port ${requestedPort} not available (desktop runtime)`,
-        detail: 'Use a CLI instance port from `openchamber serve` for tunneling.',
+        detail: 'Use a CLI instance port from `pollarys serve` for tunneling.',
       });
       return { statuses, availableEntries: [] };
     }
@@ -2043,7 +2043,7 @@ async function resolveDoctorPortStatuses(options = {}) {
       available: false,
       status: 'error',
       line: `port ${requestedPort} not available (no running instance)`,
-      detail: `Start one with \`openchamber serve --port ${requestedPort}\`.`,
+      detail: `Start one with \`pollarys serve --port ${requestedPort}\`.`,
     });
     return { statuses, availableEntries: [] };
   }
@@ -2064,7 +2064,7 @@ async function resolveDoctorPortStatuses(options = {}) {
       available: false,
       status: 'warning',
       line: `port ${desktopEntry.port} not available (desktop runtime)`,
-      detail: 'Use a CLI instance port from `openchamber serve` for tunneling.',
+      detail: 'Use a CLI instance port from `pollarys serve` for tunneling.',
     });
   }
 
@@ -2074,7 +2074,7 @@ async function resolveDoctorPortStatuses(options = {}) {
       available: false,
       status: 'warning',
       line: 'no CLI ports available for tunneling',
-      detail: 'Start one with `openchamber serve`.',
+      detail: 'Start one with `pollarys serve`.',
     });
   }
 
@@ -2086,18 +2086,18 @@ async function discoverRunningInstances() {
   const runDir = getRunDir();
   try {
     const files = fs.readdirSync(runDir);
-    const pidFiles = files.filter((file) => file.startsWith('openchamber-') && file.endsWith('.pid'));
+    const pidFiles = files.filter((file) => file.startsWith('pollarys-') && file.endsWith('.pid'));
     for (const file of pidFiles) {
-      const port = parseInt(file.replace('openchamber-', '').replace('.pid', ''), 10);
+      const port = parseInt(file.replace('pollarys-', '').replace('.pid', ''), 10);
       if (!Number.isFinite(port) || port <= 0) continue;
       const pidFilePath = path.join(runDir, file);
       const pid = readPidFile(pidFilePath);
       if (!pid || !isProcessRunning(pid)) {
         removePidFile(pidFilePath);
-        removeInstanceFile(path.join(runDir, `openchamber-${port}.json`));
+        removeInstanceFile(path.join(runDir, `pollarys-${port}.json`));
         continue;
       }
-      const instanceFilePath = path.join(runDir, `openchamber-${port}.json`);
+      const instanceFilePath = path.join(runDir, `pollarys-${port}.json`);
       let mtime = 0;
       let startedAt = 0;
       try {
@@ -2133,7 +2133,7 @@ async function fetchTunnelProvidersFromPort(port, fetchImpl = globalThis.fetch) 
     return null;
   }
   try {
-    const response = await fetchImpl(buildLocalUrl(port, '/api/openchamber/tunnel/providers'));
+    const response = await fetchImpl(buildLocalUrl(port, '/api/pollarys/tunnel/providers'));
     if (!response.ok) return null;
     const body = await response.json().catch(() => null);
     if (!body || !Array.isArray(body.providers)) return null;
@@ -2245,7 +2245,7 @@ async function resolveTargetInstance({
 
   if (options.all && requireAll) {
     if (running.length === 0) {
-      throw new Error('No running OpenChamber instance found. Start one with `openchamber serve`.');
+      throw new Error('No running Pollarys instance found. Start one with `pollarys serve`.');
     }
     return running;
   }
@@ -2258,11 +2258,11 @@ async function resolveTargetInstance({
         if (!attachability.attachable) {
           if (attachability.reason === 'desktop') {
             throw new Error(
-              `Port ${options.port} is used by OpenChamber Desktop app. Tunnel attach requires a CLI instance from \`openchamber serve\`.`
+              `Port ${options.port} is used by Pollarys Desktop app. Tunnel attach requires a CLI instance from \`pollarys serve\`.`
             );
           }
           throw new Error(
-            `Port ${options.port} is not an attachable OpenChamber tunnel instance. Ensure it is healthy and running OpenChamber CLI runtime.`
+            `Port ${options.port} is not an attachable Pollarys tunnel instance. Ensure it is healthy and running Pollarys CLI runtime.`
           );
         }
       }
@@ -2273,7 +2273,7 @@ async function resolveTargetInstance({
       const systemInfo = await fetchSystemInfoFromPort(options.port);
       if (systemInfo?.runtime === 'desktop') {
         throw new Error(
-          `Port ${options.port} is used by OpenChamber Desktop app. Tunnel attach requires a CLI instance from \`openchamber serve\`.`
+          `Port ${options.port} is used by Pollarys Desktop app. Tunnel attach requires a CLI instance from \`pollarys serve\`.`
         );
       }
     }
@@ -2291,7 +2291,7 @@ async function resolveTargetInstance({
       const started = running.find((entry) => entry.port === options.port);
       if (started) return { ...started, autoStarted: true };
     }
-    throw new Error(`No running OpenChamber instance found on port ${options.port}.`);
+    throw new Error(`No running Pollarys instance found on port ${options.port}.`);
   }
 
   if (rejectDesktopRuntime) {
@@ -2313,7 +2313,7 @@ async function resolveTargetInstance({
 
     if (attachableEntries.length > 1) {
       const ports = attachableEntries.map((entry) => entry.port).join(', ');
-      throw new Error(`Multiple attachable OpenChamber instances found: ${ports}. Use --port <port> or --all.`);
+      throw new Error(`Multiple attachable Pollarys instances found: ${ports}. Use --port <port> or --all.`);
     }
 
     if (allowAutoStart) {
@@ -2330,10 +2330,10 @@ async function resolveTargetInstance({
     }
 
     if (sawDesktop) {
-      throw new Error('Only OpenChamber Desktop instance(s) detected. Tunnel attach requires a CLI instance from `openchamber serve`.');
+      throw new Error('Only Pollarys Desktop instance(s) detected. Tunnel attach requires a CLI instance from `pollarys serve`.');
     }
 
-    throw new Error('No attachable OpenChamber instance found. Start one with `openchamber serve`.');
+    throw new Error('No attachable Pollarys instance found. Start one with `pollarys serve`.');
   }
 
   if (running.length === 1) {
@@ -2352,11 +2352,11 @@ async function resolveTargetInstance({
       const started = running.find((entry) => entry.port === startedPort) || getLatestInstance(running);
       if (started) return { ...started, autoStarted: true };
     }
-    throw new Error('No running OpenChamber instance found. Start one with `openchamber serve`.');
+    throw new Error('No running Pollarys instance found. Start one with `pollarys serve`.');
   }
 
   const ports = running.map((entry) => entry.port).join(', ');
-  throw new Error(`Multiple OpenChamber instances found: ${ports}. Use --port <port> or --all.`);
+  throw new Error(`Multiple Pollarys instances found: ${ports}. Use --port <port> or --all.`);
 }
 
 async function resolveTunnelReadEntries(options) {
@@ -2365,13 +2365,13 @@ async function resolveTunnelReadEntries(options) {
   if (options.explicitPort) {
     const found = running.find((entry) => entry.port === options.port);
     if (!found) {
-      throw new Error(`No running OpenChamber instance found on port ${options.port}.`);
+      throw new Error(`No running Pollarys instance found on port ${options.port}.`);
     }
     return [found];
   }
 
   if (running.length === 0) {
-    throw new Error('No running OpenChamber instance found. Start one with `openchamber serve`.');
+    throw new Error('No running Pollarys instance found. Start one with `pollarys serve`.');
   }
 
   return running;
@@ -2485,10 +2485,10 @@ async function handleTunnelProfileSubcommand(options, action) {
     if (!isQuietMode(options)) {
       clackIntro('Tunnel Profile');
       logStatus('info', 'Available subcommands', 'list, show, add, remove');
-      clackLog.step('List profiles: `openchamber tunnel profile list`');
-      clackLog.step('Show one profile: `openchamber tunnel profile show --name <name>`');
-      clackLog.step('Add profile: `openchamber tunnel profile add --provider cloudflare --mode managed-remote --name <name> --hostname <host> --token <token>`');
-      clackLog.step('Remove profile: `openchamber tunnel profile remove --name <name>`');
+      clackLog.step('List profiles: `pollarys tunnel profile list`');
+      clackLog.step('Show one profile: `pollarys tunnel profile show --name <name>`');
+      clackLog.step('Add profile: `pollarys tunnel profile add --provider cloudflare --mode managed-remote --name <name> --hostname <host> --token <token>`');
+      clackLog.step('Remove profile: `pollarys tunnel profile remove --name <name>`');
       clackOutro('Choose a subcommand');
     }
     return;
@@ -2731,7 +2731,7 @@ async function handleTunnelProfileSubcommand(options, action) {
     clackIntro(boldText('Tunnel Profile Saved'));
     logStatus('success', `${added.name} (${added.provider}/${added.mode})`, `${added.hostname} ${formatProfileTokenStatus(added, options.showSecrets)}`);
     clackOutro('save complete');
-    logStatus('info', '[START_PROFILE]', `openchamber tunnel start --profile ${added.name}`);
+    logStatus('info', '[START_PROFILE]', `pollarys tunnel start --profile ${added.name}`);
     clackOutro('');
     return;
   }
@@ -2771,7 +2771,7 @@ async function handleTunnelProfileSubcommand(options, action) {
   const suggestion = findClosestMatch(sub, knownProfileActions);
   const hint = suggestion ? ` Did you mean '${suggestion}'?` : '';
   throw new TunnelCliError(
-    `Unknown tunnel profile subcommand '${sub}'.${hint} Use 'openchamber tunnel help'.`,
+    `Unknown tunnel profile subcommand '${sub}'.${hint} Use 'pollarys tunnel help'.`,
     EXIT_CODE.USAGE_ERROR
   );
 }
@@ -2812,25 +2812,25 @@ const commands = {
     const targetPort = await resolveAvailablePort(options.port, explicitPort, emitNotice);
 
     if (targetPort !== 0 && !options.suppressUnsafePortWarning) {
-      assertSafeBrowserPort(targetPort, { context: 'OpenChamber serve' });
+      assertSafeBrowserPort(targetPort, { context: 'Pollarys serve' });
     }
 
     if (targetPort !== 0) {
       const pidFilePath = await getPidFilePath(targetPort);
       const existingPid = readPidFile(pidFilePath);
       if (existingPid && isProcessRunning(existingPid)) {
-        throw new Error(`OpenChamber is already running on port ${targetPort} (PID: ${existingPid})`);
+        throw new Error(`Pollarys is already running on port ${targetPort} (PID: ${existingPid})`);
       }
 
       if (explicitPort && !(await isPortAvailable(targetPort, options.host))) {
         const systemInfo = await fetchSystemInfoFromPort(targetPort);
         if (systemInfo?.runtime === 'desktop') {
           throw new Error(
-            `Port ${targetPort} is used by OpenChamber Desktop app. Choose another port or stop the desktop app.`
+            `Port ${targetPort} is used by Pollarys Desktop app. Choose another port or stop the desktop app.`
           );
         }
         if (systemInfo?.runtime) {
-          throw new Error(`OpenChamber is already running on port ${targetPort}. Use \`openchamber status\` or \`openchamber stop --port ${targetPort}\`.`);
+          throw new Error(`Pollarys is already running on port ${targetPort}. Use \`pollarys status\` or \`pollarys stop --port ${targetPort}\`.`);
         }
         throw new Error(`Port ${targetPort} is already in use by another process.`);
       }
@@ -2849,8 +2849,8 @@ const commands = {
 
     const effectiveUiPassword = hasUiPasswordConfigured(options.uiPassword) ? options.uiPassword : undefined;
     if (!effectiveUiPassword && !options.suppressUiPasswordWarning) {
-      const warningLine = 'OPENCHAMBER_UI_PASSWORD is not set';
-      const warningDetail = 'browser UI is unsecured. Use --ui-password or OPENCHAMBER_UI_PASSWORD.';
+      const warningLine = 'pollarys_UI_PASSWORD is not set';
+      const warningDetail = 'browser UI is unsecured. Use --ui-password or pollarys_UI_PASSWORD.';
       if (showOutput) {
         logStatus('warning', warningLine, warningDetail);
       } else if (isJsonMode(options)) {
@@ -2881,7 +2881,7 @@ const commands = {
         process.env.OPENCODE_BINARY = opencodeBinary;
       }
       if (effectiveUiPassword) {
-        process.env.OPENCHAMBER_UI_PASSWORD = effectiveUiPassword;
+        process.env.pollarys_UI_PASSWORD = effectiveUiPassword;
       }
 
       // In --quiet mode, redirect stdout/stderr to the log file so that
@@ -2910,7 +2910,7 @@ const commands = {
       }
 
       if (!isQuietMode(options)) {
-        console.log(`Starting OpenChamber on port ${targetPort === 0 ? 'auto' : targetPort} (foreground)`);
+        console.log(`Starting Pollarys on port ${targetPort === 0 ? 'auto' : targetPort} (foreground)`);
       }
 
       const effectiveHost = typeof options.host === 'string' && options.host.length > 0
@@ -2996,16 +2996,16 @@ const commands = {
       stdio: ['ignore', logFd, logFd, 'ipc'],
       env: {
         ...process.env,
-        OPENCHAMBER_PORT: String(targetPort),
+        pollarys_PORT: String(targetPort),
         OPENCODE_BINARY: opencodeBinary,
-        ...(effectiveHost ? { OPENCHAMBER_HOST: effectiveHost } : {}),
-        ...(effectiveUiPassword ? { OPENCHAMBER_UI_PASSWORD: effectiveUiPassword } : {}),
-        ...(process.env.OPENCODE_SKIP_START ? { OPENCHAMBER_SKIP_OPENCODE_START: process.env.OPENCODE_SKIP_START } : {}),
+        ...(effectiveHost ? { pollarys_HOST: effectiveHost } : {}),
+        ...(effectiveUiPassword ? { pollarys_UI_PASSWORD: effectiveUiPassword } : {}),
+        ...(process.env.OPENCODE_SKIP_START ? { pollarys_SKIP_OPENCODE_START: process.env.OPENCODE_SKIP_START } : {}),
       },
     });
 
     child.unref();
-    serveSpin?.start(`Starting OpenChamber on port ${targetPort === 0 ? 'auto' : targetPort}...`);
+    serveSpin?.start(`Starting Pollarys on port ${targetPort === 0 ? 'auto' : targetPort}...`);
 
     let resolvedPort;
     try {
@@ -3014,12 +3014,12 @@ const commands = {
         const timeout = setTimeout(() => {
           if (settled) return;
           settled = true;
-          reject(new Error(`OpenChamber daemon did not report ready within ${DAEMON_READY_TIMEOUT_MS / 1000}s`));
+          reject(new Error(`Pollarys daemon did not report ready within ${DAEMON_READY_TIMEOUT_MS / 1000}s`));
         }, DAEMON_READY_TIMEOUT_MS);
 
         child.on('message', (msg) => {
           if (settled) return;
-          if (msg && msg.type === 'openchamber:ready' && typeof msg.port === 'number') {
+          if (msg && msg.type === 'pollarys:ready' && typeof msg.port === 'number') {
             settled = true;
             clearTimeout(timeout);
             resolve(msg.port);
@@ -3037,7 +3037,7 @@ const commands = {
           if (settled) return;
           settled = true;
           clearTimeout(timeout);
-          reject(new Error(`OpenChamber daemon exited before reporting ready${signal ? ` (${signal})` : ` (code ${code ?? 'unknown'})`}`));
+          reject(new Error(`Pollarys daemon exited before reporting ready${signal ? ` (${signal})` : ` (code ${code ?? 'unknown'})`}`));
         });
       });
     } catch (error) {
@@ -3066,7 +3066,7 @@ const commands = {
     }
 
     if (!isProcessRunning(child.pid)) {
-      serveSpin?.error('Failed to start OpenChamber');
+      serveSpin?.error('Failed to start Pollarys');
       throw new Error('Failed to start server in daemon mode');
     }
 
@@ -3084,7 +3084,7 @@ const commands = {
       port: resolvedPort,
       pid: child.pid,
       url: buildLocalUrl(resolvedPort, '/'),
-      logs: `openchamber logs -p ${resolvedPort}`,
+      logs: `pollarys logs -p ${resolvedPort}`,
       launchMode: 'daemon',
     };
 
@@ -3104,7 +3104,7 @@ const commands = {
     serveSpin?.clear();
 
     if (!options.suppressStartupSummary && showOutput) {
-      clackIntro('OpenChamber Started');
+      clackIntro('Pollarys Started');
       logStatus('success', `port ${serveResult.port} (PID: ${serveResult.pid})`);
       logStatus('info', `visit: ${serveResult.url}`);
       logStatus('info', `logs: ${serveResult.logs}`);
@@ -3140,7 +3140,7 @@ const commands = {
     };
 
     if (showOutput) {
-      clackIntro('OpenChamber Stop');
+      clackIntro('Pollarys Stop');
     }
 
     let runningInstances = await discoverRunningInstances();
@@ -3149,7 +3149,7 @@ const commands = {
         printJson({ stoppedCount: 0, results: jsonResults });
       }
       if (showOutput) {
-        logStatus('info', 'No running OpenChamber instances found');
+        logStatus('info', 'No running Pollarys instances found');
         finish('nothing to stop');
       }
       printQuietStopResults();
@@ -3163,10 +3163,10 @@ const commands = {
         if (systemInfo?.runtime === 'desktop') {
           jsonResults.push({ port: options.port, runtime: 'desktop', stopped: false, reason: 'desktop-managed' });
           if (isJsonMode(options)) {
-            printJson({ stoppedCount: 0, results: jsonResults, messages: [{ level: 'warning', code: 'DESKTOP_MANAGED_PORT', message: `Port ${options.port} is managed by OpenChamber Desktop and cannot be stopped with this command.` }] });
+            printJson({ stoppedCount: 0, results: jsonResults, messages: [{ level: 'warning', code: 'DESKTOP_MANAGED_PORT', message: `Port ${options.port} is managed by Pollarys Desktop and cannot be stopped with this command.` }] });
           }
           if (showOutput) {
-            logStatus('warning', `port ${options.port} is managed by OpenChamber Desktop`, 'cannot be stopped with this command');
+            logStatus('warning', `port ${options.port} is managed by Pollarys Desktop`, 'cannot be stopped with this command');
             finish('no changes applied');
           }
           printQuietStopResults();
@@ -3176,9 +3176,9 @@ const commands = {
         if (systemInfo?.runtime) {
           const unmanagedStopSpin = showOutput ? createSpinner(options) : null;
           if (showOutput && !unmanagedStopSpin) {
-            logStatus('info', `found unmanaged OpenChamber instance on port ${options.port}`, 'attempting shutdown');
+            logStatus('info', `found unmanaged Pollarys instance on port ${options.port}`, 'attempting shutdown');
           }
-          unmanagedStopSpin?.start(`Stopping unmanaged OpenChamber on port ${options.port}...`);
+          unmanagedStopSpin?.start(`Stopping unmanaged Pollarys on port ${options.port}...`);
           const requested = await requestServerShutdown(options.port);
 
           if (Number.isFinite(systemInfo.pid) && isProcessRunning(systemInfo.pid)) {
@@ -3191,13 +3191,13 @@ const commands = {
 
           const stopped = await isPortAvailable(options.port);
           if (stopped) {
-            unmanagedStopSpin?.stop(`Stopped unmanaged OpenChamber on port ${options.port}`);
+            unmanagedStopSpin?.stop(`Stopped unmanaged Pollarys on port ${options.port}`);
             jsonResults.push({ port: options.port, runtime: 'unmanaged', stopped: true });
             if (isJsonMode(options)) {
               printJson({ stoppedCount: 1, results: jsonResults });
             }
             if (showOutput && !unmanagedStopSpin) {
-              logStatus('success', `stopped OpenChamber on port ${options.port}`);
+              logStatus('success', `stopped Pollarys on port ${options.port}`);
               finish('stop complete');
             }
             printQuietStopResults();
@@ -3218,18 +3218,18 @@ const commands = {
             }
             printQuietStopResults();
           } else {
-            unmanagedStopSpin?.error(`Could not stop OpenChamber on port ${options.port}`);
+            unmanagedStopSpin?.error(`Could not stop Pollarys on port ${options.port}`);
             jsonResults.push({ port: options.port, runtime: 'unmanaged', stopped: false, reason: 'stop-failed' });
             if (isJsonMode(options)) {
               printJson({
                 status: 'error',
                 stoppedCount: 0,
                 results: jsonResults,
-                messages: [{ level: 'error', code: 'STOP_FAILED', message: `Could not stop OpenChamber on port ${options.port}.` }],
+                messages: [{ level: 'error', code: 'STOP_FAILED', message: `Could not stop Pollarys on port ${options.port}.` }],
               });
             }
             if (showOutput && !unmanagedStopSpin) {
-              logStatus('error', `could not stop OpenChamber on port ${options.port}`);
+              logStatus('error', `could not stop Pollarys on port ${options.port}`);
               finish('failed');
             }
             printQuietStopResults();
@@ -3242,7 +3242,7 @@ const commands = {
           printJson({ stoppedCount: 0, results: jsonResults });
         }
         if (showOutput) {
-          logStatus('info', `no OpenChamber instance found on port ${options.port}`);
+          logStatus('info', `no Pollarys instance found on port ${options.port}`);
           finish('nothing to stop');
         }
         printQuietStopResults();
@@ -3255,7 +3255,7 @@ const commands = {
       if (showOutput && !stopSpin) {
         logStatus('info', `stopping port ${instance.port} (PID: ${instance.pid})`);
       }
-      stopSpin?.start(`Stopping OpenChamber on port ${instance.port}...`);
+      stopSpin?.start(`Stopping Pollarys on port ${instance.port}...`);
       try {
         const requested = await requestServerShutdown(instance.port);
         const stopped = await stopInstanceProcess(instance.pid, {
@@ -3268,13 +3268,13 @@ const commands = {
         }
         removePidFile(instance.pidFilePath);
         removeInstanceFile(instance.instanceFilePath);
-        stopSpin?.stop(`Stopped OpenChamber on port ${instance.port}`);
+        stopSpin?.stop(`Stopped Pollarys on port ${instance.port}`);
         jsonResults.push({ port: instance.port, pid: instance.pid, stopped: true });
         if (showOutput && !stopSpin) {
           logStatus('success', `stopped port ${instance.port}`);
         }
       } catch (error) {
-        stopSpin?.error(`Failed to stop OpenChamber on port ${instance.port}`);
+        stopSpin?.error(`Failed to stop Pollarys on port ${instance.port}`);
         jsonResults.push({ port: instance.port, pid: instance.pid, stopped: false, reason: error instanceof Error ? error.message : String(error) });
         if (showOutput) {
           logStatus('error', `error stopping port ${instance.port}`, error.message);
@@ -3304,7 +3304,7 @@ const commands = {
     const restarted = [];
 
     if (showOutput) {
-      clackIntro('OpenChamber Restart');
+      clackIntro('Pollarys Restart');
     }
 
     let runningInstances = await discoverRunningInstances();
@@ -3313,7 +3313,7 @@ const commands = {
         printJson({ restartedCount: 0, results: restarted });
       }
       if (showOutput) {
-        logStatus('info', 'No running OpenChamber instances to restart');
+        logStatus('info', 'No running Pollarys instances to restart');
         clackOutro('nothing to restart');
       } else if (isQuietMode(options)) {
         process.stdout.write('restarted 0\n');
@@ -3328,7 +3328,7 @@ const commands = {
           printJson({ restartedCount: 0, results: restarted });
         }
         if (showOutput) {
-          logStatus('warning', `no OpenChamber instance found on port ${options.port}`);
+          logStatus('warning', `no Pollarys instance found on port ${options.port}`);
           clackOutro('nothing to restart');
         } else if (isQuietMode(options)) {
           process.stdout.write('restarted 0\n');
@@ -3348,7 +3348,7 @@ const commands = {
       if (showOutput && !restartSpin) {
         logStatus('info', `restarting port ${instance.port}`, `mode: ${launchMode}`);
       }
-      restartSpin?.start(`Restarting OpenChamber on port ${instance.port}...`);
+      restartSpin?.start(`Restarting Pollarys on port ${instance.port}...`);
       try {
         await this.stop({
           explicitPort: true,
@@ -3383,13 +3383,13 @@ const commands = {
           suppressQuietOutput: true,
         });
         restarted.push({ fromPort: instance.port, toPort: restartedPort, launchMode, ok: true });
-        restartSpin?.stop(`Restarted OpenChamber on port ${restartedPort}`);
+        restartSpin?.stop(`Restarted Pollarys on port ${restartedPort}`);
         if (showOutput && !restartSpin) {
           logStatus('success', `port ${restartedPort} restarted`, `mode: ${launchMode}`);
         }
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        restartSpin?.error(`Failed to restart OpenChamber on port ${instance.port}`);
+        restartSpin?.error(`Failed to restart Pollarys on port ${instance.port}`);
         if (showOutput && !restartSpin) {
           logStatus('error', `failed to restart port ${instance.port}`, message);
         }
@@ -3471,7 +3471,7 @@ const commands = {
       return;
     }
 
-    clackIntro('OpenChamber Status');
+    clackIntro('Pollarys Status');
 
     if (runningCount === 0) {
       logStatus('warning', 'stopped');
@@ -3544,7 +3544,7 @@ const commands = {
         const results = [];
         for (const entry of entries) {
           try {
-            const { response, body } = await requestJson(entry.port, `/api/openchamber/tunnel/check?provider=${encodeURIComponent(provider)}`);
+            const { response, body } = await requestJson(entry.port, `/api/pollarys/tunnel/check?provider=${encodeURIComponent(provider)}`);
             if (!response.ok) {
               results.push({ port: entry.port, error: body?.error || `check ${response.status}` });
               continue;
@@ -3600,7 +3600,7 @@ const commands = {
         const results = [];
         for (const entry of entries) {
           try {
-            const { response, body } = await requestJson(entry.port, '/api/openchamber/tunnel/status');
+            const { response, body } = await requestJson(entry.port, '/api/pollarys/tunnel/status');
             if (!response.ok) {
               results.push({ port: entry.port, error: body?.error || `status ${response.status}` });
               continue;
@@ -3734,7 +3734,7 @@ const commands = {
               }
               const { response, body } = await requestJson(
                 diagnosticsEntry.port,
-                `/api/openchamber/tunnel/doctor?${query.toString()}`,
+                `/api/pollarys/tunnel/doctor?${query.toString()}`,
                 doctorFetchOptions,
               );
               if (response.ok && body?.ok && isValidTunnelDoctorResponse(body)) {
@@ -3839,16 +3839,16 @@ const commands = {
           logStatus('error', `port ${entry.port} — No running instance`);
         }
         if (desktopUnavailablePorts.length > 0) {
-          clackLog.message('Only CLI instances (openchamber serve) support tunneling.');
+          clackLog.message('Only CLI instances (pollarys serve) support tunneling.');
         }
 
         if (cliPorts.length === 0 && unavailablePorts.length === 0) {
-          logStatus('warning', 'No running instances found', 'Start one with `openchamber serve`.');
+          logStatus('warning', 'No running instances found', 'Start one with `pollarys serve`.');
           clackOutro('No ports available');
           return;
         }
         if (cliPorts.length === 0) {
-          logStatus('warning', 'No CLI instances available for tunneling', 'Start one with `openchamber serve`.');
+          logStatus('warning', 'No CLI instances available for tunneling', 'Start one with `pollarys serve`.');
           clackOutro('No CLI ports available');
           return;
         }
@@ -3949,9 +3949,9 @@ const commands = {
                 key: 'managed-remote-port',
                 code: '[PORT_MISMATCH]',
                 lines: [
-                  'Cloudflare target must match the active OpenChamber CLI port.',
+                  'Cloudflare target must match the active Pollarys CLI port.',
                   'Example: `http://127.0.0.1:<port>`',
-                  'If CLI picked a different port, update Cloudflare or run `openchamber serve --port <port>`.',
+                  'If CLI picked a different port, update Cloudflare or run `pollarys serve --port <port>`.',
                 ],
               });
             }
@@ -4304,7 +4304,7 @@ const commands = {
             const safeInstances = runningInstances.filter((entry) => !isUnsafeBrowserPort(entry.port));
             if (safeInstances.length === 0) {
               throw new TunnelCliError(
-                'All discovered OpenChamber instance ports are browser-unsafe. Start or target a safe port (3000, 5173, 8080, or high ephemeral).',
+                'All discovered Pollarys instance ports are browser-unsafe. Start or target a safe port (3000, 5173, 8080, or high ephemeral).',
                 EXIT_CODE.USAGE_ERROR,
               );
             }
@@ -4321,13 +4321,13 @@ const commands = {
 
             if (attachableSafeInstances.length === 0) {
               throw new TunnelCliError(
-                'No attachable OpenChamber CLI instances found on safe ports. Start one with `openchamber serve --port 3000`.',
+                'No attachable Pollarys CLI instances found on safe ports. Start one with `pollarys serve --port 3000`.',
                 EXIT_CODE.USAGE_ERROR,
               );
             }
 
             const selectedPort = await clackSelect({
-              message: 'Select OpenChamber instance port',
+              message: 'Select Pollarys instance port',
               options: attachableSafeInstances.map((entry) => ({
                 value: entry.port,
                 label: `port ${entry.port}`,
@@ -4347,7 +4347,7 @@ const commands = {
           logStatus(
             'info',
             `Using auto-started instance on port ${instance.port}`,
-            `logs: openchamber logs -p ${instance.port}`,
+            `logs: pollarys logs -p ${instance.port}`,
           );
         }
 
@@ -4362,7 +4362,7 @@ const commands = {
 
         if (instance?.autoStarted) {
           const healthProgress = await createProgress(options, { max: 60 });
-          healthProgress?.start(`Waiting for OpenChamber on port ${instance.port} to become healthy (up to 60s)...`);
+          healthProgress?.start(`Waiting for Pollarys on port ${instance.port} to become healthy (up to 60s)...`);
           let progressedSeconds = 0;
           const healthy = await waitForServerHealth(instance.port, {
             timeoutMs: 60000,
@@ -4374,7 +4374,7 @@ const commands = {
               if (delta > 0) {
                 healthProgress.advance(delta);
                 progressedSeconds = elapsedSeconds;
-                healthProgress.message(`Waiting for OpenChamber health (${progressedSeconds}s / 60s)...`);
+                healthProgress.message(`Waiting for Pollarys health (${progressedSeconds}s / 60s)...`);
               }
               if (complete && progressedSeconds < 60) {
                 const remaining = 60 - progressedSeconds;
@@ -4386,12 +4386,12 @@ const commands = {
             },
           });
           if (!healthy) {
-            healthProgress?.stop('OpenChamber is still starting');
+            healthProgress?.stop('Pollarys is still starting');
             throw new Error(
-              `OpenChamber on port ${instance.port} is still starting after 60s. Startup time can vary by machine performance. ` +
+              `Pollarys on port ${instance.port} is still starting after 60s. Startup time can vary by machine performance. ` +
               `Wait another minute, then check health with \`curl -fsS ${buildLocalUrl(instance.port, '/health')}\`. ` +
-              `If health is OK, retry tunnel start with \`openchamber tunnel start --port ${instance.port}\`. ` +
-              `For diagnostics run \`openchamber logs -p ${instance.port}\`.`
+              `If health is OK, retry tunnel start with \`pollarys tunnel start --port ${instance.port}\`. ` +
+              `For diagnostics run \`pollarys logs -p ${instance.port}\`.`
             );
           }
           healthProgress?.stop(`Instance ${instance.port} is healthy`);
@@ -4404,7 +4404,7 @@ const commands = {
             managedRemoteTunnelHostname: hostname,
             managedRemoteTunnelToken: token,
           };
-          const { response: presetResponse, body: presetBody } = await requestJson(instance.port, '/api/openchamber/tunnel/managed-remote-token', {
+          const { response: presetResponse, body: presetBody } = await requestJson(instance.port, '/api/pollarys/tunnel/managed-remote-token', {
             method: 'PUT',
             body: JSON.stringify(tokenSyncPayload),
           });
@@ -4434,21 +4434,21 @@ const commands = {
         let response;
         let body;
         try {
-          ({ response, body } = await requestJson(instance.port, '/api/openchamber/tunnel/start', {
+          ({ response, body } = await requestJson(instance.port, '/api/pollarys/tunnel/start', {
             method: 'POST',
             body: JSON.stringify(payload),
             timeoutMs: 60000,
           }));
         } catch (error) {
-          if (error instanceof Error && /\/api\/openchamber\/tunnel\/start/.test(error.message) && /timed out/.test(error.message)) {
+          if (error instanceof Error && /\/api\/pollarys\/tunnel\/start/.test(error.message) && /timed out/.test(error.message)) {
             spin?.error('Tunnel start timed out');
             throw new Error(
-              `Tunnel start timed out after 60s. cloudflared may still be starting; check with \`openchamber tunnel status --port ${instance.port}\`. Run \`openchamber logs -p ${instance.port}\` for details.`
+              `Tunnel start timed out after 60s. cloudflared may still be starting; check with \`pollarys tunnel status --port ${instance.port}\`. Run \`pollarys logs -p ${instance.port}\` for details.`
             );
           }
           spin?.error('Tunnel start failed');
           const message = error instanceof Error ? error.message : String(error);
-          throw new Error(`${message} Run \`openchamber logs -p ${instance.port}\` for details.`);
+          throw new Error(`${message} Run \`pollarys logs -p ${instance.port}\` for details.`);
         }
 
         if (!response.ok || !body?.ok) {
@@ -4458,7 +4458,7 @@ const commands = {
           const userError = isCloudflareTimeout
             ? `Cloudflare quick tunnel request timed out. ${baseError}`
             : baseError;
-          throw new Error(`${userError} Run \`openchamber logs -p ${instance.port}\` for details.`);
+          throw new Error(`${userError} Run \`pollarys logs -p ${instance.port}\` for details.`);
         }
 
         // Avoid duplicate "Tunnel started" lines: spinner completion is implied by
@@ -4504,15 +4504,15 @@ const commands = {
           clackOutro('');
 
           const optionalTips = [
-            { line: 'Check status', detail: 'openchamber tunnel status' },
-            { line: 'Stop tunnel', detail: 'openchamber tunnel stop' },
+            { line: 'Check status', detail: 'pollarys tunnel status' },
+            { line: 'Stop tunnel', detail: 'pollarys tunnel stop' },
             { line: 'If needed, repeat with same settings', detail: replayCommand },
           ];
 
           if (!selectedProfile && mode === 'managed-remote' && typeof hostname === 'string' && hostname.trim().length > 0) {
             const profileSaveCommand = buildTunnelProfileAddCommand({ provider, hostname });
             optionalTips.push({ line: 'Optional: save reusable profile (stores hostname + token locally)', detail: profileSaveCommand });
-            optionalTips.push({ line: 'Start from saved profile', detail: 'openchamber tunnel start --profile <name>' });
+            optionalTips.push({ line: 'Start from saved profile', detail: 'pollarys tunnel start --profile <name>' });
           }
 
           console.log('');
@@ -4555,7 +4555,7 @@ const commands = {
           const tunnelStopSpin = shouldRenderHumanOutput(options) ? createSpinner(options) : null;
           tunnelStopSpin?.start(`Stopping tunnel on port ${entry.port}...`);
           try {
-            const { response, body } = await requestJson(entry.port, '/api/openchamber/tunnel/stop', {
+            const { response, body } = await requestJson(entry.port, '/api/pollarys/tunnel/stop', {
               method: 'POST',
             });
             if (!response.ok) {
@@ -4615,7 +4615,7 @@ const commands = {
         const suggestion = findClosestMatch(subcommand, knownTunnelSubcommands);
         const hint = suggestion ? ` Did you mean '${suggestion}'?` : '';
         throw new TunnelCliError(
-          `Unknown tunnel subcommand '${subcommand}'.${hint} Use 'openchamber tunnel help'.`,
+          `Unknown tunnel subcommand '${subcommand}'.${hint} Use 'pollarys tunnel help'.`,
           EXIT_CODE.USAGE_ERROR
         );
       }
@@ -4631,18 +4631,18 @@ const commands = {
     if (options.all) {
       targets = running;
       if (targets.length === 0) {
-        throw new Error('No running OpenChamber instance found.');
+        throw new Error('No running Pollarys instance found.');
       }
     } else if (options.explicitPort) {
       const found = running.find((entry) => entry.port === options.port);
       if (!found) {
-        throw new Error(`No running OpenChamber instance found on port ${options.port}.`);
+        throw new Error(`No running Pollarys instance found on port ${options.port}.`);
       }
       targets = [found];
     } else {
       const latest = getLatestInstance(running);
       if (!latest) {
-        throw new Error('No running OpenChamber instance found.');
+        throw new Error('No running Pollarys instance found.');
       }
       targets = [latest];
       if (shouldRenderHumanOutput(options)) {
@@ -4652,7 +4652,7 @@ const commands = {
 
     if (isJsonMode(options)) {
       if (options.follow) {
-        throw new Error('`openchamber logs --json` requires `--no-follow` for deterministic JSON output.');
+        throw new Error('`pollarys logs --json` requires `--no-follow` for deterministic JSON output.');
       }
       const entries = targets.map((target) => {
         const logPath = getLogFilePath(target.port);
@@ -4667,7 +4667,7 @@ const commands = {
     }
 
     if (showFrames) {
-      clackIntro('OpenChamber Logs');
+      clackIntro('Pollarys Logs');
     }
 
     for (const target of targets) {
@@ -4735,7 +4735,7 @@ const commands = {
     const currentVersion = getCurrentVersion();
 
     if (showOutput) {
-      clackIntro('OpenChamber Update');
+      clackIntro('Pollarys Update');
     }
 
     if (showOutput && !updateSpin) {
@@ -4908,7 +4908,7 @@ async function main() {
   await commands[command](options);
 }
 
-const isCliExecution = isModuleCliExecution(process.argv[1], import.meta.url, fs.realpathSync, 'openchamber');
+const isCliExecution = isModuleCliExecution(process.argv[1], import.meta.url, fs.realpathSync, 'pollarys');
 
 if (isCliExecution) {
   let isHandlingSigint = false;
@@ -5009,3 +5009,5 @@ export {
   EXIT_CODE,
   warnIfUnsafeFilePermissions,
 };
+
+

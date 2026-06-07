@@ -68,3 +68,4 @@ export function hasInlineComments(text: string): boolean {
 export function getDraftDisplayLabel(draft: InlineCommentDraft): string {
   return `${draft.fileLabel}:${draft.startLine}-${draft.endLine}`;
 }
+

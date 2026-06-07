@@ -199,3 +199,4 @@ export function Text({ variant = "static", className, ...props }: TextProps) {
 
   return <Component {...props} className={className} />;
 }
+

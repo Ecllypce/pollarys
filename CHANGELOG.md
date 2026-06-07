@@ -260,7 +260,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.8.7] - 2026-03-13
 
-- CLI: fixed a startup regression in global npm/bun installs where wrapper or symlinked `openchamber` entrypoints could exit without output on commands like `--version` or `status`.
+- CLI: fixed a startup regression in global npm/bun installs where wrapper or symlinked `pollarys` entrypoints could exit without output on commands like `--version` or `status`.
 - CLI: hardened entrypoint detection across direct, symlinked, and shim-based launches to keep startup behavior consistent across package managers (thanks to @shekohex).
 - Windows/Web: daemon startup and Git operations no longer flash extra console windows (thanks to @SergioChan).
 - Deployment/Docker: improved `docker run` startup behavior and entrypoint handling (thanks to @nzlov).
@@ -499,7 +499,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.6.4] - 2026-02-5
 
-- Desktop: switch between local and remote OpenChamber instances, plus a thinner runtime.
+- Desktop: switch between local and remote pollarys instances, plus a thinner runtime.
 - VSCode: improved Windows PATH resolution and cold-start readiness checks to reduce "stuck loading" for sessions/models/agents.
 - Mobile: split Agent/Model controls and a quick commands button with autocomplete (Commands/Agents/Files) for easier input (thanks to @Jovines, @gsxdsm).
 - Chat: select text in messages to quickly add it to your prompt or start a new session (thanks to @gsxdsm).
@@ -523,7 +523,7 @@ All notable changes to this project will be documented in this file.
 - Settings: now opens in a windowed dialog on desktop with backdrop blur.
 - Terminal: added tabbed interface to manage multiple terminal sessions per directory.
 - Files: added multi-file tabs on desktop and dropdown selector on mobile (thanks to @nelsonPires5).
-- UI: introduced a token-based theming system, 18 themes with light/dark variants, and custom user themes from `~/.config/openchamber/themes`.
+- UI: introduced a token-based theming system, 18 themes with light/dark variants, and custom user themes from `~/.config/pollarys/themes`.
 - Diff: optimized stacked view with worker-pool processing and lazy DOM rendering for smooth scrolling.
 - Worktrees: workspace path now resolves correctly when using git worktrees (thanks to @nelsonPires5).
 - Projects: fixed directory creation outside workspace in the Add Project modal (thanks to @nelsonPires5).
@@ -751,7 +751,7 @@ All notable changes to this project will be documented in this file.
 - Build workflow now generates separate builds for Apple Silicon (arm64) and Intel (x86_64) Macs (thanks to @rothnic).
 - Improved dev server HMR by reusing a healthy OpenCode process to avoid zombie instances.
 - Added queued message mode with chips, batching, and idle auto‑send (including attachments).
-- Added queue mode toggle to OpenChamber settings (chat section) with persistence across runtimes.
+- Added queue mode toggle to pollarys settings (chat section) with persistence across runtimes.
 - Fixed scroll position persistence for active conversation turns across session switches.
 - Refactored Agents/Commands management with ability to configure project/user scopes.
 
@@ -921,7 +921,7 @@ All notable changes to this project will be documented in this file.
 ## [1.1.0] - 2025-12-13
 
 - Added assistant answer fork flow.
-- Added OpenChamber VS Code extension with editor integration: file picker, click-to-open in tool parts.
+- Added pollarys VS Code extension with editor integration: file picker, click-to-open in tool parts.
 - Improved scroll performance with force flag and RAF placeholder.
 - Added git polling backoff optimization.
 
@@ -968,6 +968,8 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.1] - 2025-12-07
 
-- Initial public release of OpenChamber web and desktop packages in a unified monorepo.
+- Initial public release of pollarys web and desktop packages in a unified monorepo.
 - Added GitHub Actions release pipeline with macOS signing/notarization, npm publish, and release asset uploads.
 - Introduced OpenCode agent chat experience with section-based navigation, theming, and session persistence.
+
+

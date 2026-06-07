@@ -189,3 +189,4 @@ export const useDesktopSshStore = create<DesktopSshState>((set, get) => ({
 
   clearError: () => set({ error: null }),
 }));
+

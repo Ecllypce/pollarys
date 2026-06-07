@@ -34,3 +34,4 @@ describe('useFilesViewTabsStore Windows paths', () => {
     expect(rootState?.selectedPath).toBe('C:/Repo/other.ts');
   });
 });
+

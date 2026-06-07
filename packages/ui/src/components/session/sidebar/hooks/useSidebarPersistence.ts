@@ -197,3 +197,4 @@ export const useSidebarPersistence = (args: Args) => {
 
   return { scheduleCollapsedProjectsPersist };
 };
+

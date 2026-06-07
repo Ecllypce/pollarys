@@ -470,3 +470,4 @@ export const PermissionCard: React.FC<PermissionCardProps> = ({
     </div>
   );
 };
+

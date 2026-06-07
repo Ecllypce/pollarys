@@ -227,3 +227,4 @@ export const useAssistantTyping = ({
 
     return React.useMemo(() => ({ isTyping }), [isTyping]);
 };
+

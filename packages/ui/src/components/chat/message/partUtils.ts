@@ -77,3 +77,4 @@ export const isFinalizedTextPart = (part: Part): boolean => {
     const time = (part as PartWithTime).time;
     return Boolean(time && typeof time.end !== 'undefined');
 };
+

@@ -76,3 +76,4 @@ export const isNearTop = (scrollTop: number, threshold: number): boolean => {
 export const isNearBottom = (distanceFromBottom: number, threshold: number): boolean => {
     return distanceFromBottom <= threshold;
 };
+

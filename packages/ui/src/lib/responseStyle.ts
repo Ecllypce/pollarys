@@ -60,3 +60,4 @@ export const fetchResponseStyleInstruction = async (): Promise<string | null> =>
     customInstructions: settings.responseStyleCustomInstructions,
   });
 };
+

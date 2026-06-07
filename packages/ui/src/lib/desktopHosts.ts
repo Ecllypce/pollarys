@@ -197,3 +197,4 @@ export const desktopOpenNewWindowAtUrl = async (url: string): Promise<void> => {
   if (!invoke) return;
   await invoke('desktop_new_window_at_url', { url });
 };
+

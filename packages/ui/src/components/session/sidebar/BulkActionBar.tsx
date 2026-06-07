@@ -129,3 +129,4 @@ export const BulkActionBar: React.FC<Props> = ({
     </div>
   );
 };
+

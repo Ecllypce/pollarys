@@ -60,3 +60,4 @@ export function scopeMatches(
 ): boolean {
   return event.scopes.includes("all") || event.scopes.includes(scope);
 }
+

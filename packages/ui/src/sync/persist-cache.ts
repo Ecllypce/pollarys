@@ -114,3 +114,4 @@ export function persistIcon(directory: string, icon: string | undefined): void {
 export function clearDirCache(directory: string): void {
   clearCache(directory)
 }
+

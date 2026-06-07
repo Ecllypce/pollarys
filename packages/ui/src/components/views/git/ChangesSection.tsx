@@ -571,3 +571,4 @@ export const ChangesSection: React.FC<ChangesSectionProps> = ({
     </>
   );
 };
+

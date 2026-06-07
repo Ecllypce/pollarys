@@ -104,3 +104,4 @@ export function buildCodeMirrorCommentWidgets(options: CodeMirrorCommentWidgetsO
 
   return widgets;
 }
+

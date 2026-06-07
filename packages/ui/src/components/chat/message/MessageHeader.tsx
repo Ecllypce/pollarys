@@ -96,3 +96,4 @@ const MessageHeader: React.FC<MessageHeaderProps> = ({ isUser, providerID, agent
 };
 
 export default React.memo(MessageHeader);
+

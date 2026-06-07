@@ -49,3 +49,4 @@ export const extractTokensFromMessage = (message: { info: Message; parts: Part[]
 
     return sumTokenBreakdown(tokenPart.tokens);
 };
+

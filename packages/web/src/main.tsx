@@ -1,17 +1,17 @@
 import { createWebAPIs } from './api';
 import { registerSW } from 'virtual:pwa-register';
 
-import type { RuntimeAPIs } from '@openchamber/ui/lib/api/types';
-import '@openchamber/ui/index.css';
-import '@openchamber/ui/styles/fonts';
+import type { RuntimeAPIs } from '@pollarys/ui/lib/api/types';
+import '@pollarys/ui/index.css';
+import '@pollarys/ui/styles/fonts';
 
 declare global {
   interface Window {
-    __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs;
+    __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs;
   }
 }
 
-window.__OPENCHAMBER_RUNTIME_APIS__ = createWebAPIs();
+window.__POLLARYS_RUNTIME_APIS__ = createWebAPIs();
 
 type PrerenderingDocument = Document & {
   prerendering?: boolean;
@@ -78,7 +78,7 @@ const unregisterDevelopmentServiceWorkers = (): void => {
   });
 };
 
-void import('@openchamber/ui/main');
+void import('@pollarys/ui/main');
 
 if (import.meta.env.PROD) {
   registerPwaServiceWorker();

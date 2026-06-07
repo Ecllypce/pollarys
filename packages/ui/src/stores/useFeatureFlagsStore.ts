@@ -9,3 +9,4 @@ export const useFeatureFlagsStore = create<FeatureFlagsStore>((set) => ({
   planModeEnabled: false,
   setPlanModeEnabled: (enabled) => set({ planModeEnabled: enabled }),
 }));
+

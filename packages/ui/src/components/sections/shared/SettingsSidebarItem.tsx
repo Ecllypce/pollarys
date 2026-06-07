@@ -133,3 +133,4 @@ export const SettingsSidebarItem: React.FC<SettingsSidebarItemProps> = ({
     </div>
   );
 };
+

@@ -21,3 +21,4 @@ describe("shouldSkipSessionPrefetch", () => {
     })).toBe(true)
   })
 })
+

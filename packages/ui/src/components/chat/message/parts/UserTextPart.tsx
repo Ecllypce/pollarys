@@ -23,7 +23,7 @@ const buildMentionUrl = (name: string): string => {
 };
 
 const SKILL_TOKEN_PATTERN = /(^|\s)\/([a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?)/g;
-const SKILL_LINK_PREFIX = '#openchamber-skill:';
+const SKILL_LINK_PREFIX = '#Pollarys-skill:';
 
 const buildSkillHref = (name: string): string => `${SKILL_LINK_PREFIX}${encodeURIComponent(name)}`;
 
@@ -254,3 +254,5 @@ const UserTextPart: React.FC<UserTextPartProps> = ({ part, messageId, agentMenti
 };
 
 export default React.memo(UserTextPart);
+
+

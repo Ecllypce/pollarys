@@ -57,3 +57,4 @@ const loadSource = (source: FontFaceSource | undefined) => {
 export const loadUiFont = (font: UiFontOption) => loadSource(UI_FONT_OPTION_MAP[font]?.source);
 
 export const loadMonoFont = (font: MonoFontOption) => loadSource(CODE_FONT_OPTION_MAP[font]?.source);
+

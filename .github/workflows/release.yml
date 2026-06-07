@@ -74,7 +74,7 @@ jobs:
           draft: true
           generate_release_notes: false
           body_path: artifacts/release-notes.md
-          name: OpenChamber v${{ steps.get_version.outputs.version }}
+          name: Pollars v${{ steps.get_version.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -257,13 +257,13 @@ jobs:
 
           rm -rf electron-app-artifact
           mkdir -p electron-app-artifact
-          cp -R "$APP_PATH" electron-app-artifact/OpenChamber.app
+          cp -R "$APP_PATH" electron-app-artifact/Pollars.app
 
       - name: Upload signed Electron app for Tauri updater repackage
         uses: actions/upload-artifact@v4
         with:
           name: electron-app-${{ matrix.arch }}
-          path: electron-app-artifact/OpenChamber.app
+          path: electron-app-artifact/Pollars.app
           retention-days: 1
 
       - name: Upload per-arch latest-mac.yml for merge
@@ -304,21 +304,21 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [ ! -d staged/OpenChamber.app ]; then
-            echo "Error: staged/OpenChamber.app not found"
+          if [ ! -d staged/Pollars.app ]; then
+            echo "Error: staged/Pollars.app not found"
             ls -la staged
             exit 1
           fi
 
           cd staged
-          TARBALL="OpenChamber.app.tar.gz"
-          tar -czf "$TARBALL" OpenChamber.app
+          TARBALL="Pollars.app.tar.gz"
+          tar -czf "$TARBALL" Pollars.app
 
           printf '%s\n' "$TAURI_KEY" > ../tauri-signing.key
           printf '%s\n' "$TAURI_KEY_PASSWORD" | minisign -S -s ../tauri-signing.key -m "$TARBALL" -W
 
-          mv "$TARBALL" "OpenChamber-${VERSION}-${{ matrix.platform }}.app.tar.gz"
-          mv "${TARBALL}.minisig" "OpenChamber-${VERSION}-${{ matrix.platform }}.app.tar.gz.sig"
+          mv "$TARBALL" "Pollars-${VERSION}-${{ matrix.platform }}.app.tar.gz"
+          mv "${TARBALL}.minisig" "Pollars-${VERSION}-${{ matrix.platform }}.app.tar.gz.sig"
 
       - name: Generate Tauri latest platform manifest
         env:
@@ -327,11 +327,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          SIG=$(cat staged/OpenChamber-${VERSION}-${{ matrix.platform }}.app.tar.gz.sig)
-          TAR="OpenChamber-${VERSION}-${{ matrix.platform }}.app.tar.gz"
+          SIG=$(cat staged/Pollars-${VERSION}-${{ matrix.platform }}.app.tar.gz.sig)
+          TAR="Pollars-${VERSION}-${{ matrix.platform }}.app.tar.gz"
           jq -n \
             --arg version "$VERSION" \
-            --arg notes "OpenChamber has moved to Electron. This update replaces the Tauri shell with the Electron build. Subsequent updates will be delivered via the Electron auto-updater." \
+            --arg notes "Pollars has moved to Electron. This update replaces the Tauri shell with the Electron build. Subsequent updates will be delivered via the Electron auto-updater." \
             --arg pub_date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
             --arg platform "${{ matrix.platform }}" \
             --arg signature "$SIG" \
@@ -406,7 +406,7 @@ jobs:
 
           jq -n \
             --arg version "$VERSION" \
-            --arg notes "OpenChamber has moved to Electron. This update replaces the Tauri shell with the Electron build. Subsequent updates will be delivered via the Electron auto-updater." \
+            --arg notes "Pollars has moved to Electron. This update replaces the Tauri shell with the Electron build. Subsequent updates will be delivered via the Electron auto-updater." \
             --arg pub_date "$PUB_DATE" \
             --slurpfile aarch64 artifacts/latest-darwin-aarch64.json \
             --slurpfile x86_64 artifacts/latest-darwin-x86_64.json \
@@ -505,11 +505,11 @@ jobs:
             }
 
             const release = await releaseRes.json();
-            const description = (release.body || `OpenChamber ${tag} released.`).slice(0, 4096);
+            const description = (release.body || `Pollars ${tag} released.`).slice(0, 4096);
             const mention = updateRoleId ? `<@&${updateRoleId}>` : '';
 
             const payload = {
-              username: 'OpenChamber Releases',
+              username: 'Pollars Releases',
               ...(mention ? { content: mention } : {}),
               ...(updateRoleId
                 ? {
@@ -520,11 +520,11 @@ jobs:
                 : {}),
               embeds: [
                 {
-                  title: release.name || `OpenChamber ${tag}`,
+                  title: release.name || `Pollars ${tag}`,
                   url: release.html_url,
                   description,
                   color: 2105893,
-                  footer: { text: 'OpenChamber Changelog' },
+                  footer: { text: 'Pollars Changelog' },
                 },
               ],
             };
@@ -545,9 +545,9 @@ jobs:
           });
           NODE
 
-      - name: Trigger openchamber-website site refresh (optional)
+      - name: Trigger Pollars-website site refresh (optional)
         env:
-          WEBSITE_REPO: openchamber/openchamber-website
+          WEBSITE_REPO: Pollars/Pollars-website
           WEBSITE_TOKEN: ${{ secrets.OPENCHAMBER_WEBSITE_REPO_TOKEN }}
           VERSION: ${{ needs.create-release.outputs.version }}
         run: |
@@ -569,3 +569,5 @@ jobs:
             }
           }
           JSON
+
+

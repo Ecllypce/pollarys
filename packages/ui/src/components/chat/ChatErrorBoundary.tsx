@@ -117,3 +117,4 @@ export function ChatErrorBoundary(props: ChatErrorBoundaryProps) {
     />
   );
 }
+

@@ -118,8 +118,8 @@ const getHomeDirectory = () => {
     if (cachedHomeDirectory) return cachedHomeDirectory;
 
     const desktopHome =
-      (typeof window.__OPENCHAMBER_HOME__ === 'string' && window.__OPENCHAMBER_HOME__.length > 0
-        ? window.__OPENCHAMBER_HOME__
+      (typeof window.__POLLARYS_HOME__ === 'string' && window.__POLLARYS_HOME__.length > 0
+        ? window.__POLLARYS_HOME__
         : null);
 
     if (desktopHome && desktopHome.length > 0) {
@@ -438,3 +438,5 @@ if (typeof window !== 'undefined') {
     useDirectoryStore.getState().synchronizeHomeDirectory(home);
   });
 }
+
+

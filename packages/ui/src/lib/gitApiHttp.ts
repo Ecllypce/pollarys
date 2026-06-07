@@ -34,7 +34,7 @@ import type {
 
 declare global {
   interface Window {
-    __OPENCHAMBER_DESKTOP_SERVER__?: {
+    __POLLARYS_DESKTOP_SERVER__?: {
       origin: string;
       opencodePort: number | null;
       apiPrefix: string;
@@ -47,7 +47,7 @@ const resolveBaseOrigin = (): string => {
   if (typeof window === 'undefined') {
     return '';
   }
-  const desktopOrigin = window.__OPENCHAMBER_DESKTOP_SERVER__?.origin;
+  const desktopOrigin = window.__POLLARYS_DESKTOP_SERVER__?.origin;
   if (desktopOrigin) {
     return desktopOrigin;
   }
@@ -975,3 +975,5 @@ export async function canonicalizeWorktreeState(
   }
   return response.json();
 }
+
+

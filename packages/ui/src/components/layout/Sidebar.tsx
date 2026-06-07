@@ -172,3 +172,4 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, isMobile, children, cl
         </aside>
     );
 };
+

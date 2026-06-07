@@ -140,3 +140,4 @@ export const DiffWorkerProvider: React.FC<DiffWorkerProviderProps> = ({ children
 export const useWorkerPool = (style: WorkerPoolStyle = 'unified'): WorkerPoolManager | undefined => {
   return useMemo(() => getWorkerPool(style), [style]);
 };
+

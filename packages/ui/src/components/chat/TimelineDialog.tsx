@@ -336,3 +336,4 @@ function getSearchSnippet(text: string, query: string, contextChars: number = 30
     const end = Math.min(text.length, matchIndex + query.length + contextChars);
     return `${start > 0 ? '…' : ''}${text.slice(start, end).replace(/\n/g, ' ')}${end < text.length ? '…' : ''}`;
 }
+

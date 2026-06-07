@@ -27,3 +27,4 @@ describe('isPathWithinProject', () => {
     expect(isPathWithinProject('/workspace/app/sub/dir', '/workspace/app')).toBe(true);
   });
 });
+

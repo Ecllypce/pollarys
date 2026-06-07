@@ -52,3 +52,4 @@ export const useSessionPinnedStore = create<SessionPinnedStore>((set, get) => ({
     persistPinned(safeStorage, next);
   },
 }));
+

@@ -16,7 +16,7 @@ const withRuntimeGit = async (git: GitAPI, callback: () => Promise<void>) => {
   Object.defineProperty(globalThis, "window", {
     configurable: true,
     value: {
-      __OPENCHAMBER_RUNTIME_APIS__: { git },
+      __POLLARYS_RUNTIME_APIS__: { git },
     },
   })
 
@@ -48,3 +48,5 @@ describe("getGitStatus", () => {
     expect(received).toEqual({ directory: "/repo", options: { mode: "light" } })
   })
 })
+
+

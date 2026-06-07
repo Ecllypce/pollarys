@@ -390,7 +390,7 @@ export function GitHubIssuePickerDialog({
       void sessionActions.updateSessionTitle(sessionId, sessionTitle).catch(() => undefined);
 
       try {
-        useSessionUIStore.getState().initializeNewOpenChamberSession(sessionId, useConfigStore.getState().agents);
+        useSessionUIStore.getState().initializeNewPollarysSession(sessionId, useConfigStore.getState().agents);
       } catch {
         // ignore
       }
@@ -720,3 +720,5 @@ export function GitHubIssuePickerDialog({
     </Dialog>
   );
 }
+
+

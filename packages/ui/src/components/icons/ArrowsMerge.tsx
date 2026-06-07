@@ -17,3 +17,4 @@ export function ArrowsMerge(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+

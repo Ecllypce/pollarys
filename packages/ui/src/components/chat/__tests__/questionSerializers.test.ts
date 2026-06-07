@@ -193,3 +193,4 @@ describe('serializeQuestionAsJson', () => {
     expect(parsed.questions[0].options[0]).toEqual({ label: 'x', description: null });
   });
 });
+

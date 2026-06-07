@@ -86,3 +86,4 @@ export const loadAppearancePreferences = async (): Promise<AppearancePreferences
     return null;
   }
 };
+

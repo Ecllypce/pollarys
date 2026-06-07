@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 import { iconSpriteData } from "./sprite"
 import type { IconName } from "./icons"
 
-const SPRITE_ID = "openchamber-icon-sprite"
+const SPRITE_ID = "Pollarys-icon-sprite"
 
 let spriteInjected = false
 
@@ -55,3 +55,5 @@ export const Icon = React.memo(({ name, className, ...rest }: IconProps) => {
 })
 
 Icon.displayName = "Icon"
+
+

@@ -107,3 +107,4 @@ export function shouldContinueStreaming(
 
     return !isMessageComplete(latestMessage.info, latestMessage.parts);
 }
+

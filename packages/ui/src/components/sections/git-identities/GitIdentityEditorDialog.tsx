@@ -458,3 +458,4 @@ export const GitIdentityEditorDialog: React.FC<GitIdentityEditorDialogProps> = (
     </>
   );
 };
+

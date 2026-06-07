@@ -121,12 +121,12 @@ const resolveDesktopBaseUrl = (): string | null => {
     return null;
   }
   const desktopServer = (window as typeof window & {
-    __OPENCHAMBER_DESKTOP_SERVER__?: { origin: string; apiPrefix?: string };
-    __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs;
-  }).__OPENCHAMBER_DESKTOP_SERVER__;
+    __POLLARYS_DESKTOP_SERVER__?: { origin: string; apiPrefix?: string };
+    __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs;
+  }).__POLLARYS_DESKTOP_SERVER__;
 
   const isDesktop = Boolean(
-    (window as typeof window & { __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs }).__OPENCHAMBER_RUNTIME_APIS__?.runtime?.isDesktop
+    (window as typeof window & { __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs }).__POLLARYS_RUNTIME_APIS__?.runtime?.isDesktop
   );
 
   if (!desktopServer || !isDesktop) {
@@ -195,7 +195,7 @@ const getDesktopFilesApi = (): FilesAPI | null => {
   if (typeof window === "undefined") {
     return null;
   }
-  const apis = (window as typeof window & { __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs }).__OPENCHAMBER_RUNTIME_APIS__;
+  const apis = (window as typeof window & { __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs }).__POLLARYS_RUNTIME_APIS__;
   if (apis && apis.runtime?.isDesktop && apis.files) {
     return apis.files;
   }
@@ -1474,7 +1474,7 @@ class OpencodeService {
 
       const healthData = await response.json();
 
-      // Check if the upstream API is ready (not just OpenChamber server)
+      // Check if the upstream API is ready (not just Pollarys server)
       if (healthData.isOpenCodeReady === false) {
         return false;
       }
@@ -1755,3 +1755,5 @@ export const opencodeClient = new OpencodeService();
 // Exported types
 export type { Session, Message, Part, Provider, Config, Model };
 export type { App };
+
+

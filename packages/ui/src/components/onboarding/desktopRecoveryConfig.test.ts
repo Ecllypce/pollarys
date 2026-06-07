@@ -246,3 +246,4 @@ describe('getDesktopRecoveryConfig', () => {
     expect(config.description).toContain('REDACTED');
   });
 });
+

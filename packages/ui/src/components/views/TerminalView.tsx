@@ -1174,3 +1174,4 @@ export const TerminalView: React.FC = () => {
         </div>
     );
 };
+

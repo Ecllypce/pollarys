@@ -36,3 +36,4 @@ const TurnActivity: React.FC<TurnActivityProps> = (props) => {
 };
 
 export default React.memo(TurnActivity);
+

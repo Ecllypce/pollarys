@@ -118,3 +118,4 @@ export const createWorktreeWithDefaults = async (
   const resolvedArgs = await withWorktreeUpstreamDefaults(project.path, args, options);
   return createWorktree(project, resolvedArgs);
 };
+

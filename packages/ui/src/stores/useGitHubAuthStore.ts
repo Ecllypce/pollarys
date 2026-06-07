@@ -69,3 +69,4 @@ export const useGitHubAuthStore = create<GitHubAuthStore>((set, get) => ({
     return _inFlightAuthRefresh;
   },
 }));
+

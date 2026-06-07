@@ -14,12 +14,12 @@
     "noEmit": true,
     "baseUrl": ".",
     "types": ["vite/client", "@types/dom-speech-recognition"],
-    "paths": {
-      "@/*": ["../ui/src/*", "./src/*"],
-      "@web/*": ["./src/*"],
-      "@openchamber/ui/*": ["../ui/src/*"],
-      "@openchamber/web/*": ["./src/*"]
-    }
+     "paths": {
+       "@/*": ["../ui/src/*", "./src/*"],
+       "@web/*": ["./src/*"],
+       "@pollarys/ui/*": ["../ui/src/*"],
+       "@pollarys/web/*": ["./src/*"]
+     }
   },
   "include": ["src", "../ui/src", "../ui/src/types/**/*"]
 }

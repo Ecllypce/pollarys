@@ -254,3 +254,4 @@ export function GoToLineDialog({ open, onOpenChange, view, variant = 'overlay' }
     </div>
   );
 }
+

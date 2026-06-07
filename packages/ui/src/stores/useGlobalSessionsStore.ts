@@ -347,3 +347,4 @@ export const ensureGlobalSessionsLoaded = async (fallbackActive?: Session[]): Pr
 export const refreshGlobalSessions = async (fallbackActive?: Session[]): Promise<LoadResult> => {
   return useGlobalSessionsStore.getState().loadSessions(fallbackActive);
 };
+

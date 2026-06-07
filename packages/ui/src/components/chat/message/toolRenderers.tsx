@@ -813,3 +813,4 @@ export const detectLanguageFromOutput = (output: string, toolName: string, input
 };
 
 export { formatInputForDisplay };
+

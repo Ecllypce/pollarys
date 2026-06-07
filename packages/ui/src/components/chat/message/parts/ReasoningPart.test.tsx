@@ -96,3 +96,4 @@ describe('ReasoningTimelineBlock', () => {
     expect(markup).toContain('…');
   });
 });
+

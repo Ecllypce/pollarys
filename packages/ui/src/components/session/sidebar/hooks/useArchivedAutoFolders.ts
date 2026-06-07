@@ -118,3 +118,4 @@ export const useArchivedAutoFolders = (args: Args): void => {
     cleanupSessions,
   ]);
 };
+

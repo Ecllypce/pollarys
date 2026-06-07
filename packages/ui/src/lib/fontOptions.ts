@@ -174,3 +174,4 @@ export const isUiFontOption = (value: unknown): value is UiFontOption =>
 
 export const isMonoFontOption = (value: unknown): value is MonoFontOption =>
     typeof value === 'string' && value in CODE_FONT_OPTION_MAP;
+

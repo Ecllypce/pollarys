@@ -128,3 +128,4 @@ export const useEdgeSwipe = (options: EdgeSwipeOptions = {}) => {
 
   return null;
 };
+

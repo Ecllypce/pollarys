@@ -89,7 +89,7 @@ export const IntegrateCommitsSection: React.FC<{
 
   const conflictStorageKey = React.useMemo(() => {
     if (!currentSessionId) return null;
-    return `openchamber.integrate.conflict:${currentSessionId}`;
+    return `Pollarys.integrate.conflict:${currentSessionId}`;
   }, [currentSessionId]);
 
   React.useEffect(() => {
@@ -521,3 +521,5 @@ export const IntegrateCommitsSection: React.FC<{
     </section>
   );
 };
+
+

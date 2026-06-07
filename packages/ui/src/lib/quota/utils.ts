@@ -284,3 +284,4 @@ export const formatRemainingTime = (seconds: number): string => {
 export const calculateExpectedUsagePercent = (elapsedRatio: number): number => {
   return Math.min(100, Math.max(0, elapsedRatio * 100));
 };
+

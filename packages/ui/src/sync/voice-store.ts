@@ -21,3 +21,4 @@ export const useVoiceStore = create<VoiceState>()((set) => ({
   setVoiceStatus: (status) => set({ voiceStatus: status }),
   setVoiceMode: (mode) => set({ voiceMode: mode }),
 }))
+

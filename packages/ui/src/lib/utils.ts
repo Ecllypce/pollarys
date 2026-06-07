@@ -149,3 +149,4 @@ export function formatDirectoryName(path: string | null | undefined, homeDirecto
 export function fuzzyMatch(target: string, query: string): boolean {
   return matchesFuzzyQuery(target, query);
 }
+

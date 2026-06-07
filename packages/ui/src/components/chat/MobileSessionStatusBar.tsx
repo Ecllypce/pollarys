@@ -1582,3 +1582,4 @@ export const MobileSessionStatusBar: React.FC<MobileSessionStatusBarProps> = ({
     />
   );
 };
+

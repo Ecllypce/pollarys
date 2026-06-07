@@ -91,3 +91,4 @@ export function getContentEntryCount(): number {
 export function hasContent(path: string): boolean {
   return lru.has(path)
 }
+

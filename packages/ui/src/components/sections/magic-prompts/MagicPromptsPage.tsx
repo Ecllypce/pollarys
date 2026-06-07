@@ -375,3 +375,4 @@ export const MagicPromptsPage: React.FC = () => {
     </div>
   );
 };
+

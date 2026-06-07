@@ -6,3 +6,4 @@ export interface Snippet {
   filePath: string;
   source: 'global' | 'project';
 }
+

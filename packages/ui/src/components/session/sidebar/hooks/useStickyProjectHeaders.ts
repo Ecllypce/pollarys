@@ -48,3 +48,4 @@ export const useStickyProjectHeaders = (args: Args): Set<string> => {
 
   return stuckProjectHeaders;
 };
+

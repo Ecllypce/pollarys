@@ -170,3 +170,4 @@ export const SyncActions: React.FC<SyncActionsProps> = ({
     </div>
   );
 };
+

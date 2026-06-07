@@ -15,3 +15,4 @@ export const shouldRenderAssistantText = (input: {
     }
     return input.displayTextContent.trim().length > 0;
 };
+

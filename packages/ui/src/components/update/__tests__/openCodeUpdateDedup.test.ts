@@ -238,3 +238,4 @@ describe('resolveOpenCodeUpgradeStatusVersion', () => {
         ).toBe('');
     });
 });
+

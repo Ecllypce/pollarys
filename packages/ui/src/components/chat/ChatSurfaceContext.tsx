@@ -4,3 +4,4 @@ import { ChatSurfaceContext, type ChatSurfaceMode } from './chatSurfaceContextVa
 export const ChatSurfaceProvider: React.FC<{ mode: ChatSurfaceMode; children: React.ReactNode }> = ({ mode, children }) => {
   return <ChatSurfaceContext.Provider value={mode}>{children}</ChatSurfaceContext.Provider>;
 };
+

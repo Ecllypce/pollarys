@@ -25,3 +25,4 @@ export function DiffIcon({ size, className, style, ...props }: DiffIconProps) {
     </svg>
   );
 }
+

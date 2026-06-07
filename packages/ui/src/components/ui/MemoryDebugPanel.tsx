@@ -378,3 +378,4 @@ export const DebugPanel: React.FC<DebugPanelProps> = ({ onClose }) => {
 };
 
 export const MemoryDebugPanel = DebugPanel;
+

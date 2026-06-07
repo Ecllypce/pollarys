@@ -81,3 +81,4 @@ export const useProjectRepoStatus = (args: Args): void => {
     };
   }, [normalizedProjects, projectGitBranchesKey, setProjectRootBranches]);
 };
+

@@ -26,3 +26,4 @@ export const applyPersistedDirectoryPreferences = async (): Promise<void> => {
     directoryStore.setDirectory(savedDirectory, { showOverlay: false });
   }
 };
+

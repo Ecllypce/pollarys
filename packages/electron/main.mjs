@@ -16,10 +16,10 @@ const execFileAsync = promisify(execFile);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const isDev = process.env.OPENCHAMBER_ELECTRON_DEV === '1' || !app.isPackaged;
+const isDev = process.env.POLLARYS_ELECTRON_DEV === '1' || !app.isPackaged;
 
-const DEEP_LINK_PROTOCOL = 'openchamber';
-const APP_USER_MODEL_ID = 'dev.openchamber.desktop';
+const DEEP_LINK_PROTOCOL = 'pollarys';
+const APP_USER_MODEL_ID = 'dev.pollarys.desktop';
 
 if (!app.requestSingleInstanceLock()) {
   app.exit(0);
@@ -27,8 +27,8 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 // Set the product name early so electron-log derives its log directory as
-// ~/Library/Logs/OpenChamber/ (not ~/Library/Logs/@openchamber/electron/).
-app.setName('OpenChamber');
+// ~/Library/Logs/Pollarys/ (not ~/Library/Logs/@pollarys/electron/).
+app.setName('Pollarys');
 app.setAppUserModelId(APP_USER_MODEL_ID);
 app.commandLine.appendSwitch('proxy-bypass-list', '<-loopback>');
 
@@ -44,7 +44,7 @@ log.transports.console.level = isDev ? 'debug' : 'warn';
 
 // The in-process web server runs in this same Node process and uses plain
 // `console.log/warn/error`. Without piping console through electron-log,
-// that output never lands in ~/Library/Logs/OpenChamber/main.log and we
+// that output never lands in ~/Library/Logs/Pollarys/main.log and we
 // can't diagnose issues (e.g. OpenCode lifecycle, SSE disconnects) after
 // the fact. Route all console calls through electron-log so server-side
 // diagnostics are persisted.
@@ -87,13 +87,13 @@ const readAppMetadata = () => {
     try {
       const raw = fs.readFileSync(candidate, 'utf8');
       const parsed = JSON.parse(raw);
-      if (parsed?.name === '@openchamber/electron' && typeof parsed.version === 'string') {
+      if (parsed?.name === '@pollarys/electron' && typeof parsed.version === 'string') {
         return { name: parsed.name, version: parsed.version };
       }
     } catch {
     }
   }
-  return { name: '@openchamber/electron', version: app.getVersion() };
+  return { name: '@pollarys/electron', version: app.getVersion() };
 };
 
 const APP_METADATA = readAppMetadata();
@@ -111,10 +111,10 @@ const MINI_CHAT_MIN_WINDOW_HEIGHT = 480;
 const MAX_CAPTURE_PAGE_RECT_AREA = 4_000_000;
 const LOCAL_HOST_ID = 'local';
 const ENV_OVERRIDE_HOST_ID = '__env';
-const CHANGELOG_URL = 'https://raw.githubusercontent.com/openchamber/openchamber/main/CHANGELOG.md';
-const UPDATE_METADATA_URL = 'https://github.com/openchamber/openchamber/releases/latest/download/latest.json';
-const GITHUB_BUG_REPORT_URL = 'https://github.com/openchamber/openchamber/issues/new?template=bug_report.yml';
-const GITHUB_FEATURE_REQUEST_URL = 'https://github.com/openchamber/openchamber/issues/new?template=feature_request.yml';
+const CHANGELOG_URL = 'https://raw.githubusercontent.com/pollarys/pollarys/main/CHANGELOG.md';
+const UPDATE_METADATA_URL = 'https://github.com/pollarys/pollarys/releases/latest/download/latest.json';
+const GITHUB_BUG_REPORT_URL = 'https://github.com/pollarys/pollarys/issues/new?template=bug_report.yml';
+const GITHUB_FEATURE_REQUEST_URL = 'https://github.com/pollarys/pollarys/issues/new?template=feature_request.yml';
 const DISCORD_INVITE_URL = 'https://discord.gg/ZYRSdnwwKA';
 const INSTALLED_APPS_CACHE_TTL_SECS = 60 * 60 * 24;
 const INSTALLED_APPS_CACHE_FILE = 'discovered-apps.json';
@@ -169,7 +169,7 @@ const quitConfirmationMessage = () => {
   if (reasons.length === 0) {
     return 'Background processes (sidecar, SSH sessions) will be stopped.';
   }
-  return `OpenChamber detected ${reasons.join(', ')}. Quitting now will stop sidecar/background processes and may interrupt pending work.`;
+  return `Pollarys detected ${reasons.join(', ')}. Quitting now will stop sidecar/background processes and may interrupt pending work.`;
 };
 
 const prepareForQuit = ({ installingUpdate = false } = {}) => {
@@ -234,8 +234,8 @@ const requestQuitWithConfirmation = async () => {
   try {
     const result = await dialog.showMessageBox({
       type: 'warning',
-      title: 'Quit OpenChamber?',
-      message: 'Quit OpenChamber?',
+      title: 'Quit Pollarys?',
+      message: 'Quit Pollarys?',
       detail: quitConfirmationMessage(),
       buttons: ['Quit', 'Cancel'],
       defaultId: 1,
@@ -273,8 +273,8 @@ const refreshQuitRiskFlags = async () => {
   const base = typeof state.sidecarUrl === 'string' ? state.sidecarUrl.trim().replace(/\/$/, '') : '';
   if (!base) return;
 
-  const scheduledUrl = `${base}/api/openchamber/scheduled-tasks/status`;
-  const tunnelUrl = `${base}/api/openchamber/tunnel/status`;
+  const scheduledUrl = `${base}/api/pollarys/scheduled-tasks/status`;
+  const tunnelUrl = `${base}/api/pollarys/tunnel/status`;
 
   const fetchJson = async (url) => {
     try {
@@ -303,10 +303,10 @@ const refreshQuitRiskFlags = async () => {
 };
 
 const settingsFilePath = () => {
-  if (typeof process.env.OPENCHAMBER_DATA_DIR === 'string' && process.env.OPENCHAMBER_DATA_DIR.trim()) {
-    return path.join(process.env.OPENCHAMBER_DATA_DIR.trim(), 'settings.json');
+  if (typeof process.env.POLLARYS_DATA_DIR === 'string' && process.env.POLLARYS_DATA_DIR.trim()) {
+    return path.join(process.env.POLLARYS_DATA_DIR.trim(), 'settings.json');
   }
-  return path.join(os.homedir(), '.config', 'openchamber', 'settings.json');
+  return path.join(os.homedir(), '.config', 'pollarys', 'settings.json');
 };
 
 const sshManager = new ElectronSshManager({
@@ -635,7 +635,7 @@ const maybeShowNativeNotification = (rawInput) => {
 
   const title = typeof payload.title === 'string' && payload.title.trim()
     ? payload.title.trim()
-    : 'OpenChamber';
+    : 'Pollarys';
   const body = typeof payload.body === 'string' ? payload.body : '';
   const sessionId = typeof payload.sessionId === 'string' && payload.sessionId.trim()
     ? payload.sessionId.trim()
@@ -654,7 +654,7 @@ const maybeShowNativeNotification = (rawInput) => {
   notification.on('click', () => {
     focusForegroundWindow();
     if (sessionId) {
-      emitToAllWindows('openchamber:open-session', { sessionId });
+      emitToAllWindows('pollarys:open-session', { sessionId });
     }
     release();
   });
@@ -713,7 +713,7 @@ const loadShellEnv = () => {
 };
 
 // Merge the user's login-shell env (PATH, etc.) into this process before we
-import { pathLooksUserConfigured, mergePathValues } from '@openchamber/web/server/lib/opencode/path-utils.js';
+import { pathLooksUserConfigured, mergePathValues } from '@pollarys/web/server/lib/opencode/path-utils.js';
 
 // import/start the server in-process. The server and its children (opencode
 // CLI, git, etc.) inherit process.env directly now — there is no sidecar
@@ -765,19 +765,19 @@ const spawnLocalServer = async () => {
     chosenPort = await pickUnusedPort();
   }
 
-  // The server module reads ENV_DESKTOP_NOTIFY / OPENCHAMBER_DIST_DIR /
-  // OPENCHAMBER_RUNTIME at import time (top-level const), so these must be
+  // The server module reads ENV_DESKTOP_NOTIFY / POLLARYS_DIST_DIR /
+  // POLLARYS_RUNTIME at import time (top-level const), so these must be
   // set before the first import. After this point, the same env is used by
   // both the Electron main and the server running inside it.
-  process.env.OPENCHAMBER_HOST = bindHost;
-  process.env.OPENCHAMBER_DIST_DIR = resolveWebDistDir();
-  process.env.OPENCHAMBER_RUNTIME = 'desktop';
-  process.env.OPENCHAMBER_DESKTOP_NOTIFY = 'true';
-  process.env.OPENCHAMBER_SKIP_API_COMPRESSION = process.env.OPENCHAMBER_SKIP_API_COMPRESSION || 'true';
+  process.env.POLLARYS_HOST = bindHost;
+  process.env.POLLARYS_DIST_DIR = resolveWebDistDir();
+  process.env.POLLARYS_RUNTIME = 'desktop';
+  process.env.POLLARYS_DESKTOP_NOTIFY = 'true';
+  process.env.POLLARYS_SKIP_API_COMPRESSION = process.env.POLLARYS_SKIP_API_COMPRESSION || 'true';
   process.env.NO_PROXY = process.env.NO_PROXY || 'localhost,127.0.0.1';
   process.env.no_proxy = process.env.no_proxy || 'localhost,127.0.0.1';
 
-  const { startWebUiServer } = await import('@openchamber/web/server/index.js');
+  const { startWebUiServer } = await import('@pollarys/web/server/index.js');
 
   const handle = await startWebUiServer({
     port: chosenPort,
@@ -832,7 +832,7 @@ const buildInitScript = (localOrigin, bootOutcome) => {
   const outcome = JSON.stringify(bootOutcome ?? null);
   return [
     '(function(){',
-    `try{window.__OPENCHAMBER_HOME__=${home};window.__OPENCHAMBER_MACOS_MAJOR__=${macVersion};window.__OPENCHAMBER_LOCAL_ORIGIN__=${local};var __oc_bo=${outcome};if(__oc_bo){window.__OPENCHAMBER_DESKTOP_BOOT_OUTCOME__=__oc_bo;}}catch(_e){}`,
+    `try{window.__POLLARYS_HOME__=${home};window.__POLLARYS_MACOS_MAJOR__=${macVersion};window.__POLLARYS_LOCAL_ORIGIN__=${local};var __oc_bo=${outcome};if(__oc_bo){window.__POLLARYS_DESKTOP_BOOT_OUTCOME__=__oc_bo;}}catch(_e){}`,
     '}())',
   ].join('');
 };
@@ -915,7 +915,7 @@ const buildStartupSplashHtml = () => {
   </head>
   <body>
     <div class="stack">
-      <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenChamber loading icon">
+      <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pollarys loading icon">
         <path d="M50 50 L8.432 26 L8.432 74 L50 98 Z" fill="var(--splash-face-fill)" stroke="var(--splash-stroke)" stroke-width="2" stroke-linejoin="round"/>
         <path d="M50 50 L39.608 44 L39.608 56 L50 62 Z" fill="var(--splash-cell-fill)" opacity="0.2"/>
         <path d="M39.608 44 L29.216 38 L29.216 50 L39.608 56 Z" fill="var(--splash-cell-fill)" opacity="0.45"/>
@@ -987,7 +987,7 @@ const navigateWindow = async (browserWindow, url, { allowAbort = false } = {}) =
 
 const emitToWindow = (browserWindow, event, detail) => {
   if (!browserWindow || browserWindow.isDestroyed()) return;
-  browserWindow.webContents.send('openchamber:emit', { event, detail });
+  browserWindow.webContents.send('pollarys:emit', { event, detail });
 };
 
 const emitToAllWindows = (event, detail) => {
@@ -1047,11 +1047,11 @@ const dispatchDeepLink = (link) => {
   if (!link) return;
   log.info('[electron] dispatching deep-link', { type: link.type, valueLen: link.value?.length || 0 });
   if (link.type === 'session' && link.value) {
-    emitToAllWindows('openchamber:open-session', { sessionId: link.value });
+    emitToAllWindows('pollarys:open-session', { sessionId: link.value });
     return;
   }
   if (link.type === 'project' && link.value) {
-    emitToAllWindows('openchamber:open-project', { projectPath: link.value });
+    emitToAllWindows('pollarys:open-project', { projectPath: link.value });
     return;
   }
   if (link.type === 'host' && link.value) {
@@ -1108,14 +1108,14 @@ const getMenuTargetWindow = () => {
 
 const dispatchMenuAction = (action) => {
   const target = getMenuTargetWindow();
-  emitToWindow(target, 'openchamber:menu-action', action);
-  dispatchDomEventToWindow(target, 'openchamber:menu-action', action);
+  emitToWindow(target, 'pollarys:menu-action', action);
+  dispatchDomEventToWindow(target, 'pollarys:menu-action', action);
 };
 
 const dispatchCheckForUpdates = () => {
-  emitToAllWindows('openchamber:check-for-updates');
+  emitToAllWindows('pollarys:check-for-updates');
   for (const browserWindow of BrowserWindow.getAllWindows()) {
-    dispatchDomEventToWindow(browserWindow, 'openchamber:check-for-updates');
+    dispatchDomEventToWindow(browserWindow, 'pollarys:check-for-updates');
   }
 };
 
@@ -1158,7 +1158,7 @@ const createBrowserWindow = ({ label, restoreGeometry, url }) => {
   const desktopHome = os.homedir() || '';
   const desktopMacosMajor = String(macosMajorVersion());
   const options = {
-    title: 'OpenChamber',
+    title: 'Pollarys',
     width: useSaved ? Math.max(saved.width, MIN_RESTORE_WINDOW_WIDTH) : 1280,
     height: useSaved ? Math.max(saved.height, MIN_RESTORE_WINDOW_HEIGHT) : 800,
     minWidth: MIN_WINDOW_WIDTH,
@@ -1172,10 +1172,10 @@ const createBrowserWindow = ({ label, restoreGeometry, url }) => {
     trafficLightPosition: process.platform === 'darwin' ? { x: 16, y: 17 } : undefined,
     webPreferences: {
       additionalArguments: [
-        `--openchamber-local-origin=${desktopLocalOrigin}`,
-        `--openchamber-home=${desktopHome}`,
-        `--openchamber-macos-major=${desktopMacosMajor}`,
-        `--openchamber-boot-outcome=${JSON.stringify(state.bootOutcome || null)}`,
+        `--pollarys-local-origin=${desktopLocalOrigin}`,
+        `--pollarys-home=${desktopHome}`,
+        `--pollarys-macos-major=${desktopMacosMajor}`,
+        `--pollarys-boot-outcome=${JSON.stringify(state.bootOutcome || null)}`,
       ],
       preload: isDev ? path.join(__dirname, 'preload.mjs') : path.join(app.getAppPath(), 'preload.mjs'),
       backgroundThrottling: true,
@@ -1232,7 +1232,7 @@ const createBrowserWindow = ({ label, restoreGeometry, url }) => {
   }
 
   browserWindow.on('resize', () => {
-    emitToWindow(browserWindow, 'openchamber:window-resized');
+    emitToWindow(browserWindow, 'pollarys:window-resized');
     debounceWindowStatePersist(browserWindow, false);
   });
   browserWindow.on('move', () => {
@@ -1413,7 +1413,7 @@ const createMiniChatWindow = async ({ mode, sessionId = '', directory = '', proj
   const desktopHome = os.homedir() || '';
   const desktopMacosMajor = String(macosMajorVersion());
   const browserWindow = new BrowserWindow({
-    title: 'OpenChamber Mini Chat',
+    title: 'Pollarys Mini Chat',
     width: MINI_CHAT_WINDOW_WIDTH,
     height: MINI_CHAT_WINDOW_HEIGHT,
     minWidth: MINI_CHAT_MIN_WINDOW_WIDTH,
@@ -1424,9 +1424,9 @@ const createMiniChatWindow = async ({ mode, sessionId = '', directory = '', proj
     trafficLightPosition: process.platform === 'darwin' ? { x: 16, y: 17 } : undefined,
     webPreferences: {
       additionalArguments: [
-        `--openchamber-local-origin=${desktopLocalOrigin}`,
-        `--openchamber-home=${desktopHome}`,
-        `--openchamber-macos-major=${desktopMacosMajor}`,
+        `--pollarys-local-origin=${desktopLocalOrigin}`,
+        `--pollarys-home=${desktopHome}`,
+        `--pollarys-macos-major=${desktopMacosMajor}`,
       ],
       preload: isDev ? path.join(__dirname, 'preload.mjs') : path.join(app.getAppPath(), 'preload.mjs'),
       backgroundThrottling: true,
@@ -1532,7 +1532,7 @@ const resolveInitialUrl = async () => {
   let initialUrl = localUiUrl;
   let remoteProbe = null;
 
-  const envTarget = normalizeHostUrl(process.env.OPENCHAMBER_SERVER_URL || '');
+  const envTarget = normalizeHostUrl(process.env.POLLARYS_SERVER_URL || '');
   const config = readDesktopHostsConfig();
   if (envTarget) {
     initialUrl = envTarget;
@@ -1576,7 +1576,7 @@ const compareSemver = (left, right) => {
 };
 
 const parseGithubRepo = () => {
-  return { owner: 'openchamber', repo: 'openchamber' };
+  return { owner: 'Ecllypce', repo: 'pollarys' };
 };
 
 const setupAutoUpdater = () => {
@@ -1598,7 +1598,7 @@ const setupAutoUpdater = () => {
   });
 
   autoUpdater.on('download-progress', (progress) => {
-    emitToAllWindows('openchamber:update-progress', mapUpdaterProgressEvent({
+    emitToAllWindows('pollarys:update-progress', mapUpdaterProgressEvent({
       event: 'Progress',
       data: {
         chunkLength: Math.max(0, Math.round(progress.bytesPerSecond || 0)),
@@ -1679,7 +1679,7 @@ const isAppBundleInstalled = async (appName) => Boolean(await resolveAppBundlePa
 const iconToDataUrl = async (iconPath, appName) => {
   if (!iconPath || !(await pathExists(iconPath))) return null;
   const safeName = String(appName || 'app').replace(/[^a-z0-9]/gi, '_');
-  const tempPath = path.join(os.tmpdir(), `openchamber-icon-${safeName}-${Date.now()}.png`);
+  const tempPath = path.join(os.tmpdir(), `pollarys-icon-${safeName}-${Date.now()}.png`);
   try {
     await execFileAsync('sips', ['-s', 'format', 'png', '-Z', '32', iconPath, '--out', tempPath], { stdio: 'ignore' });
   } catch {
@@ -1943,7 +1943,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
       if (!underHome && !underTmp) {
         throw new Error('File is outside the allowed workspace');
       }
-      const DENIED_SEGMENTS = ['.ssh', '.aws', '.gnupg', '.gpg', '.config/gh', '.config/openchamber/credentials'];
+      const DENIED_SEGMENTS = ['.ssh', '.aws', '.gnupg', '.gpg', '.config/gh', '.config/pollarys/credentials'];
       const relFromHome = underHome ? filePath.slice(home.length + 1) : '';
       const relNormalized = relFromHome.split(path.sep).join('/');
       if (DENIED_SEGMENTS.some((segment) => relNormalized === segment || relNormalized.startsWith(`${segment}/`))) {
@@ -2108,7 +2108,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
         const apps = await buildInstalledApps(Array.isArray(args.apps) ? args.apps : []);
         await fsp.mkdir(path.dirname(cachePath), { recursive: true });
         await fsp.writeFile(cachePath, JSON.stringify({ updatedAt: now, apps }, null, 2));
-        emitToAllWindows('openchamber:installed-apps-updated', apps);
+        emitToAllWindows('pollarys:installed-apps-updated', apps);
       };
       if (!hasCache || isCacheStale || args.force === true) {
         void refresh();
@@ -2122,7 +2122,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
     case 'desktop_hosts_set': {
       await writeDesktopHostsConfig(args.input || args.config || {});
       const updatedConfig = readDesktopHostsConfig();
-      const envTarget = normalizeHostUrl(process.env.OPENCHAMBER_SERVER_URL || '');
+      const envTarget = normalizeHostUrl(process.env.POLLARYS_SERVER_URL || '');
       state.bootOutcome = computeBootOutcome({
         envTargetUrl: envTarget || null,
         probe: null,
@@ -2213,7 +2213,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
       if (!state.pendingUpdate) {
         throw new Error('No pending update');
       }
-      emitToAllWindows('openchamber:update-progress', mapUpdaterProgressEvent({
+      emitToAllWindows('pollarys:update-progress', mapUpdaterProgressEvent({
         event: 'Started',
         data: {
           contentLength: null,
@@ -2242,7 +2242,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
           Promise.resolve(autoUpdater.downloadUpdate()).catch((error) => finish(reject, error));
         });
       }
-      emitToAllWindows('openchamber:update-progress', mapUpdaterProgressEvent({
+      emitToAllWindows('pollarys:update-progress', mapUpdaterProgressEvent({
         event: 'Finished',
         data: {},
       }));
@@ -2254,7 +2254,7 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
       if (applyUpdate && process.platform === 'darwin' && typeof app.isInApplicationsFolder === 'function') {
         try {
           if (!app.isInApplicationsFolder()) {
-            throw new Error('Desktop update requires OpenChamber.app to be installed in /Applications');
+            throw new Error('Desktop update requires Pollarys.app to be installed in /Applications');
           }
         } catch (error) {
           log.warn('[electron] desktop_restart blocked', error);
@@ -2349,10 +2349,10 @@ const handleInvoke = async (browserWindow, command, args = {}) => {
         const directory = typeof args.directory === 'string' ? args.directory.trim() : '';
         const mode = typeof args.mode === 'string' ? args.mode.trim() : '';
         if (sessionId) {
-          emitToWindow(state.mainWindow, 'openchamber:open-session', { sessionId, directory });
+          emitToWindow(state.mainWindow, 'pollarys:open-session', { sessionId, directory });
         } else if (mode === 'draft') {
           const projectId = typeof args.projectId === 'string' ? args.projectId.trim() : '';
-          emitToWindow(state.mainWindow, 'openchamber:open-draft-session', { directory, projectId });
+          emitToWindow(state.mainWindow, 'pollarys:open-draft-session', { directory, projectId });
         }
         return { focused: true };
       }
@@ -2414,7 +2414,7 @@ const buildMacMenu = () => {
     {
       label: app.name,
       submenu: [
-        { label: 'About OpenChamber', click: () => dispatchAction('about') },
+        { label: 'About Pollarys', click: () => dispatchAction('about') },
         {
           label: 'Check for Updates',
           click: () => dispatchCheckForUpdates(),
@@ -2559,7 +2559,7 @@ const COMMANDS_SAFE_FOR_REMOTE = new Set([
   'desktop_capture_page_rect',
 ]);
 
-ipcMain.handle('openchamber:invoke', async (event, command, args) => {
+ipcMain.handle('pollarys:invoke', async (event, command, args) => {
   if (!isLocalSender(event.sender) && !COMMANDS_SAFE_FOR_REMOTE.has(command)) {
     log.warn(`[ipc] rejected ${command} from non-local origin: ${event.sender?.getURL?.() || '(unknown)'}`);
     throw new Error('IPC not available for this origin');
@@ -2568,7 +2568,7 @@ ipcMain.handle('openchamber:invoke', async (event, command, args) => {
   return handleInvoke(browserWindow, command, args);
 });
 
-ipcMain.handle('openchamber:dialog:open', async (event, options) => {
+ipcMain.handle('pollarys:dialog:open', async (event, options) => {
   // Native file dialogs expose absolute local paths; never grant to remote.
   if (!isLocalSender(event.sender)) {
     log.warn(`[ipc] rejected dialog:open from non-local origin: ${event.sender?.getURL?.() || '(unknown)'}`);
@@ -2688,9 +2688,10 @@ app.whenReady().then(async () => {
   // Notify renderer on OS wake-from-sleep so the SSE event pipeline can
   // reconnect immediately instead of waiting for the heartbeat watchdog.
   powerMonitor.on('resume', () => {
-    emitToAllWindows('openchamber:system-resume', { timestamp: Date.now() });
+    emitToAllWindows('pollarys:system-resume', { timestamp: Date.now() });
   });
 }).catch((error) => {
   log.error('[electron] startup failed:', error);
   app.exit(1);
 });
+

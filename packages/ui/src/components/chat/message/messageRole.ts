@@ -32,3 +32,4 @@ export const deriveMessageRole = (
         isUser: false,
     };
 };
+

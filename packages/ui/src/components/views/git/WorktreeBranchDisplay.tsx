@@ -146,3 +146,4 @@ export const WorktreeBranchDisplay: React.FC<WorktreeBranchDisplayProps> = ({
     </div>
   );
 };
+

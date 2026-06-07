@@ -122,3 +122,4 @@ export const ProjectsSidebar: React.FC<{ onItemSelect?: () => void }> = ({ onIte
     </SettingsSidebarLayout>
   );
 };
+

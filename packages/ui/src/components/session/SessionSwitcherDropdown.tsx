@@ -319,3 +319,4 @@ function SwitcherRow({ session, depth, variant, secondaryMeta, hasChildren, isEx
     </BaseMenu.Item>
   );
 }
+

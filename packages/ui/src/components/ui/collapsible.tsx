@@ -45,3 +45,4 @@ const CollapsibleContent = ({
 );
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+

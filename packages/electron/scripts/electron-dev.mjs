@@ -11,7 +11,7 @@ const electronDir = path.join(repoRoot, 'packages/electron');
 function spawnProcess(command, args, options = {}) {
   return spawn(command, args, {
     cwd: repoRoot,
-    env: { ...process.env, OPENCHAMBER_ELECTRON_DEV: '1' },
+    env: { ...process.env, POLLARYS_ELECTRON_DEV: '1' },
     stdio: 'inherit',
     detached: process.platform !== 'win32',
     ...options,
@@ -81,10 +81,10 @@ async function main() {
   const devServer = spawnProcess('node', ['./scripts/dev-web-hmr.mjs'], {
     env: {
       ...process.env,
-      OPENCHAMBER_ELECTRON_DEV: '1',
-      OPENCHAMBER_HMR_UI_PORT: '5173',
-      OPENCHAMBER_HMR_API_PORT: '3901',
-      OPENCHAMBER_DISABLE_PWA_DEV: '1',
+      POLLARYS_ELECTRON_DEV: '1',
+      POLLARYS_HMR_UI_PORT: '5173',
+      POLLARYS_HMR_API_PORT: '3901',
+      POLLARYS_DISABLE_PWA_DEV: '1',
     },
   });
   const electron = spawnProcess('npx', ['electron', './main.mjs'], { cwd: electronDir });

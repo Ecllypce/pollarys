@@ -30,3 +30,4 @@ export const SimpleMarkdownRenderer: React.FC<React.ComponentPropsWithoutRef<typ
     <SimpleMarkdownRendererLazy {...props} />
   </React.Suspense>
 );
+

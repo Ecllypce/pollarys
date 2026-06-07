@@ -1181,3 +1181,4 @@ export default React.memo(ChatMessage, (prev, next) => {
             deriveMessageRole(prev.message.info).isUser
         );
 });
+

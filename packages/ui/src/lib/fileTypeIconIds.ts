@@ -2086,3 +2086,4 @@ export const FILE_TYPE_ICON_IDS = new Set<string>([
   'zip',
   'zip_light',
 ]);
+

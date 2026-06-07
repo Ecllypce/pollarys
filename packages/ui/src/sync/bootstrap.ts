@@ -89,7 +89,7 @@ export async function bootstrapGlobal(
     console.error("[bootstrap] global bootstrap failed", errors[0])
   }
 
-  // If ALL requests failed, OpenCode is likely down — fetch the OpenChamber
+  // If ALL requests failed, OpenCode is likely down — fetch the Pollarys
   // health endpoint (outside the readiness gate) to get the actual error reason.
   if (errors.length === results.length) {
     let message = errors[0] instanceof Error ? errors[0].message : String(errors[0])
@@ -278,3 +278,5 @@ export async function bootstrapDirectory(input: {
     console.error(`[bootstrap] session load failed for ${directory}`, err)
   })
 }
+
+

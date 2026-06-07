@@ -112,3 +112,4 @@ export const QueuedMessageChips = memo(({ onEditMessage }: QueuedMessageChipsPro
 });
 
 QueuedMessageChips.displayName = 'QueuedMessageChips';
+

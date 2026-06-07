@@ -1,9 +1,9 @@
 {
-  "metadata": {
-    "id": "openchamber-light",
-    "name": "Fields of the Shire",
-    "description": "Fields of the Shire theme - light variant",
-    "author": "OpenChamber",
+   "metadata": {
+     "id": "pollarys-light",
+     "name": "Fields of the Shire",
+     "description": "Fields of the Shire theme - light variant",
+     "author": "Pollarys",
     "version": "1.0.0",
     "variant": "light",
     "tags": [

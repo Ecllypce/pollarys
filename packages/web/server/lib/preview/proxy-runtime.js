@@ -9,7 +9,7 @@ const LOOPBACK_HOSTS = new Set([
   '0.0.0.0',
 ]);
 
-const PREVIEW_BRIDGE_SCRIPT_ID = 'openchamber-preview-bridge';
+const PREVIEW_BRIDGE_SCRIPT_ID = 'pollarys-preview-bridge';
 
 const parsePreviewResourcePath = (url) => {
   try {
@@ -150,10 +150,10 @@ export const classifyPreviewNavigation = ({ url, currentUrl }) => {
 };
 
 const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
-  if (window.__openchamberPreviewBridgeInstalled) return;
-  window.__openchamberPreviewBridgeInstalled = true;
+  if (window.__pollarysPreviewBridgeInstalled) return;
+  window.__pollarysPreviewBridgeInstalled = true;
 
-  const SOURCE = 'openchamber-preview-bridge';
+  const SOURCE = 'pollarys-preview-bridge';
   const VERSION = 1;
   const MAX_TEXT = 500;
   const MAX_ARG = 1000;
@@ -215,8 +215,8 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
   };
 
   const installColorSchemeMatchMediaPatch = () => {
-    if (window.__openchamberPreviewColorSchemePatched || typeof window.matchMedia !== 'function') return;
-    window.__openchamberPreviewColorSchemePatched = true;
+    if (window.__pollarysPreviewColorSchemePatched || typeof window.matchMedia !== 'function') return;
+    window.__pollarysPreviewColorSchemePatched = true;
     nativeMatchMedia = window.matchMedia.bind(window);
     window.matchMedia = function(query) {
       const nativeMql = nativeMatchMedia(query);
@@ -268,7 +268,7 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
     try {
       const root = document.documentElement;
       root.style.colorScheme = next;
-      root.dataset.openchamberPreviewColorScheme = next;
+      root.dataset.pollarysPreviewColorScheme = next;
       if (shouldSyncDataTheme()) {
         root.dataset.theme = next;
       }
@@ -409,8 +409,8 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
   };
 
   const installViteHmrProxyPatch = () => {
-    if (window.__openchamberViteHmrProxyPatched || typeof window.WebSocket !== 'function') return;
-    window.__openchamberViteHmrProxyPatched = true;
+    if (window.__pollarysViteHmrProxyPatched || typeof window.WebSocket !== 'function') return;
+    window.__pollarysViteHmrProxyPatched = true;
     const NativeWebSocket = window.WebSocket;
     const proxyMatch = window.location.pathname.match(/^(\/api\/preview\/proxy\/[a-f0-9]{16,64})(?:\/|$)/i);
     if (!proxyMatch) return;
@@ -442,7 +442,7 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
       }
     };
 
-    function OpenChamberPreviewWebSocket(url, protocols) {
+    function PollarysPreviewWebSocket(url, protocols) {
       const protocolList = Array.isArray(protocols) ? protocols : [protocols];
       const isViteSocket = protocolList.indexOf('vite-hmr') >= 0;
       const nextUrl = rewriteUrl(url, protocols);
@@ -464,15 +464,15 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
       return socket;
     }
 
-    OpenChamberPreviewWebSocket.prototype = NativeWebSocket.prototype;
-    Object.setPrototypeOf(OpenChamberPreviewWebSocket, NativeWebSocket);
-    Object.defineProperty(OpenChamberPreviewWebSocket, 'name', { value: 'WebSocket' });
-    window.WebSocket = OpenChamberPreviewWebSocket;
+    PollarysPreviewWebSocket.prototype = NativeWebSocket.prototype;
+    Object.setPrototypeOf(PollarysPreviewWebSocket, NativeWebSocket);
+    Object.defineProperty(PollarysPreviewWebSocket, 'name', { value: 'WebSocket' });
+    window.WebSocket = PollarysPreviewWebSocket;
   };
 
   const installAppRequestProxyPatch = () => {
-    if (window.__openchamberAppRequestProxyPatched) return;
-    window.__openchamberAppRequestProxyPatched = true;
+    if (window.__pollarysAppRequestProxyPatched) return;
+    window.__pollarysAppRequestProxyPatched = true;
     const proxyMatch = window.location.pathname.match(/^(\/api\/preview\/proxy\/[a-f0-9]{16,64})(?:\/|$)/i);
     if (!proxyMatch) return;
     const proxyBase = proxyMatch[1];
@@ -547,27 +547,27 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
 
     if (typeof window.EventSource === 'function') {
       const NativeEventSource = window.EventSource;
-      function OpenChamberPreviewEventSource(url, eventSourceInitDict) {
+      function PollarysPreviewEventSource(url, eventSourceInitDict) {
         return new NativeEventSource(proxiedUrl(String(url)), eventSourceInitDict);
       }
-      OpenChamberPreviewEventSource.prototype = NativeEventSource.prototype;
-      Object.setPrototypeOf(OpenChamberPreviewEventSource, NativeEventSource);
-      Object.defineProperty(OpenChamberPreviewEventSource, 'name', { value: 'EventSource' });
-      window.EventSource = OpenChamberPreviewEventSource;
+      PollarysPreviewEventSource.prototype = NativeEventSource.prototype;
+      Object.setPrototypeOf(PollarysPreviewEventSource, NativeEventSource);
+      Object.defineProperty(PollarysPreviewEventSource, 'name', { value: 'EventSource' });
+      window.EventSource = PollarysPreviewEventSource;
     }
 
     if (typeof window.WebSocket === 'function') {
       const NativeWebSocket = window.WebSocket;
-      function OpenChamberPreviewAppWebSocket(url, protocols) {
+      function PollarysPreviewAppWebSocket(url, protocols) {
         const nextUrl = proxiedWebSocketUrl(String(url));
         return arguments.length === 1
           ? new NativeWebSocket(nextUrl)
           : new NativeWebSocket(nextUrl, protocols);
       }
-      OpenChamberPreviewAppWebSocket.prototype = NativeWebSocket.prototype;
-      Object.setPrototypeOf(OpenChamberPreviewAppWebSocket, NativeWebSocket);
-      Object.defineProperty(OpenChamberPreviewAppWebSocket, 'name', { value: 'WebSocket' });
-      window.WebSocket = OpenChamberPreviewAppWebSocket;
+      PollarysPreviewAppWebSocket.prototype = NativeWebSocket.prototype;
+      Object.setPrototypeOf(PollarysPreviewAppWebSocket, NativeWebSocket);
+      Object.defineProperty(PollarysPreviewAppWebSocket, 'name', { value: 'WebSocket' });
+      window.WebSocket = PollarysPreviewAppWebSocket;
     }
   };
 
@@ -652,9 +652,9 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
   const sendHover = (event) => {
     if (!inspectMode) return;
     pendingHover = event;
-    if (window.__openchamberPreviewHoverFrame) return;
-    window.__openchamberPreviewHoverFrame = window.requestAnimationFrame(() => {
-      window.__openchamberPreviewHoverFrame = 0;
+    if (window.__pollarysPreviewHoverFrame) return;
+    window.__pollarysPreviewHoverFrame = window.requestAnimationFrame(() => {
+      window.__pollarysPreviewHoverFrame = 0;
       const currentEvent = pendingHover;
       pendingHover = null;
       if (!currentEvent || !inspectMode) return;
@@ -736,7 +736,7 @@ const PREVIEW_BRIDGE_SCRIPT = String.raw`(() => {
   window.addEventListener('message', (event) => {
     if (event.source !== window.parent) return;
     const data = event.data;
-    if (!data || data.source !== 'openchamber-preview-parent' || data.version !== VERSION) return;
+    if (!data || data.source !== 'pollarys-preview-parent' || data.version !== VERSION) return;
     if (data.type === 'set-inspect-mode') {
       setInspectMode(data.enabled === true);
     }
@@ -847,7 +847,7 @@ const normalizeLoopbackUrl = (rawUrl) => {
     url.hostname = '127.0.0.1';
   }
 
-  // Only keep origin here; the proxy path is preserved on the OpenChamber side.
+  // Only keep origin here; the proxy path is preserved on the Pollarys side.
   return { ok: true, origin: url.origin };
 };
 
@@ -1195,14 +1195,14 @@ export const createPreviewProxyRuntime = ({
       },
       on: {
         proxyReq: (proxyReq) => {
-          // Keep local dev servers from receiving OpenChamber credentials.
+          // Keep local dev servers from receiving Pollarys credentials.
           proxyReq.removeHeader('cookie');
           proxyReq.removeHeader('authorization');
-          proxyReq.removeHeader('x-openchamber-ui-session');
+          proxyReq.removeHeader('x-pollarys-ui-session');
           proxyReq.setHeader('accept-encoding', 'identity');
         },
         proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req) => {
-          // Allow the dev server response to be framed inside OpenChamber even
+          // Allow the dev server response to be framed inside Pollarys even
           // if it normally sets X-Frame-Options or a CSP frame-ancestors rule.
           // The proxy is same-origin so embedding is otherwise safe.
           stripFrameBustingHeaders(proxyRes.headers);

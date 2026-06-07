@@ -139,3 +139,4 @@ export function VoiceStatusIndicator({
 }
 
 export default VoiceStatusIndicator;
+

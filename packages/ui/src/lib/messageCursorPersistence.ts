@@ -1,7 +1,7 @@
-const DB_NAME = 'openchamber-message-cursors';
+const DB_NAME = 'Pollarys-message-cursors';
 const STORE_NAME = 'cursors';
 const DB_VERSION = 1;
-const FALLBACK_KEY = 'openchamber.messageCursors';
+const FALLBACK_KEY = 'Pollarys.messageCursors';
 
 type CursorRecord = {
   messageId: string;
@@ -174,3 +174,5 @@ export const clearSessionCursor = async (sessionId: string) => {
     writeFallback(fallback);
   }
 };
+
+

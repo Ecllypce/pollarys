@@ -95,3 +95,4 @@ export async function getRootBranch(projectDirectory: string): Promise<string> {
     return 'HEAD';
   }
 }
+

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-HOME="/home/openchamber"
+HOME="/home/pollarys"
 
 OPENCODE_CONFIG_DIR="${OPENCODE_CONFIG_DIR:-${HOME}/.config/opencode}"
 export OPENCODE_CONFIG_DIR
@@ -59,8 +59,8 @@ if [ "${OH_MY_OPENCODE:-false}" = "true" ]; then
 fi
 
 # Docker containers need to listen on all interfaces for port mapping to work.
-OPENCHAMBER_HOST="${OPENCHAMBER_HOST:-0.0.0.0}"
-export OPENCHAMBER_HOST
+POLLARYS_HOST="${POLLARYS_HOST:-0.0.0.0}"
+export POLLARYS_HOST
 
 echo "[entrypoint] starting..."
 
@@ -75,3 +75,4 @@ fi
 "$@"
 
 exec bun packages/web/bin/cli.js logs
+

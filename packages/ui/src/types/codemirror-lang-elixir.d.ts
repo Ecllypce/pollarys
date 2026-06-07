@@ -3,3 +3,4 @@ declare module 'codemirror-lang-elixir' {
 
   export function elixir(): LanguageSupport;
 }
+

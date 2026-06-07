@@ -68,3 +68,4 @@ export const useDurationTickerNow = (active: boolean, intervalMs: number = 250):
 
     return now;
 };
+

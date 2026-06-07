@@ -363,3 +363,4 @@ const SortableGroupItemBase: React.FC<{
 };
 
 export const SortableGroupItem = React.memo(SortableGroupItemBase);
+

@@ -139,3 +139,4 @@ export const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children, fallback
     </InnerErrorBoundary>
   );
 };
+

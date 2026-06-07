@@ -18,3 +18,4 @@ export function StopIcon(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+

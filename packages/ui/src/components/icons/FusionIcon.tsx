@@ -29,3 +29,4 @@ export function FusionIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+

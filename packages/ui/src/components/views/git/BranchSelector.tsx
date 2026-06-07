@@ -344,3 +344,4 @@ export const BranchSelector: React.FC<BranchSelectorProps> = ({
     </DropdownMenu>
   );
 };
+

@@ -546,3 +546,4 @@ export const buildVSCodeThemeFromPalette = (palette: VSCodeThemePalette): Theme 
     },
   };
 };
+

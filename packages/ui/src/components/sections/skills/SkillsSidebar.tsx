@@ -517,3 +517,4 @@ const SkillListItem: React.FC<SkillListItemProps> = ({
     </div>
   );
 };
+

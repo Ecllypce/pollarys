@@ -617,3 +617,4 @@ export function getShortcutLabel(id: string): string {
 export function getModifierLabel(): string {
   return isMacOS() && isTauriShell() ? '⌘' : 'Ctrl';
 }
+

@@ -9,7 +9,7 @@ import { markSessionViewed } from '@/sync/notification-store';
 import { setExternallyViewedSession } from '@/sync/sync-context';
 import { useSync } from '@/sync/use-sync';
 
-const MINI_CHAT_PRESENCE_CHANNEL = 'openchamber:mini-chat-presence';
+const MINI_CHAT_PRESENCE_CHANNEL = 'Pollarys:mini-chat-presence';
 
 type MiniChatPresenceMessage = {
   type?: string;
@@ -82,3 +82,5 @@ export function SyncAppEffects({ embeddedBackgroundWorkEnabled }: {
     </>
   );
 }
+
+

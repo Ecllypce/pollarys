@@ -1785,3 +1785,4 @@ export const useDiffFileCount = (): number => {
 
     return fileCount;
 };
+

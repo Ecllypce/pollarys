@@ -7,3 +7,4 @@ export const registerRuntimeAPIs = (apis: RuntimeAPIs | null): void => {
 };
 
 export const getRegisteredRuntimeAPIs = (): RuntimeAPIs | null => registeredRuntimeAPIs;
+

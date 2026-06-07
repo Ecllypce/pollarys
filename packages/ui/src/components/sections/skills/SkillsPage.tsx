@@ -672,3 +672,4 @@ const SkillsInstalledPage: React.FC = () => {
 export const SkillsPage: React.FC<SkillsPageProps> = ({ view = 'installed' }) => {
   return view === 'catalog' ? <SkillsCatalogStandalone /> : <SkillsInstalledPage />;
 };
+

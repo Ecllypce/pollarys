@@ -52,3 +52,4 @@ export const UsageProgressBar: React.FC<UsageProgressBarProps> = ({
     </div>
   );
 };
+

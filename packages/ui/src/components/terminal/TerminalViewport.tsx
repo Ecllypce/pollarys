@@ -462,9 +462,9 @@ const TerminalViewport = React.forwardRef<TerminalController, TerminalViewportPr
         void copySelectionToClipboard();
       };
 
-      window.addEventListener('openchamber:copy', handleMenuCopy);
+      window.addEventListener('Pollarys:copy', handleMenuCopy);
       return () => {
-        window.removeEventListener('openchamber:copy', handleMenuCopy);
+        window.removeEventListener('Pollarys:copy', handleMenuCopy);
       };
     }, [copySelectionToClipboard, hasCopyableSelectionInViewport]);
 
@@ -1697,3 +1697,5 @@ TerminalViewport.displayName = 'TerminalViewport';
 
 export type { TerminalController };
 export { TerminalViewport };
+
+

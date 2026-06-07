@@ -68,3 +68,4 @@ export function useCurrentSessionActivity(): SessionActivityResult {
   const currentSessionId = useSessionUIStore((state) => state.currentSessionId);
   return useSessionActivity(currentSessionId);
 }
+

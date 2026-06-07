@@ -180,3 +180,4 @@ export const CommitSection: React.FC<CommitSectionProps> = ({
     </section>
   );
 };
+

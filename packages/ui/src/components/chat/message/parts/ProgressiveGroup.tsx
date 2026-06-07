@@ -1030,3 +1030,4 @@ const ProgressiveGroup: React.FC<ProgressiveGroupProps> = ({
 };
 
 export default React.memo(ProgressiveGroup);
+

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# OpenChamber Install Script
-# Usage: curl -fsSL https://raw.githubusercontent.com/btriapitsyn/openchamber/main/scripts/install.sh | bash
+# Pollarys Install Script
+# Usage: curl -fsSL https://raw.githubusercontent.com/btriapitsyn/pollarys/main/scripts/install.sh | bash
 
 set -e
 
-PACKAGE_NAME="@openchamber/web"
+PACKAGE_NAME="@pollarys/web"
 MIN_NODE_VERSION=20
 
 # Colors
@@ -147,7 +147,7 @@ main() {
   echo ""
   echo "  ╭───────────────────────────────────╮"
   echo "  │                                   │"
-  echo "  │   OpenChamber Installer           │"
+  echo "  │   Pollarys Installer           │"
   echo "  │   Web interface for OpenCode      │"
   echo "  │                                   │"
   echo "  ╰───────────────────────────────────╯"
@@ -186,17 +186,17 @@ main() {
 
   # Install
   echo ""
-  info "Installing OpenChamber..."
+  info "Installing Pollarys..."
   echo "  Running: $INSTALL_CMD"
   echo ""
   
   if eval "$INSTALL_CMD"; then
     echo ""
-    success "OpenChamber installed successfully!"
+    success "Pollarys installed successfully!"
     echo ""
     echo "  Get started:"
-    echo "    openchamber              # Start server on port 3000"
-    echo "    openchamber --help       # Show all options"
+    echo "    pollarys              # Start server on port 3000"
+    echo "    pollarys --help       # Show all options"
     echo ""
     echo "  Prerequisites:"
     echo "    Make sure OpenCode is running: opencode serve"
@@ -216,3 +216,4 @@ main() {
 }
 
 main "$@"
+

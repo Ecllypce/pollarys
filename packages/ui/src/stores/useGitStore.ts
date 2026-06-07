@@ -913,3 +913,4 @@ export const useGitLoadingIdentity = (directory: string | null) => {
     return state.directories.get(directory)?.isLoadingIdentity ?? false;
   });
 };
+

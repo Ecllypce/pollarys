@@ -247,3 +247,4 @@ export const getFileTypeIconHref = (
 };
 
 export const getFileTypeIconUrl = getFileTypeIconHref;
+

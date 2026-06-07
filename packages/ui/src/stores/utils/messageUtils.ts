@@ -284,3 +284,4 @@ export const arePartsEquivalent = (left: Part | undefined, right: Part | undefin
 
     return deepEqualUnknown(left, right);
 };
+

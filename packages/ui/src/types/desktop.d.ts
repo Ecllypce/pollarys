@@ -2,11 +2,11 @@ import type { DesktopBootOutcome } from '@/lib/desktopBoot';
 
 declare global {
   interface Window {
-    __OPENCHAMBER_HOME__?: string;
-    __OPENCHAMBER_MACOS_MAJOR__?: number;
-    __OPENCHAMBER_LOCAL_ORIGIN__?: string;
-    __OPENCHAMBER_ELECTRON__?: { runtime?: string };
-    __OPENCHAMBER_DESKTOP_BOOT_OUTCOME__?: DesktopBootOutcome;
+    __POLLARYS_HOME__?: string;
+    __POLLARYS_MACOS_MAJOR__?: number;
+    __POLLARYS_LOCAL_ORIGIN__?: string;
+    __POLLARYS_ELECTRON__?: { runtime?: string };
+    __POLLARYS_DESKTOP_BOOT_OUTCOME__?: DesktopBootOutcome;
   }
 
   interface WebviewElement extends HTMLElement {
@@ -39,3 +39,5 @@ declare global {
 }
 
 export {};
+
+

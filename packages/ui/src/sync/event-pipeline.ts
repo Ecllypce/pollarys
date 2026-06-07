@@ -780,7 +780,7 @@ export function createEventPipeline(input: EventPipelineInput) {
   // Use globalThis (not window) for the system-resume listener so that
   // test environments can replace globalThis.window with a stub.
   if (typeof globalThis.window !== "undefined") {
-    globalThis.window.addEventListener("openchamber:system-resume", onSystemResume)
+    globalThis.window.addEventListener("Pollarys:system-resume", onSystemResume)
     globalThis.window.addEventListener("online", onOnline)
     globalThis.window.addEventListener("offline", onOffline)
   }
@@ -791,7 +791,7 @@ export function createEventPipeline(input: EventPipelineInput) {
       window.removeEventListener("pageshow", onPageShow)
     }
     if (typeof globalThis.window !== "undefined") {
-      globalThis.window.removeEventListener("openchamber:system-resume", onSystemResume)
+      globalThis.window.removeEventListener("Pollarys:system-resume", onSystemResume)
       globalThis.window.removeEventListener("online", onOnline)
       globalThis.window.removeEventListener("offline", onOffline)
     }
@@ -801,3 +801,5 @@ export function createEventPipeline(input: EventPipelineInput) {
 
   return { cleanup }
 }
+
+

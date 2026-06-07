@@ -17,7 +17,7 @@ COPY . .
 RUN bun run build:web
 
 FROM oven/bun:1 AS runtime
-WORKDIR /home/openchamber
+WORKDIR /home/pollarys
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   bash \
@@ -30,21 +30,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   python3 \
   && rm -rf /var/lib/apt/lists/*
 
-# Replace the base image's 'bun' user (UID 1000) with 'openchamber'
+# Replace the base image's 'bun' user (UID 1000) with 'pollarys'
 # so mounted volumes with 1000:1000 ownership work correctly.
 RUN userdel bun \
-  && groupadd -g 1000 openchamber \
-  && useradd -u 1000 -g 1000 -m -s /bin/bash openchamber \
-  && chown -R openchamber:openchamber /home/openchamber
+  && groupadd -g 1000 pollarys \
+  && useradd -u 1000 -g 1000 -m -s /bin/bash pollarys \
+  && chown -R pollarys:pollarys /home/pollarys
 
-# Switch to openchamber user
-USER openchamber
+# Switch to pollarys user
+USER pollarys
 
-ENV NPM_CONFIG_PREFIX=/home/openchamber/.npm-global
+ENV NPM_CONFIG_PREFIX=/home/pollarys/.npm-global
 ENV PATH=${NPM_CONFIG_PREFIX}/bin:${PATH}
 
-RUN npm config set prefix /home/openchamber/.npm-global && mkdir -p /home/openchamber/.npm-global && \
-  mkdir -p /home/openchamber/.local /home/openchamber/.config /home/openchamber/.ssh && \
+RUN npm config set prefix /home/pollarys/.npm-global && mkdir -p /home/pollarys/.npm-global && \
+  mkdir -p /home/pollarys/.local /home/pollarys/.config /home/pollarys/.ssh && \
   npm install -g opencode-ai
 
 # cloudflared 2026.3.0 - update digest explicitly when upgrading
@@ -52,7 +52,7 @@ COPY --from=cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d2919611
 
 ENV NODE_ENV=production
 
-COPY scripts/docker-entrypoint.sh /home/openchamber/openchamber-entrypoint.sh
+COPY scripts/docker-entrypoint.sh /home/pollarys/pollarys-entrypoint.sh
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages/web/node_modules ./packages/web/node_modules
@@ -64,4 +64,5 @@ COPY --from=builder /app/packages/web/dist ./packages/web/dist
 
 EXPOSE 3000
 
-ENTRYPOINT ["sh", "/home/openchamber/openchamber-entrypoint.sh"]
+ENTRYPOINT ["sh", "/home/pollarys/pollarys-entrypoint.sh"]
+

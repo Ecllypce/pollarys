@@ -193,3 +193,4 @@ export const getFileStats = (file: ChangedFileEntry): { additions: number; delet
     if (isGitFile(file)) return { additions: file.insertions, deletions: file.deletions };
     return { additions: file.additions ?? 0, deletions: file.deletions ?? 0 };
 };
+

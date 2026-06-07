@@ -44,3 +44,4 @@ export const useActiveNowStore = create<ActiveNowStore>((set, get) => ({
     persistActiveNowEntries(safeStorage, pruned);
   },
 }));
+

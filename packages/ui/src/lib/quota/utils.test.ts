@@ -11,3 +11,4 @@ describe('quota utils', () => {
     expect(formatPercent(-Infinity)).toBe('-');
   });
 });
+

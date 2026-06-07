@@ -12,3 +12,4 @@ export type VSCodeTextMateTheme = {
   semanticHighlighting?: boolean;
   semanticTokenColors?: Record<string, string>;
 };
+

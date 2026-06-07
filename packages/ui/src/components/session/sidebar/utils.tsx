@@ -291,3 +291,4 @@ export const renderHighlightedText = (text: string, query: string): React.ReactN
 
   return parts.length > 0 ? parts : text;
 };
+

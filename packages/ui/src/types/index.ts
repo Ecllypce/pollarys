@@ -71,3 +71,4 @@ export interface ModelMetadata {
   release_date?: string;
   last_updated?: string;
 }
+

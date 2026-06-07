@@ -59,7 +59,7 @@ const normalizeVoiceErrorMessage = (error: string): string => {
         return 'Voice requires a secure connection (HTTPS) or localhost. Please use HTTPS or access via localhost.';
     }
 
-    return 'Microphone access is unavailable in this runtime. On desktop, check System Settings -> Privacy & Security -> Microphone for OpenChamber.';
+    return 'Microphone access is unavailable in this runtime. On desktop, check System Settings -> Privacy & Security -> Microphone for Pollarys.';
 };
 
 /**
@@ -390,3 +390,5 @@ export function BrowserVoiceButton() {
         </div>
     );
 }
+
+

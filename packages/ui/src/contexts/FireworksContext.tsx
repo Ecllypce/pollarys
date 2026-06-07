@@ -33,3 +33,4 @@ export const useFireworksCelebration = (): FireworksContextValue => {
   }
   return context;
 };
+

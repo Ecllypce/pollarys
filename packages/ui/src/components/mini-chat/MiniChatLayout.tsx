@@ -30,7 +30,7 @@ type MiniChatLayoutProps = {
 const compactPath = (value: string | null | undefined): string => {
   const path = typeof value === 'string' ? value.trim() : '';
   if (!path) return '';
-  const home = typeof window !== 'undefined' ? window.__OPENCHAMBER_HOME__ : '';
+  const home = typeof window !== 'undefined' ? window.__POLLARYS_HOME__ : '';
   if (home && path === home) return '~';
   if (home && path.startsWith(`${home}/`)) return `~/${path.slice(home.length + 1)}`;
   const segments = path.split('/').filter(Boolean);
@@ -67,7 +67,7 @@ const MiniChatHeader: React.FC<{ mode: MiniChatMode }> = ({ mode }) => {
     return normalizePath(state.newSessionDraft.bootstrapPendingDirectory ?? state.newSessionDraft.directoryOverride ?? '');
   });
   const [pinned, setPinned] = React.useState(false);
-  const macosMajor = typeof window !== 'undefined' ? window.__OPENCHAMBER_MACOS_MAJOR__ ?? 0 : 0;
+  const macosMajor = typeof window !== 'undefined' ? window.__POLLARYS_MACOS_MAJOR__ ?? 0 : 0;
   const hasMacTrafficLights = Number.isFinite(macosMajor) && macosMajor > 0;
   const macosHeaderSizeClass = hasMacTrafficLights
     ? macosMajor >= 26
@@ -123,7 +123,7 @@ const MiniChatHeader: React.FC<{ mode: MiniChatMode }> = ({ mode }) => {
   }, [openDirectory, projects, sessionWorktreeMetadata?.projectDirectory, worktreeAttachment?.worktreeRoot]);
   const projectLabel = React.useMemo(() => {
     const project = pathMatchedProject ?? activeProject;
-    if (!project) return directoryLabel || 'OpenChamber';
+    if (!project) return directoryLabel || 'Pollarys';
     const label = project.label?.trim();
     if (label) return label;
     const segments = project.path.split(/[\\/]/).filter(Boolean);
@@ -354,3 +354,5 @@ export const MiniChatLayout: React.FC<MiniChatLayoutProps> = ({ mode, autoOpenDr
     </div>
   );
 };
+
+

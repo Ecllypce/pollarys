@@ -47,3 +47,4 @@ export const useEffectiveDirectory = (): string | undefined => {
     // Fall back to the global directory
     return fallbackDirectory ?? undefined;
 };
+

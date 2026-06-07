@@ -155,3 +155,4 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ isOpen, children, cl
     </aside>
   );
 };
+

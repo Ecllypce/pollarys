@@ -67,3 +67,4 @@ export const useFilesViewShowGitignored = (): boolean => {
 };
 
 export const FILES_VIEW_SHOW_GITIGNORED_STORAGE_KEY = SHOW_GITIGNORED_STORAGE_KEY;
+

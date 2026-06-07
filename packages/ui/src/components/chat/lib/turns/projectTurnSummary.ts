@@ -102,3 +102,4 @@ export const projectTurnDiffStats = (userMessage: ChatMessageEntry): TurnDiffSta
         files,
     };
 };
+

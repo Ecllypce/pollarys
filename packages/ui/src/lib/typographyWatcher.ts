@@ -2,7 +2,7 @@ import { SEMANTIC_TYPOGRAPHY } from '@/lib/typography';
 
 let started = false;
 
-const TYPOGRAPHY_STYLE_ID = 'openchamber-typography-base';
+const TYPOGRAPHY_STYLE_ID = 'Pollarys-typography-base';
 
 const applySemanticTypography = (): void => {
   if (typeof document === 'undefined') {
@@ -35,3 +35,5 @@ export const startTypographyWatcher = (): void => {
 
   applySemanticTypography();
 };
+
+

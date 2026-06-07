@@ -40,3 +40,4 @@ export const useSessionSearchEffects = ({
     return () => document.removeEventListener('mousedown', handlePointerDown);
   }, [isSessionSearchOpen, setIsSessionSearchOpen, sessionSearchContainerRef]);
 };
+

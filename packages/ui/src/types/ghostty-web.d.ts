@@ -9,3 +9,4 @@ declare module 'ghostty-web' {
     lineHeight?: number;
   }
 }
+

@@ -89,3 +89,4 @@ export const ensurePierreThemeRegistered = (theme: Theme): void => {
   registerCustomTheme(id, async () => resolved);
   registeredPierreThemes.add(id);
 };
+

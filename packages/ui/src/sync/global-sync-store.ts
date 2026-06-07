@@ -25,3 +25,4 @@ export const selectConfig = (s: GlobalSyncStore) => s.config
 export const selectPath = (s: GlobalSyncStore) => s.path
 export const selectReload = (s: GlobalSyncStore) => s.reload
 export const selectSessionTodo = (s: GlobalSyncStore) => s.sessionTodo
+

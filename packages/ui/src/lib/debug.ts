@@ -219,7 +219,7 @@ export const debugUtils = {
     })();
 
     const runtimeApis = typeof window !== 'undefined'
-      ? (window as any).__OPENCHAMBER_RUNTIME_APIS__
+      ? (window as any).__POLLARYS_RUNTIME_APIS__
       : null;
     const isTauriShell = typeof window !== 'undefined' && Boolean((window as any).__TAURI__);
 
@@ -364,7 +364,7 @@ export const debugUtils = {
         projectInfo,
         health: opencodeHealth,
       },
-      openchamber: {
+      Pollarys: {
         settingsInfo,
       },
     };
@@ -711,3 +711,5 @@ if (typeof window !== 'undefined') {
     } catch { /* ignored */ }
   });
 }
+
+

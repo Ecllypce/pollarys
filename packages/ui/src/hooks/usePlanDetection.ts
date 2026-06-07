@@ -47,3 +47,4 @@ export const usePlanDetection = (sessionId: string, messageRecords: SessionMessa
     }
   }, [planModeEnabled, sessionId, messageRecords, markSessionPlanAvailable, isSessionPlanAvailable]);
 };
+

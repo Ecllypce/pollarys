@@ -7,8 +7,8 @@ export type ScheduledTaskRanEvent = {
   sessionId?: string;
 };
 
-type OpenChamberEvent = ScheduledTaskRanEvent;
-type Listener = (event: OpenChamberEvent) => void;
+type PollarysEvent = ScheduledTaskRanEvent;
+type Listener = (event: PollarysEvent) => void;
 
 let eventSource: EventSource | null = null;
 let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
@@ -77,16 +77,16 @@ const parseEnvelope = (raw: string): { type: string; properties: unknown } | nul
 };
 
 const dispatchFromEnvelope = (envelope: { type: string; properties: unknown }) => {
-  if (envelope.type === 'openchamber:event-stream-ready') {
+  if (envelope.type === 'Pollarys:event-stream-ready') {
     reconnectAttempt = 0;
     return;
   }
 
-  if (envelope.type === 'openchamber:heartbeat') {
+  if (envelope.type === 'Pollarys:heartbeat') {
     return;
   }
 
-  if (envelope.type !== 'openchamber:scheduled-task-ran') {
+  if (envelope.type !== 'Pollarys:scheduled-task-ran') {
     return;
   }
 
@@ -129,7 +129,7 @@ const connect = () => {
 
   cleanupSource();
 
-  const source = new EventSource('/api/openchamber/events');
+  const source = new EventSource('/api/Pollarys/events');
   source.onopen = () => {
     resetHeartbeatTimer();
   };
@@ -150,7 +150,7 @@ const connect = () => {
   eventSource = source;
 };
 
-export const subscribeOpenchamberEvents = (listener: Listener): (() => void) => {
+export const subscribePollarysEvents = (listener: Listener): (() => void) => {
   listeners.add(listener);
   connect();
 
@@ -166,3 +166,5 @@ export const subscribeOpenchamberEvents = (listener: Listener): (() => void) => 
     }
   };
 };
+
+

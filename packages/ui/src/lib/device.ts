@@ -308,3 +308,4 @@ export function useDeviceInfo(): DeviceInfo {
 
   return deviceInfo;
 }
+

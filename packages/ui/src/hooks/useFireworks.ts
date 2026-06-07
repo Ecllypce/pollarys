@@ -51,3 +51,4 @@ export const useFireworks = ({ durationMs = 3400 }: FireworksOptions = {}): UseF
     dismissFireworks,
   };
 };
+

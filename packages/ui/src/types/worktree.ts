@@ -50,3 +50,4 @@ export interface WorktreeMetadata {
 }
 
 export type WorktreeMap = Map<string, WorktreeMetadata>;
+

@@ -480,3 +480,4 @@ export function buildTextMateThemeFromAppTheme(theme: Theme): VSCodeTextMateThem
     tokenColors: buildTokenColors(theme),
   };
 }
+

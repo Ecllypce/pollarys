@@ -444,3 +444,4 @@ export const McpDropdown: React.FC<McpDropdownProps> = ({ headerIconButtonClass 
     </DropdownMenu>
   );
 };
+

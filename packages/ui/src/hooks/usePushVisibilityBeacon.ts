@@ -64,3 +64,4 @@ export const usePushVisibilityBeacon = (options?: { enabled?: boolean }) => {
     };
   }, [enabled]);
 };
+

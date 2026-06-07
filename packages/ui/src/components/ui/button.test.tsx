@@ -21,3 +21,4 @@ describe("Button", () => {
     expect(element.props.type).toBe(undefined)
   })
 })
+

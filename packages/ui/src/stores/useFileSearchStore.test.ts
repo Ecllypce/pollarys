@@ -102,3 +102,4 @@ describe('useFileSearchStore', () => {
     expect(await secondPromise).toEqual([{ path: 'second.ts' }]);
   });
 });
+

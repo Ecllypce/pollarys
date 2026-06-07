@@ -17,3 +17,4 @@ export const countLinesWithLimit = (content: string, limit: number): number => {
 
   return lines;
 };
+

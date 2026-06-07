@@ -96,3 +96,4 @@ export function useProviderLogo(providerId: string | null | undefined): UseProvi
 
     return { src: null, onError: handleError, hasLogo: false };
 }
+

@@ -16,3 +16,4 @@ export const ChatView: React.FC<ChatViewProps> = ({ readOnly = false }) => {
         </ChatErrorBoundary>
     );
 };
+

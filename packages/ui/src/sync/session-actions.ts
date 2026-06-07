@@ -207,7 +207,7 @@ export async function createSession(
         registerSessionDirectory(session.id, sessionDirectory)
       }
       useSessionUIStore.getState().setCurrentSession(session.id, sessionDirectory)
-      useSessionUIStore.getState().markSessionAsOpenChamberCreated(session.id)
+      useSessionUIStore.getState().markSessionAsPollarysCreated(session.id)
       useGlobalSessionsStore.getState().upsertSession(session)
       return session
   } catch (error) {
@@ -793,3 +793,5 @@ export async function forkFromMessage(sessionId: string, messageId: string): Pro
   // Clear existing attachments and restore file parts from the forked message.
   restoreFilePartsToInput(fileParts)
 }
+
+

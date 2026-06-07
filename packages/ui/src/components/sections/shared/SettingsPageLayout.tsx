@@ -46,3 +46,4 @@ export const SettingsPageLayout: React.FC<SettingsPageLayoutProps> = ({
     </ScrollableOverlay>
   );
 };
+

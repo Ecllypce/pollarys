@@ -129,3 +129,4 @@ export function formatReadyEvent(sessionId: string): string {
 
     return "Claude Code finished working. Ready for next instruction.";
 }
+

@@ -6,3 +6,4 @@ export interface QuotaProvider {
   isConfigured: () => Promise<boolean>;
   fetchQuota: () => Promise<ProviderResult>;
 }
+

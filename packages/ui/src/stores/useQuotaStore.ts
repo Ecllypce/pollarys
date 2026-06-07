@@ -296,3 +296,4 @@ export const useQuotaAutoRefresh = () => {
     return () => window.clearInterval(interval);
   }, [autoRefresh, refreshIntervalMs, fetchAllQuotas]);
 };
+

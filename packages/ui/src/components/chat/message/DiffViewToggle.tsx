@@ -37,3 +37,4 @@ export const DiffViewToggle: React.FC<DiffViewToggleProps> = ({ mode, onModeChan
         </Button>
     );
 };
+

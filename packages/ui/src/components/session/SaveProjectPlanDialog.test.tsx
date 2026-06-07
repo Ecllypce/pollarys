@@ -40,3 +40,4 @@ describe('SaveProjectPlanDialog', () => {
     expect(markup).toContain(`id="${titleInputId}"`);
   });
 });
+

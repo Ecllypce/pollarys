@@ -112,3 +112,4 @@ export function SidebarActivitySections({ sections, renderSessionNode }: Props):
     </div>
   );
 }
+

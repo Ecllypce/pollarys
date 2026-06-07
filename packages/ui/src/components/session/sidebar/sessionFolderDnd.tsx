@@ -132,3 +132,4 @@ export const SessionFolderDndScope: React.FC<{
     </DndContext>
   );
 };
+

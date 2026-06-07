@@ -89,3 +89,4 @@ export const MagicPromptsSidebar: React.FC<MagicPromptsSidebarProps> = ({ onItem
     </div>
   );
 };
+

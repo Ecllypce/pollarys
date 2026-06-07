@@ -18,3 +18,4 @@ export function McpIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+

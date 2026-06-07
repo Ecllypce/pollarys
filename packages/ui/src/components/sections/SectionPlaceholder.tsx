@@ -43,3 +43,4 @@ export const SectionPlaceholder: React.FC<SectionPlaceholderProps> = ({ sectionI
         </div>
     );
 };
+

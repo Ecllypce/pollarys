@@ -13,8 +13,8 @@ import { useDirectoryStore } from '@/stores/useDirectoryStore';
 import { useMultiRunStore } from '@/stores/useMultiRunStore';
 import { useSessionUIStore } from '@/sync/session-ui-store';
 import { useProjectsStore } from '@/stores/useProjectsStore';
-import { getWorktreeSetupCommands } from '@/lib/openchamberConfig';
-import type { ProjectRef } from '@/lib/openchamberConfig';
+import { getWorktreeSetupCommands } from '@/lib/pollarysConfig';
+import type { ProjectRef } from '@/lib/pollarysConfig';
 import type { CreateMultiRunParams, MultiRunGroup } from '@/types/multirun';
 import { ModelMultiSelect, generateInstanceId, type ModelSelectionWithId } from './ModelMultiSelect';
 import { BranchSelector, useBranchOptions } from './BranchSelector';
@@ -193,7 +193,7 @@ export const MultiRunLauncher: React.FC<MultiRunLauncherProps> = ({
 
   const macosMajorVersion = React.useMemo(() => {
     if (typeof window === 'undefined') return null;
-    const injected = (window as unknown as { __OPENCHAMBER_MACOS_MAJOR__?: unknown }).__OPENCHAMBER_MACOS_MAJOR__;
+    const injected = (window as unknown as { __POLLARYS_MACOS_MAJOR__?: unknown }).__POLLARYS_MACOS_MAJOR__;
     if (typeof injected === 'number' && Number.isFinite(injected) && injected > 0) return injected;
     if (typeof navigator === 'undefined') return null;
     const match = (navigator.userAgent || '').match(/Mac OS X (\d+)[._](\d+)/);
@@ -997,3 +997,6 @@ const RunGroupCard: React.FC<RunGroupCardProps> = ({
     </div>
   );
 };
+
+
+

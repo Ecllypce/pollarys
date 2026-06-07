@@ -13,7 +13,7 @@ const getBaseUrl = (): string => {
 
 function getRuntimeFilesAPI(): FilesAPI | null {
   if (typeof window === 'undefined') return null;
-  const apis = (window as typeof window & { __OPENCHAMBER_RUNTIME_APIS__?: RuntimeAPIs }).__OPENCHAMBER_RUNTIME_APIS__;
+  const apis = (window as typeof window & { __POLLARYS_RUNTIME_APIS__?: RuntimeAPIs }).__POLLARYS_RUNTIME_APIS__;
   if (apis?.files) {
     return apis.files;
   }
@@ -55,3 +55,5 @@ export async function execCommand(command: string, cwd: string): Promise<Command
   }
   return first;
 }
+
+

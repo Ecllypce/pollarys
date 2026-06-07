@@ -233,3 +233,4 @@ export function resolveSettingsSlug(value: string | null | undefined): SettingsP
 
   return 'home';
 }
+

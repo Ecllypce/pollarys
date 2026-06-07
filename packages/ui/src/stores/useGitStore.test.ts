@@ -92,3 +92,4 @@ describe('useGitStore', () => {
     expect(lightResult).toBe(fullResult);
   });
 });
+

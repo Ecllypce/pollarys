@@ -493,3 +493,4 @@ export function useSync() {
     [syncSession, loadMore, hasMore, isLoading, optimisticAdd, optimisticRemove],
   )
 }
+

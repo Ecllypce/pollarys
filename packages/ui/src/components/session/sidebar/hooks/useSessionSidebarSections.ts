@@ -172,3 +172,4 @@ export const useSessionSidebarSections = (args: Args) => {
     searchMatchCount,
   };
 };
+

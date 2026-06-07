@@ -14,3 +14,4 @@ interface Window {
         checkCompletionStatus: () => unknown;
     };
 }
+

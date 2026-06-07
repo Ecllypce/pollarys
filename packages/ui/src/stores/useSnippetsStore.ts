@@ -171,3 +171,4 @@ export const useSnippetsStore = create<SnippetsStore>()(
     { name: 'snippets-store' },
   ),
 );
+

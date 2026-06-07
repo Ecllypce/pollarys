@@ -1963,3 +1963,4 @@ export const McpPage: React.FC = () => {
     </ScrollableOverlay>
   );
 };
+

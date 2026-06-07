@@ -132,3 +132,4 @@ export function resetCircuit(providerID: string): void {
   state.circuitOpen = false
   state.circuitCooldownMs = DEFAULT_CIRCUIT_COOLDOWN_MS
 }
+

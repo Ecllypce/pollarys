@@ -336,3 +336,4 @@ const SessionFolderItemBase = <TSessionNode,>({
 export const SessionFolderItem = React.memo(SessionFolderItemBase) as <TSessionNode>(
   props: SessionFolderItemProps<TSessionNode>,
 ) => React.ReactElement;
+

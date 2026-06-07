@@ -442,3 +442,4 @@ export const useSkillsCatalogStore = create<SkillsCatalogState>()(
     { name: 'skills-catalog-store' }
   )
 );
+

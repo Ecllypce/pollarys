@@ -173,3 +173,4 @@ export async function loadLanguageByExtension(filePath: string): Promise<Extensi
     return null;
   }
 }
+

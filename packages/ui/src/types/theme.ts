@@ -289,3 +289,4 @@ export interface AccessibilityReport {
   wcagAAA: boolean;
   issues: AccessibilityIssue[];
 }
+

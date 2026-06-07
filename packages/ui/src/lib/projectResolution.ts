@@ -67,3 +67,4 @@ export const resolveProjectForSessionDirectory = (
 ): ProjectEntry | null =>
   resolveProjectFromWorktreeDirectory(projects, availableWorktreesByProject, directory) ??
   resolveProjectForDirectory(projects, directory);
+

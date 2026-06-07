@@ -29,3 +29,4 @@ export const suggestPlanTitleFromText = (text: string): string => {
     const compact = firstSentence.replace(/\s+/g, ' ').trim();
     return compact.length > 160 ? compact.slice(0, 160).trim() : compact || 'Plan';
 };
+

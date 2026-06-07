@@ -34,3 +34,4 @@ export type GroupSearchData = {
   groupMatches: boolean;
   hasMatch: boolean;
 };
+

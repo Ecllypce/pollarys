@@ -70,3 +70,4 @@ export const sessionEvents = {
     gitRefreshListeners.forEach((listener) => listener(hint));
   },
 };
+

@@ -96,3 +96,4 @@ describe("autoRespondsPermission", () => {
     })).toBe(false)
   })
 })
+

@@ -757,3 +757,4 @@ const sidebarBaseRgb = hexToRgb(theme.colors.surface.muted);
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 }
+

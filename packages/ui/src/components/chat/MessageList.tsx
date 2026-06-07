@@ -1768,3 +1768,4 @@ const MessageList = React.forwardRef<MessageListHandle, MessageListProps>(({
 MessageList.displayName = 'MessageList';
 
 export default React.memo(MessageList);
+

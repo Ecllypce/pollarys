@@ -63,3 +63,4 @@ export const getProjectIconImageUrl = (
 
   return `/api/projects/${encodeURIComponent(project.id)}/icon?${params.toString()}`;
 };
+

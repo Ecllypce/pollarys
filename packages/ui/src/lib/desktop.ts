@@ -157,7 +157,7 @@ export type DesktopSettings = {
   // Message limit — controls fetch, trim, and Load More chunk size (default: 200)
   messageLimit?: number;
 
-  // User-added skills catalogs (persisted to ~/.config/openchamber/settings.json)
+  // User-added skills catalogs (persisted to ~/.config/pollarys/settings.json)
   skillCatalogs?: SkillCatalogConfig[];
   // Opt-in to send anonymous usage reports for update checks (default: true)
   reportUsage?: boolean;
@@ -198,7 +198,7 @@ type ElectronRuntimeGlobal = {
 
 const getElectronRuntime = (): ElectronRuntimeGlobal | null => {
   if (typeof window === 'undefined') return null;
-  return (window as unknown as { __OPENCHAMBER_ELECTRON__?: ElectronRuntimeGlobal }).__OPENCHAMBER_ELECTRON__ ?? null;
+  return (window as unknown as { __POLLARYS_ELECTRON__?: ElectronRuntimeGlobal }).__POLLARYS_ELECTRON__ ?? null;
 };
 
 export const isTauriShell = (): boolean => {
@@ -263,7 +263,7 @@ export const isDesktopLocalOriginActive = (): boolean => {
   if (typeof window === 'undefined') return false;
   if (!isDesktopShell()) return false;
 
-  const local = typeof window.__OPENCHAMBER_LOCAL_ORIGIN__ === 'string' ? window.__OPENCHAMBER_LOCAL_ORIGIN__ : '';
+  const local = typeof window.__POLLARYS_LOCAL_ORIGIN__ === 'string' ? window.__POLLARYS_LOCAL_ORIGIN__ : '';
   const localUrl = parseUrl(local);
   const currentUrl = parseUrl(window.location.origin);
 
@@ -314,13 +314,13 @@ export const startDesktopWindowDrag = async (): Promise<boolean> => {
 
 export const isVSCodeRuntime = (): boolean => {
   if (typeof window === "undefined") return false;
-  const apis = (window as { __OPENCHAMBER_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } }).__OPENCHAMBER_RUNTIME_APIS__;
+  const apis = (window as { __POLLARYS_RUNTIME_APIS__?: { runtime?: { isVSCode?: boolean } } }).__POLLARYS_RUNTIME_APIS__;
   return apis?.runtime?.isVSCode === true;
 };
 
 export const isWebRuntime = (): boolean => {
   if (typeof window === "undefined") return false;
-  const apis = (window as { __OPENCHAMBER_RUNTIME_APIS__?: { runtime?: { platform?: string } } }).__OPENCHAMBER_RUNTIME_APIS__;
+  const apis = (window as { __POLLARYS_RUNTIME_APIS__?: { runtime?: { platform?: string } } }).__POLLARYS_RUNTIME_APIS__;
   const platform = apis?.runtime?.platform;
   if (platform === 'web') {
     return true;
@@ -334,7 +334,7 @@ export const isWebRuntime = (): boolean => {
 
 export const getDesktopHomeDirectory = async (): Promise<string | null> => {
   if (typeof window !== 'undefined') {
-    const embedded = window.__OPENCHAMBER_HOME__;
+    const embedded = window.__POLLARYS_HOME__;
     if (embedded && embedded.length > 0) {
       return embedded;
     }
@@ -418,7 +418,7 @@ export const sendAssistantCompletionNotification = async (
         payload: {
           title: payload?.title,
           body: payload?.body,
-          tag: 'openchamber-agent-complete',
+          tag: 'pollarys-agent-complete',
         },
       });
       return true;
@@ -460,7 +460,7 @@ export const downloadDesktopUpdate = async (
 
   try {
     if (typeof onProgress === 'function' && tauri?.event?.listen) {
-      unlisten = await tauri.event.listen('openchamber:update-progress', (evt) => {
+      unlisten = await tauri.event.listen('pollarys:update-progress', (evt) => {
         const payload = evt?.payload;
         if (!payload || typeof payload !== 'object') return;
         const data = payload as { event?: unknown; data?: unknown };
@@ -806,3 +806,5 @@ export const clearDesktopCache = async (): Promise<boolean> => {
     return false;
   }
 };
+
+

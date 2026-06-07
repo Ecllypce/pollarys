@@ -28,3 +28,4 @@ export function VoiceProvider({ children }: { children: React.ReactNode }) {
         </>
     );
 }
+

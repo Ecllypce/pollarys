@@ -99,3 +99,4 @@ export const FireworksAnimation: React.FC<FireworksAnimationProps> = ({
     </div>
   );
 };
+

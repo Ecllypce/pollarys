@@ -430,3 +430,4 @@ export const useFilesViewTabsStore = create<FilesViewTabsStore>()(
     { name: 'files-view-tabs-store' }
   )
 );
+

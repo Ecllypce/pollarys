@@ -48,3 +48,4 @@ export const Slot = React.forwardRef<HTMLElement, SlotProps>(function Slot(
     ref: mergeRefs(ref as React.Ref<unknown>, (child as unknown as { ref?: React.Ref<unknown> }).ref),
   } as AnyProps);
 });
+

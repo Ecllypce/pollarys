@@ -44,3 +44,4 @@ export namespace Binary {
     return array
   }
 }
+

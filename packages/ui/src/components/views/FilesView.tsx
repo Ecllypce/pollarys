@@ -238,7 +238,7 @@ const isDirectoryReadError = (error: unknown): boolean => {
 };
 
 const MAX_VIEW_CHARS = 200_000;
-const FILE_EDITOR_AUTO_SAVE_KEY = 'openchamber:files:auto-save-enabled';
+const FILE_EDITOR_AUTO_SAVE_KEY = 'Pollarys:files:auto-save-enabled';
 
 const getInitialAutoSaveEnabled = (): boolean => {
   if (typeof window === 'undefined') {
@@ -2035,9 +2035,9 @@ export const FilesView: React.FC<FilesViewProps> = ({ mode = 'full' }) => {
     }
   }, [canEdit, textViewMode]);
 
-  const MD_VIEWER_MODE_KEY = 'openchamber:files:md-viewer-mode';
-  const HTML_VIEWER_MODE_KEY = 'openchamber:files:html-viewer-mode';
-  const JSON_VIEWER_MODE_KEY = 'openchamber:files:json-viewer-mode';
+  const MD_VIEWER_MODE_KEY = 'Pollarys:files:md-viewer-mode';
+  const HTML_VIEWER_MODE_KEY = 'Pollarys:files:html-viewer-mode';
+  const JSON_VIEWER_MODE_KEY = 'Pollarys:files:json-viewer-mode';
 
   React.useEffect(() => {
     const selectedPath = selectedFile?.path;
@@ -3464,3 +3464,5 @@ export const FilesView: React.FC<FilesViewProps> = ({ mode = 'full' }) => {
     </div>
   );
 };
+
+

@@ -62,8 +62,8 @@ export const SIDEBAR_SECTIONS: SidebarSectionConfig[] = [
     },
     {
         id: 'settings',
-        label: 'OpenChamber',
-        description: 'OpenChamber app settings: themes, fonts, and preferences.',
+        label: 'Pollarys',
+        description: 'Pollarys app settings: themes, fonts, and preferences.',
         icon: "settings-3",
     },
 ];
@@ -81,3 +81,5 @@ SIDEBAR_SECTIONS.forEach((section) => {
 export const SIDEBAR_SECTION_LABELS = sidebarSectionLabels;
 export const SIDEBAR_SECTION_DESCRIPTIONS = sidebarSectionDescriptions;
 export const SIDEBAR_SECTION_CONFIG_MAP = sidebarSectionConfigMap;
+
+

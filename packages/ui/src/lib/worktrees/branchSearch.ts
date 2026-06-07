@@ -65,3 +65,4 @@ export function rankBranchesForQuery(args: {
     otherRemote,
   };
 }
+

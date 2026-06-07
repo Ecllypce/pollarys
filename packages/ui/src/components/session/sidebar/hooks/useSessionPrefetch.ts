@@ -127,3 +127,4 @@ export const useSessionPrefetch = ({ currentSessionId, sortedSessions, recentSes
     };
   }, []);
 };
+

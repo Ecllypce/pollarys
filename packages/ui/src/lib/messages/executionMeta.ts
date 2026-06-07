@@ -14,3 +14,4 @@ export const MULTIRUN_EXECUTION_FORK_PROMPT_META_TEXT =
 
 export const isExecutionForkMetaText = (text: string | null | undefined): boolean =>
     typeof text === 'string' && text.trim() === EXECUTION_FORK_META_TEXT.trim();
+

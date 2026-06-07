@@ -97,3 +97,4 @@ describe("createEventPipeline", () => {
     })).toEqual(["updated:a", "delta:b", "updated:ab"])
   })
 })
+

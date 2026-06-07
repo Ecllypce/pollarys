@@ -6,3 +6,4 @@
 export const useSessionStatusBootstrap = (_options?: { enabled?: boolean }) => {
   // no-op — session_status is bootstrapped by sync child stores
 };
+

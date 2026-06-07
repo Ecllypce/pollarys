@@ -8,3 +8,4 @@ export const changedFilesPopoverStyle: CSSProperties = {
     backgroundColor: 'var(--surface-elevated)',
     color: 'var(--surface-elevated-foreground)',
 };
+

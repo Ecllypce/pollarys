@@ -171,3 +171,4 @@ export const ScrollShadow = React.forwardRef<HTMLElement, ScrollShadowProps>(
 );
 
 ScrollShadow.displayName = "ScrollShadow";
+

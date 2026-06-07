@@ -29,3 +29,4 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 };
+

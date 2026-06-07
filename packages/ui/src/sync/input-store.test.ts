@@ -136,3 +136,4 @@ describe("input-store attachments", () => {
     expect(useInputStore.getState().attachedFiles.map((attached) => attached.filename)).toEqual(["hello.txt"])
   })
 })
+

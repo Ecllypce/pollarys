@@ -28,3 +28,4 @@ export const getEditModeColors = (mode?: EditPermissionMode | null): EditModeCol
 
     return null;
 };
+

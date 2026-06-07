@@ -655,3 +655,4 @@ export const browserVoiceService = new BrowserVoiceService();
 
 // Also export the class for testing/customization
 export { BrowserVoiceService };
+

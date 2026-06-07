@@ -355,3 +355,4 @@ export const typographyClasses = {
   'semantic-meta': 'typography-meta',
   'semantic-micro': 'typography-micro',
 };
+

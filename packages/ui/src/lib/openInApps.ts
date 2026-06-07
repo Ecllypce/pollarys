@@ -44,3 +44,4 @@ export const getOpenInAppById = (id: string | null | undefined): OpenInApp | nul
 export const getDefaultOpenInApp = (): OpenInApp => {
   return getOpenInAppById(DEFAULT_OPEN_IN_APP_ID) ?? OPEN_IN_APPS[0];
 };
+

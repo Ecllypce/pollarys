@@ -62,3 +62,4 @@ export const filterSyntheticParts = (parts: Part[] | undefined): Part[] => {
     // If all parts are synthetic, return them all (so message is displayed)
     return parts;
 };
+

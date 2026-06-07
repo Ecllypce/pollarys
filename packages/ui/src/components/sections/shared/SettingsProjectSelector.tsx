@@ -89,3 +89,4 @@ export const SettingsProjectSelector: React.FC<{ className?: string }> = ({ clas
     </div>
   );
 };
+

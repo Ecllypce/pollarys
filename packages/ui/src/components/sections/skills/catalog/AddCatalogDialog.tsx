@@ -368,3 +368,4 @@ export const AddCatalogDialog: React.FC<AddCatalogDialogProps> = ({ open, onOpen
     </Dialog>
   );
 };
+

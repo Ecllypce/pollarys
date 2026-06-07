@@ -303,3 +303,4 @@ export const GitHeader: React.FC<GitHeaderProps> = ({
     </header>
   );
 };
+

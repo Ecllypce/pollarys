@@ -29,3 +29,4 @@ export function useAppFontEffects() {
     }
   }, [uiFont, monoFont]);
 }
+

@@ -14,11 +14,11 @@
     "noEmit": true,
     "baseUrl": ".",
     "types": ["vite/client", "@types/dom-speech-recognition"],
-    "paths": {
-      "@/*": ["../ui/src/*"],
-      "@vscode/*": ["./webview/*"],
-      "@openchamber/ui/*": ["../ui/src/*"]
-    }
+     "paths": {
+       "@/*": ["../ui/src/*"],
+       "@vscode/*": ["./webview/*"],
+       "@pollarys/ui/*": ["../ui/src/*"]
+     }
   },
   "include": ["webview/**/*", "../ui/src/**/*"]
 }

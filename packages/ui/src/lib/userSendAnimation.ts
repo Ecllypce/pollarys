@@ -32,3 +32,4 @@ export const consumePendingUserSendAnimation = (sessionId: string): boolean => {
     }
     return true;
 };
+

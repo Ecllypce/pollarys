@@ -2,7 +2,7 @@ export type Locale = 'en' | 'zh-CN' | 'uk' | 'es' | 'pt-BR' | 'ko' | 'pl';
 
 export const LOCALES = ['en', 'zh-CN', 'uk', 'es', 'pt-BR', 'ko', 'pl'] as const satisfies readonly Locale[];
 
-export const DEFAULT_LOCALE: Locale = 'en';
+export const DEFAULT_LOCALE: Locale = 'pt-BR';
 
 export const LOCALE_LABEL_KEYS: Record<Locale, 'common.language.english' | 'common.language.simplifiedChinese' | 'common.language.ukrainian' | 'common.language.spanish' | 'common.language.brazilianPortuguese' | 'common.language.korean' | 'common.language.polish'> = {
   en: 'common.language.english',
@@ -14,7 +14,7 @@ export const LOCALE_LABEL_KEYS: Record<Locale, 'common.language.english' | 'comm
   pl: 'common.language.polish',
 };
 
-export const LOCALE_STORAGE_KEY = 'openchamber.i18n.v1';
+export const LOCALE_STORAGE_KEY = 'pollarys.i18n.v1';
 
 type StoredLocale = {
   locale?: unknown;
@@ -90,3 +90,4 @@ export function detectInitialLocale(): Locale {
 
   return DEFAULT_LOCALE;
 }
+

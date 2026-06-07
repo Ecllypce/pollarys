@@ -58,3 +58,4 @@ export const useViewportStore = create<ViewportState>()((set) => ({
       return { sessionMemoryState: map }
     }),
 }))
+

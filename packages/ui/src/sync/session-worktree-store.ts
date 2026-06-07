@@ -32,3 +32,4 @@ export const useSessionWorktreeStore = create<SessionWorktreeStore>((set, get) =
       return { attachments: next };
     }),
 }));
+

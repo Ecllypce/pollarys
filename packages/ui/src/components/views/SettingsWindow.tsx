@@ -66,3 +66,4 @@ export const SettingsWindow: React.FC<SettingsWindowProps> = ({ open, onOpenChan
     </Dialog.Root>
   );
 };
+

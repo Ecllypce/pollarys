@@ -97,3 +97,4 @@ export const PaceIndicator: React.FC<PaceIndicatorProps> = ({
     </div>
   );
 };
+

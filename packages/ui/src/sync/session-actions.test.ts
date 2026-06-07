@@ -239,3 +239,4 @@ describe("rejectQuestion passes directory", () => {
     expect(replyCalls[0].params.directory).toBe("/test/project")
   })
 })
+

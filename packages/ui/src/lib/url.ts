@@ -144,3 +144,4 @@ export const openExternalUrl = async (url: string): Promise<boolean> => {
     return false;
   }
 };
+

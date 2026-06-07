@@ -299,11 +299,11 @@ export interface SessionStore {
     getAgentModelVariantForSession: (sessionId: string, agentName: string, providerId: string, modelId: string) => string | undefined;
 
 
-    isOpenChamberCreatedSession: (sessionId: string) => boolean;
+    isPollarysCreatedSession: (sessionId: string) => boolean;
 
-    markSessionAsOpenChamberCreated: (sessionId: string) => void;
+    markSessionAsPollarysCreated: (sessionId: string) => void;
 
-    initializeNewOpenChamberSession: (sessionId: string, agents: Array<{ name: string; [key: string]: unknown }>) => void;
+    initializeNewPollarysSession: (sessionId: string, agents: Array<{ name: string; [key: string]: unknown }>) => void;
 
     setWorktreeMetadata: (sessionId: string, metadata: import('@/types/worktree').WorktreeMetadata | null) => void;
     getWorktreeMetadata: (sessionId: string) => import('@/types/worktree').WorktreeMetadata | undefined;
@@ -329,3 +329,5 @@ export interface SessionStore {
       setPendingSyntheticParts: (parts: SyntheticContextPart[] | null) => void;
      consumePendingSyntheticParts: () => SyntheticContextPart[] | null;
    }
+
+

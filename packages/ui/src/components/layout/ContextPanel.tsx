@@ -20,7 +20,7 @@ import { useInputStore } from '@/sync/input-store';
 import { ContextPanelContent } from './ContextSidebarTab';
 import { toast } from '@/components/ui';
 import { Icon } from "@/components/icon/Icon";
-import { OpenChamberLogo } from "@/components/ui/OpenChamberLogo";
+import { PollarysLogo } from "@/components/ui/PollarysLogo";
 import { invokeDesktopCommand } from '@/lib/desktopNative';
 
 const CONTEXT_PANEL_MIN_WIDTH = 360;
@@ -335,13 +335,13 @@ const getSessionIDFromDedupeKey = (dedupeKey: string | undefined): string | null
 };
 
 const DESKTOP_BROWSER_INSPECT_SCRIPT = `new Promise((resolve) => {
-  const existing = document.getElementById('__openchamber_desktop_browser_overlay');
+  const existing = document.getElementById('__POLLARYS_desktop_browser_overlay');
   if (existing) existing.remove();
-  if (typeof window.__openchamberDesktopBrowserCancelInspect === 'function') {
-    try { window.__openchamberDesktopBrowserCancelInspect(); } catch { /* webview not ready */ }
+  if (typeof window.__PollarysDesktopBrowserCancelInspect === 'function') {
+    try { window.__PollarysDesktopBrowserCancelInspect(); } catch { /* webview not ready */ }
   }
   const overlay = document.createElement('div');
-  overlay.id = '__openchamber_desktop_browser_overlay';
+  overlay.id = '__POLLARYS_desktop_browser_overlay';
   overlay.style.cssText = 'position:fixed;z-index:2147483647;pointer-events:none;border:2px solid #60a5fa;background:rgba(96,165,250,.24);border-radius:3px;display:none;box-sizing:border-box;';
   document.documentElement.appendChild(overlay);
   const cssEscape = (value) => {
@@ -392,8 +392,8 @@ const DESKTOP_BROWSER_INSPECT_SCRIPT = `new Promise((resolve) => {
     window.removeEventListener('mousemove', move, true);
     window.removeEventListener('click', click, true);
     window.removeEventListener('keydown', keydown, true);
-    if (window.__openchamberDesktopBrowserCancelInspect === cancel) {
-      delete window.__openchamberDesktopBrowserCancelInspect;
+    if (window.__PollarysDesktopBrowserCancelInspect === cancel) {
+      delete window.__PollarysDesktopBrowserCancelInspect;
     }
   };
   const cancel = () => {
@@ -414,18 +414,18 @@ const DESKTOP_BROWSER_INSPECT_SCRIPT = `new Promise((resolve) => {
     if (event.key !== 'Escape') return;
     cancel();
   };
-  window.__openchamberDesktopBrowserCancelInspect = cancel;
+  window.__PollarysDesktopBrowserCancelInspect = cancel;
   window.addEventListener('mousemove', move, true);
   window.addEventListener('click', click, true);
   window.addEventListener('keydown', keydown, true);
 });`;
 
 const DESKTOP_BROWSER_CANCEL_INSPECT_SCRIPT = `(() => {
-  if (typeof window.__openchamberDesktopBrowserCancelInspect === 'function') {
-    window.__openchamberDesktopBrowserCancelInspect();
+  if (typeof window.__PollarysDesktopBrowserCancelInspect === 'function') {
+    window.__PollarysDesktopBrowserCancelInspect();
     return;
   }
-  const overlay = document.getElementById('__openchamber_desktop_browser_overlay');
+  const overlay = document.getElementById('__POLLARYS_desktop_browser_overlay');
   if (overlay) overlay.remove();
 })()`;
 
@@ -741,7 +741,7 @@ const PreviewPane: React.FC<PreviewPaneProps> = ({ rawUrl, onNavigate }) => {
       return;
     }
     frameWindow.postMessage({
-      source: 'openchamber-preview-parent',
+      source: 'Pollarys-preview-parent',
       version: 1,
       type: 'set-inspect-mode',
       enabled: inspectMode,
@@ -754,7 +754,7 @@ const PreviewPane: React.FC<PreviewPaneProps> = ({ rawUrl, onNavigate }) => {
       return;
     }
     frameWindow.postMessage({
-      source: 'openchamber-preview-parent',
+      source: 'Pollarys-preview-parent',
       version: 1,
       type: 'set-color-scheme',
       scheme: previewColorScheme,
@@ -805,7 +805,7 @@ const PreviewPane: React.FC<PreviewPaneProps> = ({ rawUrl, onNavigate }) => {
         return;
       }
       const data = event.data;
-      if (!data || data.source !== 'openchamber-preview-bridge' || data.version !== 1) {
+      if (!data || data.source !== 'Pollarys-preview-bridge' || data.version !== 1) {
         return;
       }
 
@@ -1523,12 +1523,12 @@ const DesktopBrowserPane: React.FC<DesktopBrowserPaneProps> = ({ initialUrl, dir
         <webview
           ref={webviewRef}
           src={normalizeBrowserUrl(initialUrl)}
-          partition="persist:openchamber-browser"
+          partition="persist:Pollarys-browser"
           style={{ width: '100%', height: '100%', border: 'none' }}
         />
         {(!currentUrl || currentUrl === 'about:blank') && !isLoading ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 bg-background p-6 text-center">
-            <OpenChamberLogo width={140} height={140} className="opacity-20" />
+            <PollarysLogo width={140} height={140} className="opacity-20" />
             <span className="typography-ui-header text-muted-foreground">{t('contextPanel.browser.empty')}</span>
           </div>
         ) : null}
@@ -1716,8 +1716,8 @@ export const ContextPanel: React.FC = () => {
       }
 
       const directThemeSync = (frameWindow as unknown as {
-        __openchamberApplyThemeSync?: (themePayload: typeof payload) => void;
-      }).__openchamberApplyThemeSync;
+        __PollarysApplyThemeSync?: (themePayload: typeof payload) => void;
+      }).__PollarysApplyThemeSync;
 
       if (typeof directThemeSync === 'function') {
         try {
@@ -1730,7 +1730,7 @@ export const ContextPanel: React.FC = () => {
 
       frameWindow.postMessage(
         {
-          type: 'openchamber:theme-sync',
+          type: 'Pollarys:theme-sync',
           payload,
         },
         window.location.origin,
@@ -1751,8 +1751,8 @@ export const ContextPanel: React.FC = () => {
 
       const payload = { visible: activeChatTabID === tabID };
       const directVisibilitySync = (frameWindow as unknown as {
-        __openchamberSetEmbeddedVisibility?: (visibilityPayload: typeof payload) => void;
-      }).__openchamberSetEmbeddedVisibility;
+        __PollarysSetEmbeddedVisibility?: (visibilityPayload: typeof payload) => void;
+      }).__PollarysSetEmbeddedVisibility;
 
       if (typeof directVisibilitySync === 'function') {
         try {
@@ -1765,7 +1765,7 @@ export const ContextPanel: React.FC = () => {
 
       frameWindow.postMessage(
         {
-          type: 'openchamber:embedded-visibility',
+          type: 'Pollarys:embedded-visibility',
           payload,
         },
         window.location.origin,
@@ -1986,3 +1986,5 @@ export const ContextPanel: React.FC = () => {
     </aside>
   );
 };
+
+

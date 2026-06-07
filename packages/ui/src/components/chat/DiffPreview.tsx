@@ -120,3 +120,4 @@ export const WritePreview: React.FC<WritePreviewProps> = ({ content, syntaxTheme
         </div>
     );
 };
+

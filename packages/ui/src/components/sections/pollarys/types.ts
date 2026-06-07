@@ -1,4 +1,4 @@
-export type OpenChamberSection =
+export type PollarysSection =
   | 'visual'
   | 'chat'
   | 'shortcuts'
@@ -8,3 +8,5 @@ export type OpenChamberSection =
   | 'notifications'
   | 'voice'
   | 'tunnel';
+
+

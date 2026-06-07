@@ -1,4 +1,4 @@
-import { substituteCommandVariables } from '@/lib/openchamberConfig';
+import { substituteCommandVariables } from '@/lib/pollarysConfig';
 import type { WorktreeMetadata } from '@/types/worktree';
 import { execCommand } from '@/lib/execCommands';
 import {
@@ -392,3 +392,5 @@ export async function removeProjectWorktree(project: ProjectRef, worktree: Workt
     await deleteRemoteBranch(projectDirectory, { branch: branchName, remote: remoteName }).catch(() => undefined);
   }
 }
+
+

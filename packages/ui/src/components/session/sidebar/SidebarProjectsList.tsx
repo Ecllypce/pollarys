@@ -241,3 +241,4 @@ export function SidebarProjectsList(props: Props): React.ReactNode {
     </ScrollableOverlay>
   );
 }
+

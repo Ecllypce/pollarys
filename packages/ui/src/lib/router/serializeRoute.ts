@@ -146,3 +146,4 @@ function isVSCodeContext(): boolean {
   const win = window as { __VSCODE_CONFIG__?: unknown };
   return win.__VSCODE_CONFIG__ !== undefined;
 }
+

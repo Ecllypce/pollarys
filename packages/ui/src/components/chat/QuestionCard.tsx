@@ -499,3 +499,4 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
     </div>
   );
 };
+

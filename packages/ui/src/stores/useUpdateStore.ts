@@ -106,7 +106,7 @@ async function checkForWebUpdates(runtime: ClientRuntime, currentVersion?: strin
       : undefined;
     if (currentVersion) params.set('currentVersion', currentVersion);
     else if (runtime === 'vscode' && vscodeVersion) params.set('currentVersion', vscodeVersion);
-    const response = await fetch(`/api/openchamber/update-check?${params.toString()}`, {
+    const response = await fetch(`/api/Pollarys/update-check?${params.toString()}`, {
       method: 'GET',
       headers: { Accept: 'application/json' },
     });
@@ -306,3 +306,5 @@ export const useUpdateStore = create<UpdateStore>()((set, get) => ({
     set(initialState);
   },
 }));
+
+

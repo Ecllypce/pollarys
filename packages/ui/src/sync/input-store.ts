@@ -248,3 +248,4 @@ export const useInputStore = create<InputState>()((set, get) => ({
     set((s) => ({ attachedFiles: [...s.attachedFiles, attached] }))
   },
 }))
+

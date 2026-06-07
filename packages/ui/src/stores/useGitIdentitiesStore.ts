@@ -283,3 +283,4 @@ export const useGitIdentitiesStore = create<GitIdentitiesStore>()(
 if (typeof window !== "undefined") {
   window.__zustand_git_identities_store__ = useGitIdentitiesStore;
 }
+

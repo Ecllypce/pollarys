@@ -81,3 +81,4 @@ describe("updateStreamingState", () => {
     expect(useStreamingStore.getState().messageStreamStates.get("msg_assistant_1")?.phase).toBe("completed")
   })
 })
+

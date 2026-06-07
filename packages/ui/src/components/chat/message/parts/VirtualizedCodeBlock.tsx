@@ -337,3 +337,4 @@ const Row: React.FC<RowProps> = React.memo(({ line, language, showLineNumbers, s
 });
 
 Row.displayName = 'VirtualizedCodeBlock.Row';
+
