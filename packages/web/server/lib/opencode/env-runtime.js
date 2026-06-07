@@ -59,18 +59,18 @@ export const createOpenCodeEnvRuntime = (deps) => {
 
     const current = process.env.PATH || '';
     const parts = current.split(path.delimiter).filter(Boolean);
-    const candidateNames = [trimmed];
+    const candidateNames = [];
 
     if (process.platform === 'win32' && !path.extname(trimmed)) {
       const pathExt = process.env.PATHEXT || process.env.PathExt || '.COM;.EXE;.BAT;.CMD';
       for (const ext of pathExt.split(';')) {
         const normalizedExt = ext.trim();
         if (!normalizedExt) continue;
-        const candidateName = `${trimmed}${normalizedExt.startsWith('.') ? normalizedExt : `.${normalizedExt}`}`;
-        if (!candidateNames.some((existing) => existing.toLowerCase() === candidateName.toLowerCase())) {
-          candidateNames.push(candidateName);
-        }
+        candidateNames.push(`${trimmed}${normalizedExt.startsWith('.') ? normalizedExt : `.${normalizedExt}`}`);
       }
+      candidateNames.push(trimmed);
+    } else {
+      candidateNames.push(trimmed);
     }
 
     for (const dir of parts) {
